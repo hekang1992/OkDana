@@ -1,5 +1,5 @@
 //
-//  StartViewController.swift
+//  LoginViewController.swift
 //  OkDana
 //
 //  Created by hekang on 2025/12/13.
@@ -7,14 +7,12 @@
 
 import UIKit
 
-class StartViewController: BaseViewController {
+class LoginViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        NotificationCenter.default.post(name: NSNotification.Name("changeRootVc"), object: nil)
-        
     }
     
 

@@ -72,7 +72,7 @@ extension BaseTabBarController: UITabBarControllerDelegate {
     
     func tabBarController(_ tabBarController: UITabBarController,
                           shouldSelect viewController: UIViewController) -> Bool {
-        if LoginConfig.hasValidToken() == false {
+        if LoginConfig.isLoggedIn == false {
             let nav = BaseNavigationController(rootViewController: LoginViewController())
             nav.modalPresentationStyle = .overFullScreen
             present(nav, animated: true)

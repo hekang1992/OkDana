@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,13 +21,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        keyc()
+        notiChangeRootVc()
         window = UIWindow()
         window?.frame = UIScreen.main.bounds
-        window?.rootViewController = tabBar
+        window?.rootViewController = StartViewController()
         window?.makeKeyAndVisible()
         return true
     }
 
 
+}
+
+extension AppDelegate {
+    
+    private func keyc() {
+        IQKeyboardManager.shared.isEnabled = true
+        IQKeyboardManager.shared.resignOnTouchOutside = true
+    }
+    
+    private func notiChangeRootVc() {
+        NotificationCenter.default.addObserver(self, selector: #selector(changeRootVc), name: NSNotification.Name("changeRootVc"), object: nil)
+    }
+    
+    @objc private func changeRootVc() {
+        window?.rootViewController = self.tabBar
+    }
+    
 }
 

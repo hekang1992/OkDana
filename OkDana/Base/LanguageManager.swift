@@ -33,7 +33,7 @@ class LanguageManager {
         UserDefaults.standard.set(language.rawValue, forKey: "app_language")
     }
     
-    static func string(for key: String) -> String {
+    static func localizedString(for key: String) -> String {
         return currentBundle.localizedString(forKey: key, value: key, table: nil)
     }
     
