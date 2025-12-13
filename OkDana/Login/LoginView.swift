@@ -51,7 +51,7 @@ class LoginView: UIView {
     
     lazy var contentView: UIView = {
         let contentView = UIView()
-        contentView.backgroundColor = .systemBlue
+        contentView.backgroundColor = .clear
         return contentView
     }()
     
@@ -98,6 +98,16 @@ class LoginView: UIView {
         return voiceLabel
     }()
     
+    lazy var loginBtn: UIButton = {
+        let loginBtn = UIButton(type: .custom)
+        loginBtn.setTitle(LanguageManager.localizedString(for: "Log in"), for: .normal)
+        loginBtn.setTitleColor(.white, for: .normal)
+        loginBtn.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight(500))
+        loginBtn.setBackgroundImage(UIImage(named: "login_btn_image"), for: .normal)
+        loginBtn.adjustsImageWhenHighlighted = false
+        return loginBtn
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(bgImageView)
@@ -111,6 +121,7 @@ class LoginView: UIView {
         contentView.addSubview(codeLabel)
         contentView.addSubview(twoView)
         contentView.addSubview(voiceLabel)
+        contentView.addSubview(loginBtn)
         
         bgImageView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -173,6 +184,12 @@ class LoginView: UIView {
             make.top.equalTo(twoView.snp.bottom).offset(8)
             make.right.equalToSuperview().offset(-20)
             make.height.equalTo(14)
+        }
+        
+        loginBtn.snp.makeConstraints { make in
+            make.top.equalTo(voiceLabel.snp.bottom).offset(38)
+            make.size.equalTo(CGSize(width: 327, height: 50))
+            make.centerX.equalToSuperview()
         }
     }
     
