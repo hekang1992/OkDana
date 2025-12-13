@@ -6,5 +6,17 @@ target 'OkDana' do
   use_frameworks!
 
   # Pods for OkDana
+  
+  pod 'SnapKit'
+  pod 'RxSwift'
+  pod 'RxCocoa'
+  pod 'RxGesture'
+  pod 'MJRefresh'
+  pod 'Alamofire'
+  pod 'Kingfisher'
+  pod 'Toast-Swift'
+  pod 'FBSDKCoreKit'
+  pod 'TYAlertController'
+  pod 'IQKeyboardManagerSwift'
 
 end
