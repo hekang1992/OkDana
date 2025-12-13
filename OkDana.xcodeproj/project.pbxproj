@@ -15,7 +15,7 @@
 		7373C8F52EED0A4E0085A724 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7373C8F42EED0A4E0085A724 /* HomeViewController.swift */; };
 		7373C8F72EED0A630085A724 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7373C8F62EED0A630085A724 /* OrderViewController.swift */; };
 		7373C8F92EED0A6F0085A724 /* CenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7373C8F82EED0A6F0085A724 /* CenterViewController.swift */; };
-		7373C8FB2EED0AC20085A724 /* UntitledExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7373C8FA2EED0AC20085A724 /* UntitledExtension.swift */; };
+		7373C8FB2EED0AC20085A724 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7373C8FA2EED0AC20085A724 /* UIColorExtension.swift */; };
 		7373C8FD2EED0AF90085A724 /* LanguageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7373C8FC2EED0AF80085A724 /* LanguageManager.swift */; };
 		7373C8FF2EED18530085A724 /* LoginConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7373C8FE2EED18420085A724 /* LoginConfig.swift */; };
 		73BD812D2EECFBF700979190 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73BD81242EECFBF700979190 /* Assets.xcassets */; };
@@ -36,7 +36,7 @@
 		7373C8F42EED0A4E0085A724 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		7373C8F62EED0A630085A724 /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
 		7373C8F82EED0A6F0085A724 /* CenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterViewController.swift; sourceTree = "<group>"; };
-		7373C8FA2EED0AC20085A724 /* UntitledExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UntitledExtension.swift; sourceTree = "<group>"; };
+		7373C8FA2EED0AC20085A724 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		7373C8FC2EED0AF80085A724 /* LanguageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageManager.swift; sourceTree = "<group>"; };
 		7373C8FE2EED18420085A724 /* LoginConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginConfig.swift; sourceTree = "<group>"; };
 		73BD810B2EECFBEF00979190 /* OkDana.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OkDana.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -119,7 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				7373C8FE2EED18420085A724 /* LoginConfig.swift */,
-				7373C8FA2EED0AC20085A724 /* UntitledExtension.swift */,
+				7373C8FA2EED0AC20085A724 /* UIColorExtension.swift */,
 				7373C8FC2EED0AF80085A724 /* LanguageManager.swift */,
 				7373C8EC2EED06C30085A724 /* StartViewController.swift */,
 				7373C8EE2EED06CF0085A724 /* BaseViewController.swift */,
@@ -299,7 +299,7 @@
 				7373C8F12EED06EC0085A724 /* BaseTabBarController.swift in Sources */,
 				73BD81312EECFBF700979190 /* AppDelegate.swift in Sources */,
 				7373C8ED2EED06C30085A724 /* StartViewController.swift in Sources */,
-				7373C8FB2EED0AC20085A724 /* UntitledExtension.swift in Sources */,
+				7373C8FB2EED0AC20085A724 /* UIColorExtension.swift in Sources */,
 				7373C8F72EED0A630085A724 /* OrderViewController.swift in Sources */,
 				7373C8F32EED06F90085A724 /* BaseNavigationController.swift in Sources */,
 				7373C8F92EED0A6F0085A724 /* CenterViewController.swift in Sources */,

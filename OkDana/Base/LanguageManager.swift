@@ -20,24 +20,30 @@ enum AppLanguage: String {
 }
 
 class LanguageManager {
-    static var bundle: Bundle = .main
+    private static var currentBundle: Bundle = .main
     
     static func setLanguage(_ language: AppLanguage) {
-        if let path = Bundle.main.path(forResource: language.localeIdentifier, ofType: "lproj"),
-           let langBundle = Bundle(path: path) {
-            bundle = langBundle
-        } else {
-            bundle = .main
+        guard let path = Bundle.main.path(forResource: language.localeIdentifier, ofType: "lproj"),
+              let langBundle = Bundle(path: path) else {
+            currentBundle = .main
+            return
         }
+        currentBundle = langBundle
+        
+        UserDefaults.standard.set(language.rawValue, forKey: "app_language")
     }
     
-    static func localizedString(for key: String) -> String {
-        return bundle.localizedString(forKey: key, value: nil, table: nil)
+    static func string(for key: String) -> String {
+        return currentBundle.localizedString(forKey: key, value: key, table: nil)
     }
     
-    static func getLanguageCode() -> String {
-        let code = UserDefaults.standard.object(forKey: "kissed") as? String ?? "1"
-        return code
+    static var currentLanguage: AppLanguage {
+        let savedCode = UserDefaults.standard.string(forKey: "app_language")
+        return AppLanguage(rawValue: savedCode ?? "1") ?? .english
     }
     
+    static func setup() {
+        let language = currentLanguage
+        setLanguage(language)
+    }
 }
