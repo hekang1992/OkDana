@@ -1,5 +1,5 @@
 //
-//  BaseViewController.swift
+//  OrderViewController.swift
 //  OkDana
 //
 //  Created by hekang on 2025/12/13.
@@ -7,13 +7,12 @@
 
 import UIKit
 
-class BaseViewController: UIViewController {
+class OrderViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        view.backgroundColor = UIColor.init(hex: "#F5F5F5")
     }
     
 

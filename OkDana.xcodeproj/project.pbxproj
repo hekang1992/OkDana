@@ -12,6 +12,11 @@
 		7373C8EF2EED06CF0085A724 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7373C8EE2EED06CF0085A724 /* BaseViewController.swift */; };
 		7373C8F12EED06EC0085A724 /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7373C8F02EED06EC0085A724 /* BaseTabBarController.swift */; };
 		7373C8F32EED06F90085A724 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7373C8F22EED06F90085A724 /* BaseNavigationController.swift */; };
+		7373C8F52EED0A4E0085A724 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7373C8F42EED0A4E0085A724 /* HomeViewController.swift */; };
+		7373C8F72EED0A630085A724 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7373C8F62EED0A630085A724 /* OrderViewController.swift */; };
+		7373C8F92EED0A6F0085A724 /* CenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7373C8F82EED0A6F0085A724 /* CenterViewController.swift */; };
+		7373C8FB2EED0AC20085A724 /* Untitled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7373C8FA2EED0AC20085A724 /* Untitled.swift */; };
+		7373C8FD2EED0AF90085A724 /* LanguageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7373C8FC2EED0AF80085A724 /* LanguageManager.swift */; };
 		73BD812D2EECFBF700979190 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73BD81242EECFBF700979190 /* Assets.xcassets */; };
 		73BD812F2EECFBF700979190 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73BD81272EECFBF700979190 /* LaunchScreen.storyboard */; };
 		73BD81312EECFBF700979190 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BD81232EECFBF700979190 /* AppDelegate.swift */; };
@@ -27,6 +32,11 @@
 		7373C8EE2EED06CF0085A724 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		7373C8F02EED06EC0085A724 /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
 		7373C8F22EED06F90085A724 /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
+		7373C8F42EED0A4E0085A724 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		7373C8F62EED0A630085A724 /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
+		7373C8F82EED0A6F0085A724 /* CenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterViewController.swift; sourceTree = "<group>"; };
+		7373C8FA2EED0AC20085A724 /* Untitled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Untitled.swift; sourceTree = "<group>"; };
+		7373C8FC2EED0AF80085A724 /* LanguageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageManager.swift; sourceTree = "<group>"; };
 		73BD810B2EECFBEF00979190 /* OkDana.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OkDana.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73BD81232EECFBF700979190 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73BD81242EECFBF700979190 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -106,6 +116,8 @@
 		73BD81342EECFF4F00979190 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				7373C8FA2EED0AC20085A724 /* Untitled.swift */,
+				7373C8FC2EED0AF80085A724 /* LanguageManager.swift */,
 				7373C8EC2EED06C30085A724 /* StartViewController.swift */,
 				7373C8EE2EED06CF0085A724 /* BaseViewController.swift */,
 				7373C8F02EED06EC0085A724 /* BaseTabBarController.swift */,
@@ -131,6 +143,7 @@
 		73BD81372EECFF5600979190 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				7373C8F42EED0A4E0085A724 /* HomeViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -138,6 +151,7 @@
 		73BD81382EECFF5900979190 /* Order */ = {
 			isa = PBXGroup;
 			children = (
+				7373C8F62EED0A630085A724 /* OrderViewController.swift */,
 			);
 			path = Order;
 			sourceTree = "<group>";
@@ -145,6 +159,7 @@
 		73BD81392EECFF5C00979190 /* Center */ = {
 			isa = PBXGroup;
 			children = (
+				7373C8F82EED0A6F0085A724 /* CenterViewController.swift */,
 			);
 			path = Center;
 			sourceTree = "<group>";
@@ -280,8 +295,13 @@
 				7373C8F12EED06EC0085A724 /* BaseTabBarController.swift in Sources */,
 				73BD81312EECFBF700979190 /* AppDelegate.swift in Sources */,
 				7373C8ED2EED06C30085A724 /* StartViewController.swift in Sources */,
+				7373C8FB2EED0AC20085A724 /* Untitled.swift in Sources */,
+				7373C8F72EED0A630085A724 /* OrderViewController.swift in Sources */,
 				7373C8F32EED06F90085A724 /* BaseNavigationController.swift in Sources */,
+				7373C8F92EED0A6F0085A724 /* CenterViewController.swift in Sources */,
 				7373C8EF2EED06CF0085A724 /* BaseViewController.swift in Sources */,
+				7373C8F52EED0A4E0085A724 /* HomeViewController.swift in Sources */,
+				7373C8FD2EED0AF90085A724 /* LanguageManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,6 +341,7 @@
 				DEVELOPMENT_TEAM = 57MBH2272N;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OkDana/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Ok Dana";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -361,6 +382,7 @@
 				DEVELOPMENT_TEAM = 57MBH2272N;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OkDana/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Ok Dana";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
