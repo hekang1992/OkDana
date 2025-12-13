@@ -14,8 +14,7 @@ class StartViewController: BaseViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-//        NotificationCenter.default.post(name: NSNotification.Name("changeRootVc"), object: nil)
-        
+        LanguageManager.setup()
         let bgView = UIView()
         bgView.backgroundColor = UIColor.init(hex: "#57CF4C")
         view.addSubview(bgView)
@@ -31,6 +30,9 @@ class StartViewController: BaseViewController {
             make.size.equalTo(CGSize(width: 72, height: 72))
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(100)
         }
+        
+        NotificationCenter.default.post(name: NSNotification.Name("changeRootVc"), object: nil)
+        
     }
     
 
