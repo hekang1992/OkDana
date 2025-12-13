@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7373C8EA2EED06920085A724 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7373C8E82EED06920085A724 /* Localizable.strings */; };
+		7373C8ED2EED06C30085A724 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7373C8EC2EED06C30085A724 /* StartViewController.swift */; };
+		7373C8EF2EED06CF0085A724 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7373C8EE2EED06CF0085A724 /* BaseViewController.swift */; };
+		7373C8F12EED06EC0085A724 /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7373C8F02EED06EC0085A724 /* BaseTabBarController.swift */; };
+		7373C8F32EED06F90085A724 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7373C8F22EED06F90085A724 /* BaseNavigationController.swift */; };
 		73BD812D2EECFBF700979190 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73BD81242EECFBF700979190 /* Assets.xcassets */; };
 		73BD812F2EECFBF700979190 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73BD81272EECFBF700979190 /* LaunchScreen.storyboard */; };
 		73BD81312EECFBF700979190 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BD81232EECFBF700979190 /* AppDelegate.swift */; };
@@ -15,6 +20,13 @@
 
 /* Begin PBXFileReference section */
 		051F5B55662606AE75C05BA1 /* Pods-OkDana.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OkDana.release.xcconfig"; path = "Target Support Files/Pods-OkDana/Pods-OkDana.release.xcconfig"; sourceTree = "<group>"; };
+		7373C8E22EED03F50085A724 /* OkDana.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OkDana.entitlements; sourceTree = "<group>"; };
+		7373C8E92EED06920085A724 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7373C8EB2EED06980085A724 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7373C8EC2EED06C30085A724 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		7373C8EE2EED06CF0085A724 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		7373C8F02EED06EC0085A724 /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
+		7373C8F22EED06F90085A724 /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 		73BD810B2EECFBEF00979190 /* OkDana.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OkDana.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73BD81232EECFBF700979190 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73BD81242EECFBF700979190 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -42,7 +54,6 @@
 				8223264657DF9D221A8EC8B3 /* Pods-OkDana.debug.xcconfig */,
 				051F5B55662606AE75C05BA1 /* Pods-OkDana.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -75,12 +86,74 @@
 		73BD812C2EECFBF700979190 /* OkDana */ = {
 			isa = PBXGroup;
 			children = (
+				7373C8E22EED03F50085A724 /* OkDana.entitlements */,
 				73BD81252EECFBF700979190 /* Info.plist */,
 				73BD81242EECFBF700979190 /* Assets.xcassets */,
 				73BD81232EECFBF700979190 /* AppDelegate.swift */,
 				73BD81272EECFBF700979190 /* LaunchScreen.storyboard */,
+				7373C8E82EED06920085A724 /* Localizable.strings */,
+				73BD81392EECFF5C00979190 /* Center */,
+				73BD81382EECFF5900979190 /* Order */,
+				73BD81372EECFF5600979190 /* Home */,
+				73BD81362EECFF5400979190 /* Login */,
+				73BD813A2EECFF6100979190 /* Auth */,
+				73BD81352EECFF5100979190 /* Http */,
+				73BD81342EECFF4F00979190 /* Base */,
 			);
 			path = OkDana;
+			sourceTree = "<group>";
+		};
+		73BD81342EECFF4F00979190 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				7373C8EC2EED06C30085A724 /* StartViewController.swift */,
+				7373C8EE2EED06CF0085A724 /* BaseViewController.swift */,
+				7373C8F02EED06EC0085A724 /* BaseTabBarController.swift */,
+				7373C8F22EED06F90085A724 /* BaseNavigationController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		73BD81352EECFF5100979190 /* Http */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Http;
+			sourceTree = "<group>";
+		};
+		73BD81362EECFF5400979190 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		73BD81372EECFF5600979190 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		73BD81382EECFF5900979190 /* Order */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Order;
+			sourceTree = "<group>";
+		};
+		73BD81392EECFF5C00979190 /* Center */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Center;
+			sourceTree = "<group>";
+		};
+		73BD813A2EECFF6100979190 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Auth;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,6 +199,7 @@
 			knownRegions = (
 				en,
 				Base,
+				id,
 			);
 			mainGroup = 73BD81022EECFBEF00979190;
 			minimizedProjectReferenceProxies = 1;
@@ -145,6 +219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				73BD812D2EECFBF700979190 /* Assets.xcassets in Resources */,
+				7373C8EA2EED06920085A724 /* Localizable.strings in Resources */,
 				73BD812F2EECFBF700979190 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -182,9 +257,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-OkDana/Pods-OkDana-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-OkDana/Pods-OkDana-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -198,13 +277,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7373C8F12EED06EC0085A724 /* BaseTabBarController.swift in Sources */,
 				73BD81312EECFBF700979190 /* AppDelegate.swift in Sources */,
+				7373C8ED2EED06C30085A724 /* StartViewController.swift in Sources */,
+				7373C8F32EED06F90085A724 /* BaseNavigationController.swift in Sources */,
+				7373C8EF2EED06CF0085A724 /* BaseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		7373C8E82EED06920085A724 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7373C8E92EED06920085A724 /* en */,
+				7373C8EB2EED06980085A724 /* id */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		73BD81272EECFBF700979190 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -222,6 +314,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = OkDana/OkDana.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -230,7 +323,6 @@
 				INFOPLIST_FILE = OkDana/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -239,7 +331,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ll.zoom.loan;
+				PRODUCT_BUNDLE_IDENTIFIER = ok.zoom.loan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -262,6 +354,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = OkDana/OkDana.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -270,7 +363,6 @@
 				INFOPLIST_FILE = OkDana/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -279,7 +371,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ll.zoom.loan;
+				PRODUCT_BUNDLE_IDENTIFIER = ok.zoom.loan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -301,6 +393,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -364,6 +457,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
