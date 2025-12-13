@@ -69,7 +69,7 @@ class BaseTabBarController: UITabBarController {
 
 // MARK: - UITabBarControllerDelegate
 extension BaseTabBarController: UITabBarControllerDelegate {
-    /*
+    
     func tabBarController(_ tabBarController: UITabBarController,
                           shouldSelect viewController: UIViewController) -> Bool {
         if LoginConfig.hasValidToken() == false {
@@ -80,7 +80,7 @@ extension BaseTabBarController: UITabBarControllerDelegate {
         }
         return true
     }
-    */
+    
 }
 
 // MARK: - Tab Configuration
