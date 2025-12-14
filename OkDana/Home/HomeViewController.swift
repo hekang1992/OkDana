@@ -31,8 +31,8 @@ class HomeViewController: BaseViewController {
         }
         
         let code = LanguageManager.currentLanguage
-        oneView.leftLabel.isHidden = code == .en
-        oneView.rightLabel.isHidden = code == .en
+        oneView.privacyLabel.isHidden = code == .id
+        oneView.termsLabel.isHidden = code == .id
         
         self.oneView.scrollView.mj_header = MJRefreshNormalHeader(refreshingBlock: { [weak self] in
             guard let self = self else { return }
@@ -40,6 +40,11 @@ class HomeViewController: BaseViewController {
                 await self.fetchAllData()
             }
         })
+        
+        self.oneView.clickBlock = { [weak self] productID in
+            guard let self = self else { return }
+            ToastManager.showMessage(message: productID)
+        }
         
     }
     
@@ -111,8 +116,8 @@ extension HomeViewController {
         
         if let firstEvenb = evenbModels.first {
             oneView.isHidden = false
-//            twoView.isHidden = true
-//            errorView.isHidden = true
+            //            twoView.isHidden = true
+            //            errorView.isHidden = true
             self.oneView.model = firstEvenb.despite?.first
         }
         
@@ -124,19 +129,19 @@ extension HomeViewController {
             configureTwoView(heads: "evend", model: firstEvend)
         }
     }
-
+    
     private func configureTwoView(heads: String, model: easierModel) {
         oneView.isHidden = true
-//        twoView.isHidden = false
-//        errorView.isHidden = true
+        //        twoView.isHidden = false
+        //        errorView.isHidden = true
         
-//        if heads == "asc" {
-//            self.twoView.model = model.above?.first
-//        } else if heads == "asd" {
-//            self.twoView.modelArray = model.above
-//        }
-//        
-//        self.twoView.tableView.reloadData()
+        //        if heads == "asc" {
+        //            self.twoView.model = model.above?.first
+        //        } else if heads == "asd" {
+        //            self.twoView.modelArray = model.above
+        //        }
+        //
+        //        self.twoView.tableView.reloadData()
     }
     
 }
