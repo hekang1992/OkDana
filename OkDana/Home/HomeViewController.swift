@@ -26,6 +26,8 @@ class HomeViewController: BaseViewController {
             make.edges.equalToSuperview()
         }
         
+        let json = CommonParaConfig.getCommonParameters()
+        
         self.oneView.scrollView.mj_header = MJRefreshNormalHeader(refreshingBlock: { [weak self] in
             guard let self = self else { return }
             Task {

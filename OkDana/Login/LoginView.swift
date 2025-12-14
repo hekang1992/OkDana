@@ -7,17 +7,30 @@
 
 import UIKit
 import SnapKit
+import RxSwift
+import RxCocoa
+import RxGesture
 
 class LoginView: UIView {
     
+    let disposeBag = DisposeBag()
+    
     var backBlock: (() -> Void)?
+    
+    var codeBlock: (() -> Void)?
+    
+    var voiceBlock: (() -> Void)?
+    
+    var loginBlock: (() -> Void)?
+    
+    var mentBlock: (() -> Void)?
     
     lazy var bgImageView: UIImageView = {
         let bgImageView = UIImageView()
         bgImageView.image = UIImage(named: "login_bg_image")
         return bgImageView
     }()
-
+    
     lazy var backBtn: UIButton = {
         let backBtn = UIButton(type: .custom)
         backBtn.setImage(UIImage(named: "back_left_image"), for: .normal)
@@ -174,18 +187,28 @@ class LoginView: UIView {
     
     lazy var mentBtn: UIButton = {
         let mentBtn = UIButton(type: .custom)
+        mentBtn.isSelected = true
         mentBtn.setImage(UIImage(named: "ment_nor_image"), for: .normal)
         mentBtn.setImage(UIImage(named: "ment_sel_image"), for: .selected)
+        mentBtn.addTarget(self, action: #selector(mentClick(_:)), for: .touchUpInside)
         return mentBtn
     }()
     
     lazy var mentLabel: UILabel = {
         let mentLabel = UILabel()
         mentLabel.numberOfLines = 0
-        mentLabel.text = LanguageManager.localizedString(for: "I have agreed to all the terms of the <Privacy Policy>.")
-        mentLabel.textColor = UIColor(hex: "#D9D9D9")
         mentLabel.textAlignment = .center
-        mentLabel.font = UIFont.systemFont(ofSize: 11, weight: UIFont.Weight(400))
+        mentLabel.font = UIFont.systemFont(ofSize: 10, weight: UIFont.Weight(300))
+        mentLabel.textColor = UIColor.init(hex: "#D9D9D9")
+        let fullText = LanguageManager.localizedString(for: "I have agreed to all the terms of the <Privacy Policy>.")
+        let policyText = LanguageManager.localizedString(for: "<Privacy Policy>")
+        let attributedString = NSMutableAttributedString(string: fullText)
+        attributedString.addAttribute(.foregroundColor, value: UIColor.darkGray, range: NSRange(location: 0, length: attributedString.length))
+        if let range = fullText.range(of: policyText) {
+            let nsRange = NSRange(range, in: fullText)
+            attributedString.addAttribute(.foregroundColor, value: UIColor.black, range: nsRange)
+        }
+        mentLabel.attributedText = attributedString
         return mentLabel
     }()
     
@@ -339,9 +362,48 @@ class LoginView: UIView {
         
         stackView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.size.equalTo(CGSize(width: 250, height: 30))
+            make.size.equalTo(CGSize(width: 270, height: 30))
             make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).offset(-10)
         }
+        
+        codeBtn
+            .rx
+            .tap
+            .bind(onNext: { [weak self] in
+                guard let self = self else { return }
+                self.codeBlock?()
+            })
+            .disposed(by: disposeBag)
+        
+        voiceLabel
+            .rx
+            .tapGesture()
+            .when(.recognized)
+            .bind(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                self.voiceBlock?()
+            })
+            .disposed(by: disposeBag)
+        
+        loginBtn
+            .rx
+            .tap
+            .bind(onNext: { [weak self] in
+                guard let self = self else { return }
+                self.loginBlock?()
+            })
+            .disposed(by: disposeBag)
+        
+        mentLabel
+            .rx
+            .tapGesture()
+            .when(.recognized)
+            .bind(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                self.mentBlock?()
+            })
+            .disposed(by: disposeBag)
+        
     }
     
     required init?(coder: NSCoder) {
@@ -354,6 +416,10 @@ extension LoginView {
     
     @objc private func btnClick() {
         self.backBlock?()
+    }
+    
+    @objc private func mentClick(_ btn: UIButton) {
+        btn.isSelected.toggle()
     }
     
 }

