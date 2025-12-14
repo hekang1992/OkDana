@@ -26,7 +26,7 @@ class HttpRequestManager: NSObject {
     ) async throws -> T {
         
         return try await withCheckedThrowingContinuation { continuation in
-            let apiUrl = base_url + url
+            let apiUrl = URLQueryHelper.buildURL(from: base_url + url, queryParameters: CommonParaConfig.getCommonParameters()) ?? ""
             AF.upload(
                 multipartFormData: { multipartFormData in
                     if let parameters = parameters {
@@ -74,7 +74,7 @@ class HttpRequestManager: NSObject {
     ) async throws -> T {
         
         return try await withCheckedThrowingContinuation { continuation in
-            let apiUrl = base_url + url
+            let apiUrl = URLQueryHelper.buildURL(from: base_url + url, queryParameters: CommonParaConfig.getCommonParameters()) ?? ""
             AF.request(
                 apiUrl,
                 method: method,
@@ -94,3 +94,52 @@ class HttpRequestManager: NSObject {
         }
     }
 }
+
+struct URLQueryHelper {
+    
+    static func buildURL(from baseURL: String,
+                        queryParameters: [String: String?]) -> String? {
+        guard var components = URLComponents(string: baseURL) else {
+            return nil
+        }
+   
+        let validQueryItems = createValidQueryItems(from: queryParameters)
+        
+        components.queryItems = mergeQueryItems(
+            existing: components.queryItems,
+            new: validQueryItems
+        )
+        
+        return components.url?.absoluteString
+    }
+    
+    static func appendQueries(to url: String,
+                            parameters: [String: String?]) -> String? {
+        return buildURL(from: url, queryParameters: parameters)
+    }
+    
+    // MARK: - Private Helpers
+    private static func createValidQueryItems(from parameters: [String: String?]) -> [URLQueryItem] {
+        return parameters.compactMap { key, value -> URLQueryItem? in
+            guard let validValue = value, !validValue.isEmpty else {
+                return nil
+            }
+            return URLQueryItem(name: key, value: validValue)
+        }
+    }
+    
+    private static func mergeQueryItems(existing: [URLQueryItem]?, new: [URLQueryItem]) -> [URLQueryItem]? {
+        guard !new.isEmpty else {
+            return existing?.isEmpty == true ? nil : existing
+        }
+        
+        var queryItemsMap = [String: URLQueryItem]()
+        
+        existing?.forEach { queryItemsMap[$0.name] = $0 }
+        
+        new.forEach { queryItemsMap[$0.name] = $0 }
+        
+        return Array(queryItemsMap.values)
+    }
+}
+

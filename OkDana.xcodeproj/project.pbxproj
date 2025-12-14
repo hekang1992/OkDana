@@ -23,6 +23,9 @@
 		7373C9032EED2B900085A724 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7373C9022EED2B900085A724 /* LoginView.swift */; };
 		73AD58AE2EEEAA0C0022899B /* CommonParaConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AD58AD2EEEAA0C0022899B /* CommonParaConfig.swift */; };
 		73AD58B02EEEADF60022899B /* HttpRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AD58AF2EEEADE90022899B /* HttpRequestManager.swift */; };
+		73AD58B52EEEC7E60022899B /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AD58B42EEEC7E30022899B /* LoginViewModel.swift */; };
+		73AD58B72EEECB3A0022899B /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AD58B62EEECB370022899B /* BaseModel.swift */; };
+		73AD58BB2EEECBD50022899B /* LoadingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AD58BA2EEECBD50022899B /* LoadingManager.swift */; };
 		73BD812D2EECFBF700979190 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73BD81242EECFBF700979190 /* Assets.xcassets */; };
 		73BD812F2EECFBF700979190 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73BD81272EECFBF700979190 /* LaunchScreen.storyboard */; };
 		73BD81312EECFBF700979190 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BD81232EECFBF700979190 /* AppDelegate.swift */; };
@@ -66,6 +69,9 @@
 		7373C9022EED2B900085A724 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		73AD58AD2EEEAA0C0022899B /* CommonParaConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonParaConfig.swift; sourceTree = "<group>"; };
 		73AD58AF2EEEADE90022899B /* HttpRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpRequestManager.swift; sourceTree = "<group>"; };
+		73AD58B42EEEC7E30022899B /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		73AD58B62EEECB370022899B /* BaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseModel.swift; sourceTree = "<group>"; };
+		73AD58BA2EEECBD50022899B /* LoadingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingManager.swift; sourceTree = "<group>"; };
 		73BD810B2EECFBEF00979190 /* OkDana.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OkDana.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73BD81232EECFBF700979190 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73BD81242EECFBF700979190 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -162,6 +168,8 @@
 		73BD81352EECFF5100979190 /* Http */ = {
 			isa = PBXGroup;
 			children = (
+				73AD58B62EEECB370022899B /* BaseModel.swift */,
+				73AD58BA2EEECBD50022899B /* LoadingManager.swift */,
 				73AD58AF2EEEADE90022899B /* HttpRequestManager.swift */,
 			);
 			path = Http;
@@ -170,6 +178,7 @@
 		73BD81362EECFF5400979190 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				73AD58B42EEEC7E30022899B /* LoginViewModel.swift */,
 				7373C8FE2EED18420085A724 /* LoginConfig.swift */,
 				7373C9022EED2B900085A724 /* LoginView.swift */,
 				7373C9002EED1C860085A724 /* LoginViewController.swift */,
@@ -340,8 +349,10 @@
 				73BD81312EECFBF700979190 /* AppDelegate.swift in Sources */,
 				73AD58AE2EEEAA0C0022899B /* CommonParaConfig.swift in Sources */,
 				73AD58B02EEEADF60022899B /* HttpRequestManager.swift in Sources */,
+				73AD58BB2EEECBD50022899B /* LoadingManager.swift in Sources */,
 				73D8AE8F2EEDC77F00229479 /* TwoHomeView.swift in Sources */,
 				73D8AE8D2EEDC77100229479 /* OneHomeView.swift in Sources */,
+				73AD58B52EEEC7E60022899B /* LoginViewModel.swift in Sources */,
 				7373C8ED2EED06C30085A724 /* StartViewController.swift in Sources */,
 				7373C8FB2EED0AC20085A724 /* UIColorExtension.swift in Sources */,
 				7373C8F72EED0A630085A724 /* OrderViewController.swift in Sources */,
@@ -349,6 +360,7 @@
 				7373C8F92EED0A6F0085A724 /* CenterViewController.swift in Sources */,
 				7373C8EF2EED06CF0085A724 /* BaseViewController.swift in Sources */,
 				7373C9032EED2B900085A724 /* LoginView.swift in Sources */,
+				73AD58B72EEECB3A0022899B /* BaseModel.swift in Sources */,
 				7373C8F52EED0A4E0085A724 /* HomeViewController.swift in Sources */,
 				7373C8FD2EED0AF90085A724 /* LanguageManager.swift in Sources */,
 			);
