@@ -8,13 +8,13 @@
 import Foundation
 
 enum AppLanguage: String {
-    case english = "1"
-    case indonesian = "2"
+    case en = "1"
+    case id = "2"
     
     var localeIdentifier: String {
         switch self {
-        case .english: return "en"
-        case .indonesian: return "id"
+        case .en: return "en"
+        case .id: return "id"
         }
     }
 }
@@ -39,7 +39,7 @@ class LanguageManager {
     
     static var currentLanguage: AppLanguage {
         let savedCode = UserDefaults.standard.string(forKey: "app_language")
-        return AppLanguage(rawValue: savedCode ?? "2") ?? .english
+        return AppLanguage(rawValue: savedCode ?? "2") ?? .en
     }
     
     static func setup() {

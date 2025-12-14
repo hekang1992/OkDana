@@ -108,6 +108,96 @@ class LoginView: UIView {
         return loginBtn
     }()
     
+    lazy var oneLabel: UILabel = {
+        let oneLabel = UILabel(frame: .zero)
+        oneLabel.text = LanguageManager.localizedString(for: "+91")
+        oneLabel.textAlignment = .center
+        oneLabel.textColor = UIColor(hex: "#000000")
+        oneLabel.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight(400))
+        return oneLabel
+    }()
+    
+    lazy var lineView: UIView = {
+        let lineView = UIView()
+        lineView.layer.cornerRadius = 2
+        lineView.layer.masksToBounds = true
+        lineView.backgroundColor = UIColor.init(hex: "#BDBDBD")
+        return lineView
+    }()
+    
+    lazy var phoneTextFiled: UITextField = {
+        let phoneTextFiled = UITextField()
+        phoneTextFiled.keyboardType = .numberPad
+        let attrString = NSMutableAttributedString(string: "Please Enter Your Phone Number", attributes: [
+            .foregroundColor: UIColor.init(hex: "#BDBDBD") as Any,
+            .font: UIFont.systemFont(ofSize: 13, weight: UIFont.Weight(500))
+        ])
+        phoneTextFiled.attributedPlaceholder = attrString
+        phoneTextFiled.font = UIFont.systemFont(ofSize: 13, weight: UIFont.Weight(500))
+        phoneTextFiled.textColor = UIColor.init(hex: "#333333")
+        return phoneTextFiled
+    }()
+    
+    lazy var codeTextFiled: UITextField = {
+        let codeTextFiled = UITextField()
+        codeTextFiled.keyboardType = .numberPad
+        let attrString = NSMutableAttributedString(string: "Please Enter Verification Code", attributes: [
+            .foregroundColor: UIColor.init(hex: "#BDBDBD") as Any,
+            .font: UIFont.systemFont(ofSize: 13, weight: UIFont.Weight(500))
+        ])
+        codeTextFiled.attributedPlaceholder = attrString
+        codeTextFiled.font = UIFont.systemFont(ofSize: 13, weight: UIFont.Weight(500))
+        codeTextFiled.textColor = UIColor.init(hex: "#333333")
+        return codeTextFiled
+    }()
+    
+    lazy var codeBtn: UIButton = {
+        let codeBtn = UIButton(type: .custom)
+        codeBtn.setTitle(LanguageManager.localizedString(for: "Get Code"), for: .normal)
+        codeBtn.setTitleColor(UIColor.init(hex: "#00CA5D"), for: .normal)
+        codeBtn.titleLabel?.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight(400))
+        codeBtn.titleLabel?.textAlignment = .right
+        return codeBtn
+    }()
+    
+    lazy var clineView: UIView = {
+        let clineView = UIView()
+        clineView.backgroundColor = UIColor(hex: "#00CA5D")
+        return clineView
+    }()
+    
+    lazy var dlineView: UIView = {
+        let dlineView = UIView()
+        dlineView.backgroundColor = UIColor(hex: "#C0C0C0")
+        return dlineView
+    }()
+    
+    lazy var mentBtn: UIButton = {
+        let mentBtn = UIButton(type: .custom)
+        mentBtn.setImage(UIImage(named: "ment_nor_image"), for: .normal)
+        mentBtn.setImage(UIImage(named: "ment_sel_image"), for: .selected)
+        return mentBtn
+    }()
+    
+    lazy var mentLabel: UILabel = {
+        let mentLabel = UILabel()
+        mentLabel.numberOfLines = 0
+        mentLabel.text = LanguageManager.localizedString(for: "I have agreed to all the terms of the <Privacy Policy>.")
+        mentLabel.textColor = UIColor(hex: "#D9D9D9")
+        mentLabel.textAlignment = .center
+        mentLabel.font = UIFont.systemFont(ofSize: 11, weight: UIFont.Weight(400))
+        return mentLabel
+    }()
+    
+    lazy var stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 5
+        stackView.distribution = .fill
+        stackView.alignment = .center
+        return stackView
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(bgImageView)
@@ -122,6 +212,18 @@ class LoginView: UIView {
         contentView.addSubview(twoView)
         contentView.addSubview(voiceLabel)
         contentView.addSubview(loginBtn)
+        
+        oneView.addSubview(oneLabel)
+        oneView.addSubview(lineView)
+        oneView.addSubview(phoneTextFiled)
+        twoView.addSubview(codeTextFiled)
+        twoView.addSubview(codeBtn)
+        codeBtn.addSubview(clineView)
+        contentView.addSubview(dlineView)
+        whiteView.addSubview(stackView)
+        
+        stackView.addArrangedSubview(mentBtn)
+        stackView.addArrangedSubview(mentLabel)
         
         bgImageView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -190,6 +292,55 @@ class LoginView: UIView {
             make.top.equalTo(voiceLabel.snp.bottom).offset(38)
             make.size.equalTo(CGSize(width: 327, height: 50))
             make.centerX.equalToSuperview()
+        }
+        
+        oneLabel.snp.makeConstraints { make in
+            make.left.equalToSuperview()
+            make.centerY.equalToSuperview()
+            make.size.equalTo(CGSize(width: 43, height: 40))
+        }
+        
+        lineView.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.left.equalTo(oneLabel.snp.right)
+            make.size.equalTo(CGSize(width: 1, height: 25))
+        }
+        
+        phoneTextFiled.snp.makeConstraints { make in
+            make.left.equalTo(lineView.snp.right).offset(13)
+            make.centerY.equalToSuperview()
+            make.right.equalToSuperview().offset(-10)
+            make.height.equalTo(30)
+        }
+        
+        codeTextFiled.snp.makeConstraints { make in
+            make.left.equalToSuperview().offset(11)
+            make.centerY.equalToSuperview()
+            make.right.equalToSuperview().offset(-130)
+            make.height.equalTo(30)
+        }
+        
+        codeBtn.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.size.equalTo(CGSize(width: 105, height: 15))
+            make.right.equalToSuperview().offset(-8)
+        }
+        
+        clineView.snp.makeConstraints { make in
+            make.left.bottom.right.equalToSuperview()
+            make.height.equalTo(1)
+        }
+        
+        dlineView.snp.makeConstraints { make in
+            make.left.right.equalTo(voiceLabel)
+            make.bottom.equalTo(voiceLabel).offset(0.5)
+            make.height.equalTo(1)
+        }
+        
+        stackView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.size.equalTo(CGSize(width: 250, height: 30))
+            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).offset(-10)
         }
     }
     
