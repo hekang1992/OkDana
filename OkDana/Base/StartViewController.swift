@@ -131,7 +131,6 @@ extension StartViewController {
         
         if #available(iOS 14.0, *) {
             let status = await ATTrackingManager.requestTrackingAuthorization()
-            
             switch status {
             case .authorized, .notDetermined, .denied:
                 await uploadDeviceInfo()

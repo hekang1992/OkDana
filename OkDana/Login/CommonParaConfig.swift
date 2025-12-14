@@ -19,8 +19,7 @@ class CommonParaConfig: NSObject {
         parameters[Keys.systemVersion] = UIDevice.current.systemVersion
         parameters[Keys.authToken] = LoginConfig.currentToken ?? ""
         parameters[Keys.idfa] = DeviceIdentifierManager.getIDFA()
-//        parameters[Keys.customKey] = UserDefaults.standard.string(forKey: "reflecting") ?? ""
-        parameters[Keys.customKey] = "1"
+        parameters[Keys.customKey] = UserDefaults.standard.string(forKey: "reflecting") ?? ""
         return parameters
     }
     

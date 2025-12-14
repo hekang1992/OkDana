@@ -27,6 +27,7 @@
 		73AD58BB2EEECBD50022899B /* LoadingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AD58BA2EEECBD50022899B /* LoadingManager.swift */; };
 		73AD58BD2EEED75A0022899B /* StartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AD58BC2EEED7520022899B /* StartViewModel.swift */; };
 		73AD58BF2EEED8380022899B /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AD58BE2EEED8370022899B /* NetworkMonitor.swift */; };
+		73AD58C12EEEE4B80022899B /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AD58C02EEEE4B40022899B /* HomeViewModel.swift */; };
 		73BD812D2EECFBF700979190 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73BD81242EECFBF700979190 /* Assets.xcassets */; };
 		73BD812F2EECFBF700979190 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73BD81272EECFBF700979190 /* LaunchScreen.storyboard */; };
 		73BD81312EECFBF700979190 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BD81232EECFBF700979190 /* AppDelegate.swift */; };
@@ -59,6 +60,7 @@
 		73AD58BA2EEECBD50022899B /* LoadingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingManager.swift; sourceTree = "<group>"; };
 		73AD58BC2EEED7520022899B /* StartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewModel.swift; sourceTree = "<group>"; };
 		73AD58BE2EEED8370022899B /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		73AD58C02EEEE4B40022899B /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		73BD810B2EECFBEF00979190 /* OkDana.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OkDana.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73BD81232EECFBF700979190 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73BD81242EECFBF700979190 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 		73BD81372EECFF5600979190 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				73AD58C02EEEE4B40022899B /* HomeViewModel.swift */,
 				73D8AE8C2EEDC77100229479 /* OneHomeView.swift */,
 				73D8AE8E2EEDC77F00229479 /* TwoHomeView.swift */,
 				7373C8F42EED0A4E0085A724 /* HomeViewController.swift */,
@@ -354,6 +357,7 @@
 				7373C8F12EED06EC0085A724 /* BaseTabBarController.swift in Sources */,
 				73BD81312EECFBF700979190 /* AppDelegate.swift in Sources */,
 				73AD58AE2EEEAA0C0022899B /* CommonParaConfig.swift in Sources */,
+				73AD58C12EEEE4B80022899B /* HomeViewModel.swift in Sources */,
 				73AD58B02EEEADF60022899B /* HttpRequestManager.swift in Sources */,
 				73AD58BB2EEECBD50022899B /* LoadingManager.swift in Sources */,
 				73D8AE8F2EEDC77F00229479 /* TwoHomeView.swift in Sources */,
