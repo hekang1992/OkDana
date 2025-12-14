@@ -97,7 +97,11 @@ class OneHomeView: UIView {
     
     // MARK: - Card Content
     private lazy var actualLabel: UILabel = {
-        createCardSubtitleLabel()
+        let label = UILabel()
+        label.textColor = UIColor(hex: "#B1B0B0")
+        label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        label.textAlignment = .center
+        return label
     }()
     
     private lazy var amountLabel: UILabel = {

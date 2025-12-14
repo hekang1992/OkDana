@@ -43,7 +43,14 @@ class HomeViewController: BaseViewController {
         
         self.oneView.clickBlock = { [weak self] productID in
             guard let self = self else { return }
-            ToastManager.showMessage(message: productID)
+            if LoginConfig.isLoggedIn {
+                tapClickProduct(with: productID)
+            }else {
+                let nav = BaseNavigationController(rootViewController: LoginViewController())
+                nav.modalPresentationStyle = .overFullScreen
+                self.present(nav, animated: true)
+            }
+            
         }
         
     }
@@ -73,7 +80,7 @@ extension HomeViewController {
     private func fetchHomeData() async {
         do {
             let json = ["combined": "1"]
-            let model = try await viewModel.getHomeInfo(json: json)
+            let model: BaseModel = try await viewModel.getHomeInfo(json: json)
             await MainActor.run {
                 if model.somewhat == 0 {
                     self.fixHomeModel(with: model)
@@ -142,6 +149,34 @@ extension HomeViewController {
         //        }
         //
         //        self.twoView.tableView.reloadData()
+    }
+    
+}
+
+extension HomeViewController {
+    
+    private func tapClickProduct(with productID: String) {
+        Task {
+            do {
+                let json = ["cannot": productID]
+                let model: BaseModel = try await viewModel.tapClickProductInfo(json: json)
+                if model.somewhat == 0 {
+                    ocPageUrl(with: model.combined?.inputs ?? "")
+                }else {
+                    ToastManager.showMessage(message: model.conversion ?? "")
+                }
+            } catch {
+            
+            }
+        }
+    }
+    
+    private func ocPageUrl(with pageUrl: String) {
+        if pageUrl.contains(AppScheme.base) {
+            AppSchemeUrlConfig.handleRoute(pageUrl: pageUrl, from: self)
+        } else {
+            
+        }
     }
     
 }

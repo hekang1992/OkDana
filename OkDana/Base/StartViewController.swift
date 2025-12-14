@@ -11,10 +11,23 @@ import AdSupport
 import Alamofire
 import FBSDKCoreKit
 import AppTrackingTransparency
+import RxSwift
+import RxCocoa
 
 class StartViewController: BaseViewController {
     
     let viewModel = StartViewModel()
+    
+    let disposeBag = DisposeBag()
+    
+    lazy var againBtn: UIButton = {
+        let againBtn = UIButton(type: .custom)
+        againBtn.setTitle(LanguageManager.localizedString(for: "Try Again"), for: .normal)
+        againBtn.setTitleColor(.white, for: .normal)
+        againBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: UIFont.Weight(500))
+        againBtn.isHidden = true
+        return againBtn
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +52,18 @@ class StartViewController: BaseViewController {
             make.size.equalTo(CGSize(width: 72, height: 72))
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(100)
         }
+        
+        bgView.addSubview(againBtn)
+        againBtn.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.size.equalTo(CGSize(width: 100, height: 20))
+            make.bottom.equalToSuperview().offset(-60)
+        }
+        
+        againBtn.rx.tap.bind(onNext: { [weak self] in
+            guard let self = self else { return }
+            setupNetworkMonitoring()
+        }).disposed(by: disposeBag)
     }
     
     private func setupNetworkMonitoring() {
@@ -75,22 +100,28 @@ extension StartViewController {
     
     private func performAppInitialization() async {
         do {
-            let model = try await fetchAppInitInfo()
+            let model: BaseModel = try await fetchAppInitInfo()
             
-            guard model.somewhat == 0 else { return }
-            
+            guard model.somewhat == 0 else {
+                againBtn.isHidden = false
+                return
+            }
+            againBtn.isHidden = true
             if let facebookModel = model.combined?.consecutively {
                 configureFacebook(with: facebookModel)
             }
             
             if let reflecting = model.combined?.reflecting,
                let lang = AppLanguage(rawValue: reflecting) {
+                UserDefaults.standard.set(reflecting, forKey: "reflecting")
+                UserDefaults.standard.synchronize()
                 LanguageManager.setLanguage(lang)
             }
             
             await requestIDFAAuthorization()
             
         } catch {
+            againBtn.isHidden = false
             handleInitializationError(error)
         }
     }
@@ -149,13 +180,16 @@ extension StartViewController {
                 "build": DeviceIdentifierManager.getIDFA()
             ]
             
-            let model = try await viewModel.uploadIDInfo(json: json)
+            let model: BaseModel = try await viewModel.uploadIDInfo(json: json)
             
             if model.somewhat == 0 {
                 try? await Task.sleep(nanoseconds: 250_000_000)
                 completeInitialization()
+            }else {
+                againBtn.isHidden = false
             }
         } catch {
+            againBtn.isHidden = false
             handleIDFAUploadError(error)
         }
     }
@@ -167,11 +201,14 @@ extension StartViewController {
         ]
         
         do {
-            let model = try await viewModel.uploadIDInfo(json: json)
+            let model: BaseModel = try await viewModel.uploadIDInfo(json: json)
             if model.somewhat == 0 {
                 completeInitialization()
+            }else {
+                againBtn.isHidden = false
             }
         } catch {
+            againBtn.isHidden = false
             handleIDFAUploadError(error)
         }
     }

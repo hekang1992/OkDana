@@ -38,6 +38,10 @@ class combinedModel: Codable {
     var reflecting: String?
     var consecutively: consecutivelyModel?
     var easier: [easierModel]?
+    var inputs: String?
+    var yves: yvesModel?
+    var combining: [combiningModel]?
+    var virtual: virtualModel?
 }
 
 class consecutivelyModel: Codable {
@@ -61,4 +65,26 @@ class despiteModel: Codable {
     var actual: String?
     var obstacle: String?
     var discretized: String?
+}
+
+class yvesModel: Codable {
+    var evaporation: String?
+    var pspace: String?
+    var disappear: String?
+    var subclass: String?
+    var hierarchy: String?
+}
+
+class combiningModel: Codable {
+    var geometric: String?
+    var probabilistically: String?
+    var chooses: String?
+    var discovery: Int?
+}
+
+class virtualModel: Codable {
+    var map: String?
+    var inputs: String?
+    var complications: Int?
+    var geometric: String?
 }
