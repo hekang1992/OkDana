@@ -156,9 +156,9 @@
 		73BD81352EECFF5100979190 /* Http */ = {
 			isa = PBXGroup;
 			children = (
-				73AD58BE2EEED8370022899B /* NetworkMonitor.swift */,
 				73AD58B62EEECB370022899B /* BaseModel.swift */,
 				73AD58BA2EEECBD50022899B /* LoadingManager.swift */,
+				73AD58BE2EEED8370022899B /* NetworkMonitor.swift */,
 				73AD58AF2EEEADE90022899B /* HttpRequestManager.swift */,
 			);
 			path = Http;

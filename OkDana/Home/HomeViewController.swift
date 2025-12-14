@@ -71,7 +71,7 @@ extension HomeViewController {
             let model = try await viewModel.getHomeInfo(json: json)
             await MainActor.run {
                 if model.somewhat == 0 {
-                    
+                    self.fixHomeModel(with: model)
                 }
                 self.oneView.scrollView.mj_header?.endRefreshing()
             }
@@ -92,6 +92,51 @@ extension HomeViewController {
         } catch {
             
         }
+    }
+    
+    private func fixHomeModel(with model: BaseModel) {
+        guard let modelArray = model.combined?.easier else { return }
+        
+        let evenbModels = modelArray
+            .compactMap { $0 }
+            .filter { $0.complications == "evenb" }
+        
+        let evencModels = modelArray
+            .compactMap { $0 }
+            .filter { $0.complications == "evenc" }
+        
+        let evendModels = modelArray
+            .compactMap { $0 }
+            .filter { $0.complications == "evend" }
+        
+        if let firstEvenb = evenbModels.first {
+            oneView.isHidden = false
+//            twoView.isHidden = true
+//            errorView.isHidden = true
+            self.oneView.model = firstEvenb.despite?.first
+        }
+        
+        if let firstEvenc = evencModels.first {
+            configureTwoView(heads: "evenc", model: firstEvenc)
+        }
+        
+        if let firstEvend = evendModels.first {
+            configureTwoView(heads: "evend", model: firstEvend)
+        }
+    }
+
+    private func configureTwoView(heads: String, model: easierModel) {
+        oneView.isHidden = true
+//        twoView.isHidden = false
+//        errorView.isHidden = true
+        
+//        if heads == "asc" {
+//            self.twoView.model = model.above?.first
+//        } else if heads == "asd" {
+//            self.twoView.modelArray = model.above
+//        }
+//        
+//        self.twoView.tableView.reloadData()
     }
     
 }

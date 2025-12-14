@@ -37,6 +37,7 @@ class combinedModel: Codable {
     var alpha: String?
     var reflecting: String?
     var consecutively: consecutivelyModel?
+    var easier: [easierModel]?
 }
 
 class consecutivelyModel: Codable {
@@ -44,4 +45,20 @@ class consecutivelyModel: Codable {
     var consists: String?
     var crane: String?
     var stacker: String?
+}
+
+class easierModel: Codable {
+    var complications: String?
+    var despite: [despiteModel]?
+}
+
+class despiteModel: Codable {
+    var arbitrary: Int?
+    var pspace: String?
+    var subclass: String?
+    var hierarchy: String?
+    var rational: String?
+    var actual: String?
+    var obstacle: String?
+    var discretized: String?
 }
