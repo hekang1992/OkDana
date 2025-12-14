@@ -31,7 +31,7 @@ class HomeViewController: BaseViewController {
         self.oneView.scrollView.mj_header = MJRefreshNormalHeader(refreshingBlock: { [weak self] in
             guard let self = self else { return }
             Task {
-                try? await Task.sleep(nanoseconds: 2_000_000_000)
+                try? await Task.sleep(nanoseconds: 250_000_000)
                 await self.oneView.scrollView.mj_header?.endRefreshing()
             }
         })

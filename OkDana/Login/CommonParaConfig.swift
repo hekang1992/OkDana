@@ -18,9 +18,9 @@ class CommonParaConfig: NSObject {
         parameters[Keys.deviceIdentifier] = DeviceIdentifierManager.getDeviceIdentifier()
         parameters[Keys.systemVersion] = UIDevice.current.systemVersion
         parameters[Keys.authToken] = LoginConfig.currentToken ?? ""
-        parameters[Keys.idfa] = DeviceIdentifierManager.getIDFA() ?? ""
-        parameters[Keys.customKey] = UserDefaults.standard.string(forKey: "reflecting") ?? ""
-        
+        parameters[Keys.idfa] = DeviceIdentifierManager.getIDFA()
+//        parameters[Keys.customKey] = UserDefaults.standard.string(forKey: "reflecting") ?? ""
+        parameters[Keys.customKey] = "1"
         return parameters
     }
     
@@ -72,7 +72,7 @@ class JSONHelper {
 
 class DeviceIdentifierManager {
     
-    static func getIDFA() -> String? {
+    static func getIDFA() -> String {
         let idfa = ASIdentifierManager.shared().advertisingIdentifier.uuidString
         if idfa == "00000000-0000-0000-0000-000000000000" {
             return ""

