@@ -43,24 +43,22 @@ extension AppAlertListView {
         let label = UILabel()
         label.textAlignment = .left
         label.textColor = UIColor(hex: "#2A2A2A")
-        label.font = UIFont.systemFont(ofSize: 13, weight: .regular)
+        label.font = UIFont.systemFont(ofSize: 13, weight: UIFont.Weight(400))
         return label
     }
     
     private func createBackgroundView() -> UIView {
         let view = UIView()
-        view.backgroundColor = UIColor(hex: "#F5F6FA")
+        view.backgroundColor = UIColor(hex: "#F5F5F5")
         view.layer.cornerRadius = 4
         view.layer.masksToBounds = true
-        view.layer.borderWidth = 1
-        view.layer.borderColor = UIColor(hex: "#6B92F7").cgColor
         return view
     }
     
     private func createNameTextField() -> UITextField {
         let textField = UITextField()
         textField.keyboardType = .default
-        textField.font = UIFont.systemFont(ofSize: 15, weight: .medium)
+        textField.font = UIFont.systemFont(ofSize: 15, weight: UIFont.Weight(500))
         textField.textColor = UIColor(hex: "#3B3B3B")
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 10))
         textField.leftViewMode = .always
@@ -74,7 +72,8 @@ extension AppAlertListView {
     }
     
     private func createClickButton() -> UIButton {
-        return UIButton(type: .custom)
+        let clickBtn = UIButton(type: .custom)
+        return clickBtn
     }
 }
 
@@ -113,8 +112,8 @@ extension AppAlertListView {
     private func setupBackgroundViewConstraints() {
         bgView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(nameLabel.snp.bottom).offset(5)
-            make.size.equalTo(CGSize(width: 311, height: 36))
+            make.top.equalTo(nameLabel.snp.bottom).offset(7)
+            make.size.equalTo(CGSize(width: 335, height: 40))
         }
     }
     

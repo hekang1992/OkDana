@@ -37,3 +37,6 @@
 "ID" = "KTP Nomor:";
 "Birthday" = "Tanggal Lahir:";
 "Please select one option" = "Tolong pilih satu opsi";
+"Settings" = "Pengaturan";
+"Permission Needed" = "Izin Diperlukan";
+"Contact access is required to process your loan application. Please enable it in Settings to continue." = "Akses kontak diperlukan untuk memproses aplikasi pinjaman Anda. Harap aktifkan di Pengaturan untuk melanjutkan.";

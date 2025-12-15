@@ -37,3 +37,6 @@
 "ID" = "ID:";
 "Birthday" = "Birthday:";
 "Please select one option" = "Please select one option";
+"Settings" = "Settings";
+"Permission Needed" = "Permission Needed";
+"Contact access is required to process your loan application. Please enable it in Settings to continue." = "Contact access is required to process your loan application. Please enable it in Settings to continue.";

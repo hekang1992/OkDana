@@ -195,7 +195,7 @@ extension WorkViewController {
             self.dismiss(animated: true) {
                 cell.text = model.concurrent ?? ""
                 listmodel.never = model.concurrent ?? ""
-                listmodel.complications = String(model.complications ?? 0)
+                listmodel.complications = model.complications ?? ""
             }
         }
     }

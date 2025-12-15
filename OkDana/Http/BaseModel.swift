@@ -47,6 +47,7 @@ class combinedModel: Codable {
     var resulting: Int?
     var img_url: String?
     var system: [systemModel]?
+    var artificial: [artificialModel]?
 }
 
 class consecutivelyModel: Codable {
@@ -105,7 +106,33 @@ class nestModel: Codable {
 
 class simulationModel: Codable {
     var concurrent: String?
-    var complications: Int?
+    var complications: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case concurrent, complications
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        concurrent = try container.decodeIfPresent(String.self, forKey: .concurrent)
+        if let value = try? container.decode(String.self, forKey: .complications) {
+            complications = value
+        } else if let value = try? container.decode(Int.self, forKey: .complications) {
+            complications = String(value)
+        } else {
+            complications = nil
+        }
+    }
+}
+
+class artificialModel: Codable {
+    var geometric: String?
+    var convex: String?
+    var insertion: String?
+    var constricting: String?
+    var entropy: String?
+    var simulation: [simulationModel]?
+    var inserts: String?
 }
 
 class systemModel: Codable {

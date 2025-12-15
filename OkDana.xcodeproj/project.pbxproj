@@ -58,6 +58,9 @@
 		73E6B12F2EEFE3A600CC32FA /* TwoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6B12E2EEFE3A600CC32FA /* TwoTableViewCell.swift */; };
 		73E6B1312EEFEA4D00CC32FA /* PopAlertEnmuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6B1302EEFEA4300CC32FA /* PopAlertEnmuView.swift */; };
 		73E6B1332EEFF2AA00CC32FA /* WorkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6B1322EEFF2A500CC32FA /* WorkViewModel.swift */; };
+		73E6B1352EEFF7CE00CC32FA /* PhonesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6B1342EEFF7C800CC32FA /* PhonesViewModel.swift */; };
+		73E6B1372EEFF88C00CC32FA /* PhonesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6B1362EEFF88C00CC32FA /* PhonesTableViewCell.swift */; };
+		73E6B1392EF0029000CC32FA /* ContactManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6B1382EF0028F00CC32FA /* ContactManager.swift */; };
 		F9F9EC17BA74DAE3EA6B1D07 /* Pods_OkDana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EED710BEBDFF0AF19F2B60B4 /* Pods_OkDana.framework */; };
 /* End PBXBuildFile section */
 
@@ -118,6 +121,9 @@
 		73E6B12E2EEFE3A600CC32FA /* TwoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoTableViewCell.swift; sourceTree = "<group>"; };
 		73E6B1302EEFEA4300CC32FA /* PopAlertEnmuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopAlertEnmuView.swift; sourceTree = "<group>"; };
 		73E6B1322EEFF2A500CC32FA /* WorkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkViewModel.swift; sourceTree = "<group>"; };
+		73E6B1342EEFF7C800CC32FA /* PhonesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhonesViewModel.swift; sourceTree = "<group>"; };
+		73E6B1362EEFF88C00CC32FA /* PhonesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhonesTableViewCell.swift; sourceTree = "<group>"; };
+		73E6B1382EF0028F00CC32FA /* ContactManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactManager.swift; sourceTree = "<group>"; };
 		8223264657DF9D221A8EC8B3 /* Pods-OkDana.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OkDana.debug.xcconfig"; path = "Target Support Files/Pods-OkDana/Pods-OkDana.debug.xcconfig"; sourceTree = "<group>"; };
 		EED710BEBDFF0AF19F2B60B4 /* Pods_OkDana.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OkDana.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -320,7 +326,10 @@
 		73E6B10A2EEF9E3B00CC32FA /* Phones */ = {
 			isa = PBXGroup;
 			children = (
+				73E6B1382EF0028F00CC32FA /* ContactManager.swift */,
+				73E6B1342EEFF7C800CC32FA /* PhonesViewModel.swift */,
 				73E6B1182EEFA9DD00CC32FA /* PhonesViewController.swift */,
+				73E6B1362EEFF88C00CC32FA /* PhonesTableViewCell.swift */,
 			);
 			path = Phones;
 			sourceTree = "<group>";
@@ -497,6 +506,7 @@
 				73AD58B02EEEADF60022899B /* HttpRequestManager.swift in Sources */,
 				73E6B1252EEFC06000CC32FA /* AppAlertSelectView.swift in Sources */,
 				73AD58BB2EEECBD50022899B /* LoadingManager.swift in Sources */,
+				73E6B1372EEFF88C00CC32FA /* PhonesTableViewCell.swift in Sources */,
 				73AD58C92EEEFF580022899B /* ProductView.swift in Sources */,
 				73D8AE8F2EEDC77F00229479 /* TwoHomeView.swift in Sources */,
 				73E6B1112EEF9E9E00CC32FA /* ComleteViewController.swift in Sources */,
@@ -505,6 +515,7 @@
 				73AD58B52EEEC7E60022899B /* LoginViewModel.swift in Sources */,
 				73AD58C52EEEFD530022899B /* AppSchemeUrlConfig.swift in Sources */,
 				7373C8ED2EED06C30085A724 /* StartViewController.swift in Sources */,
+				73E6B1392EF0029000CC32FA /* ContactManager.swift in Sources */,
 				73AD58BF2EEED8380022899B /* NetworkMonitor.swift in Sources */,
 				7373C8FB2EED0AC20085A724 /* UIColorExtension.swift in Sources */,
 				73E6B1192EEFA9DD00CC32FA /* PhonesViewController.swift in Sources */,
@@ -517,6 +528,7 @@
 				7373C9032EED2B900085A724 /* LoginView.swift in Sources */,
 				73E6B1132EEF9FEB00CC32FA /* StepIndicatorView.swift in Sources */,
 				73AD58B72EEECB3A0022899B /* BaseModel.swift in Sources */,
+				73E6B1352EEFF7CE00CC32FA /* PhonesViewModel.swift in Sources */,
 				73E6B10D2EEF9E8200CC32FA /* PhotoViewController.swift in Sources */,
 				7373C8F52EED0A4E0085A724 /* HomeViewController.swift in Sources */,
 				73E6B1172EEFA9D400CC32FA /* WorkViewController.swift in Sources */,
