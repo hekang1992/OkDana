@@ -7,12 +7,19 @@
 
 import UIKit
 import SnapKit
+import TYAlertController
 
 class WorkViewController: BaseViewController {
     
     var productID: String = ""
+    
     var modelArray: [combiningModel] = []
+    
     var stepArray: [StepModel] = []
+    
+    let viewModel = WorkViewModel()
+    
+    var listArray: [systemModel] = []
     
     lazy var bgView: UIView = {
         let bgView = UIView()
@@ -41,10 +48,28 @@ class WorkViewController: BaseViewController {
         button.setTitle(LanguageManager.localizedString(for: "Next"), for: .normal)
         return button
     }()
-
+    
+    lazy var tableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .plain)
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = .clear
+        tableView.estimatedRowHeight = 80
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.showsVerticalScrollIndicator = false
+        tableView.contentInsetAdjustmentBehavior = .never
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.register(OneTableViewCell.self, forCellReuseIdentifier: "OneTableViewCell")
+        tableView.register(TwoTableViewCell.self, forCellReuseIdentifier: "TwoTableViewCell")
+        if #available(iOS 15.0, *) {
+            tableView.sectionHeaderTopPadding = 0
+        }
+        return tableView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.headerView.isHidden = true
         
         view.addSubview(bgView)
@@ -88,10 +113,133 @@ class WorkViewController: BaseViewController {
             make.size.equalTo(CGSize(width: 313, height: 50))
         }
         
+        view.addSubview(tableView)
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(stepView.snp.bottom).offset(25)
+            make.bottom.equalTo(nextButton.snp.top).offset(-5)
+            make.left.equalToSuperview()
+            make.centerX.equalToSuperview()
+        }
+        
+        nextButton.addTarget(self, action: #selector(btnClick), for: .touchUpInside)
+        
+        Task {
+            await self.getPersonalInfo()
+        }
+        
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         gradientLayer?.frame = bgView.bounds
+    }
+}
+
+extension WorkViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return listArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let model = listArray[indexPath.row]
+        let cellType = model.acs ?? ""
+        if cellType == "hamiltonianb" {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "OneTableViewCell", for: indexPath) as! OneTableViewCell
+            cell.model = model
+            cell.textBlock = { name in
+                cell.text = name
+                model.never = name
+                model.complications = name
+            }
+            return cell
+        }else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TwoTableViewCell", for: indexPath) as! TwoTableViewCell
+            cell.model = model
+            cell.clickBlock = { [weak self] in
+                guard let self = self else { return }
+                self.view.endEditing(true)
+                tapClick(with: cell, listmodel: model)
+            }
+            return cell
+        }
+    }
+    
+}
+
+extension WorkViewController {
+    
+    private func tapClick(with cell: TwoTableViewCell, listmodel: systemModel) {
+        let alertView = PopAlertEnmuView(frame: self.view.bounds)
+        let modelArray = listmodel.simulation ?? []
+        alertView.modelArray = modelArray
+        alertView.nameLabel.text = listmodel.geometric ?? ""
+        let alertVc = TYAlertController(alert: alertView, preferredStyle: .actionSheet)!
+        self.present(alertVc, animated: true)
+        
+        for (index, model) in modelArray.enumerated() {
+            let text = cell.text ?? ""
+            let target = model.concurrent ?? ""
+            if target == text {
+                alertView.selectedIndex = index
+            }
+            alertView.modelArray = modelArray
+        }
+        
+        alertView.cancelBlock = { [weak self] in
+            self?.dismiss(animated: true)
+        }
+        
+        alertView.confirmBlock = { [weak self] model in
+            guard let self = self else { return }
+            self.dismiss(animated: true) {
+                cell.text = model.concurrent ?? ""
+                listmodel.never = model.concurrent ?? ""
+                listmodel.complications = String(model.complications ?? 0)
+            }
+        }
+    }
+    
+    private func getPersonalInfo() async {
+        do {
+            let json = ["cannot": productID]
+            let model = try await viewModel.getPersonalDetailInfo(json: json)
+            if model.somewhat == 0 {
+                self.listArray = model.combined?.system ?? []
+                self.tableView.reloadData()
+            }
+        } catch  {
+            
+        }
+    }
+    
+}
+
+extension WorkViewController {
+    
+    @objc private func btnClick() {
+        var json = ["cannot": productID, "auth": "1"]
+        for model in listArray {
+            let key = model.somewhat ?? ""
+            json[key] = model.complications ?? ""
+        }
+        print("json===☕️====\(json)")
+        Task {
+            await self.savePersonalInfo(with: json)
+        }
+    }
+    
+    private func savePersonalInfo(with json: [String: String]) async {
+        do {
+            let model: BaseModel = try await viewModel.savePersonalDetailInfo(json: json)
+            if model.somewhat == 0 {
+                self.backToListPageVc()
+            }else {
+                ToastManager.showMessage(message: model.conversion ?? "")
+            }
+        } catch {
+            
+        }
+        
     }
 }

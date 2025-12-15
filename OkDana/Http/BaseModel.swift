@@ -9,19 +9,19 @@ class BaseModel: Codable {
     var somewhat: Int?
     var conversion: String?
     var combined: combinedModel?
-
+    
     enum CodingKeys: String, CodingKey {
         case somewhat
         case conversion
         case combined
     }
-
+    
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-
+        
         somewhat = try container.decodeIfPresent(Int.self, forKey: .somewhat)
         conversion = try container.decodeIfPresent(String.self, forKey: .conversion)
-
+        
         if let model = try? container.decode(combinedModel.self, forKey: .combined) {
             combined = model
         } else if let _ = try? container.decode([combinedModel].self, forKey: .combined) {
@@ -46,6 +46,7 @@ class combinedModel: Codable {
     var nest: [nestModel]?
     var resulting: Int?
     var img_url: String?
+    var system: [systemModel]?
 }
 
 class consecutivelyModel: Codable {
@@ -100,4 +101,45 @@ class nestModel: Codable {
     var food: String?
     var ants: String?
     var somewhat: String?
+}
+
+class simulationModel: Codable {
+    var concurrent: String?
+    var complications: Int?
+}
+
+class systemModel: Codable {
+    var geometric: String?
+    var probabilistically: String?
+    var somewhat: String?
+    var acs: String?
+    var complications: String?
+    var never: String?
+    var heuristically: Int?
+    var simulation: [simulationModel]?
+
+    enum CodingKeys: String, CodingKey {
+        case geometric, probabilistically, somewhat, acs
+        case complications, never, heuristically, simulation
+    }
+
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        geometric = try container.decodeIfPresent(String.self, forKey: .geometric)
+        probabilistically = try container.decodeIfPresent(String.self, forKey: .probabilistically)
+        somewhat = try container.decodeIfPresent(String.self, forKey: .somewhat)
+        acs = try container.decodeIfPresent(String.self, forKey: .acs)
+        never = try container.decodeIfPresent(String.self, forKey: .never)
+        heuristically = try container.decodeIfPresent(Int.self, forKey: .heuristically)
+        simulation = try container.decodeIfPresent([simulationModel].self, forKey: .simulation)
+
+        if let str = try? container.decode(String.self, forKey: .complications) {
+            complications = str
+        } else if let int = try? container.decode(Int.self, forKey: .complications) {
+            complications = String(int)
+        } else {
+            complications = nil
+        }
+    }
 }

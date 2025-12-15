@@ -75,6 +75,36 @@ class ComleteViewController: BaseViewController {
         return whiteView
     }()
     
+    lazy var descLabel: UILabel = {
+        let descLabel = UILabel()
+        descLabel.textColor = UIColor(hex: "#585858")
+        descLabel.textAlignment = .left
+        descLabel.font = UIFont.systemFont(ofSize: 15, weight: UIFont.Weight(500))
+        descLabel.text = LanguageManager.localizedString(for: "Certification Information")
+        return descLabel
+    }()
+    
+    lazy var oneListView: CompeteListView = {
+        let oneListView = CompeteListView()
+        oneListView.oneLabel.text = LanguageManager.localizedString(for: "Name")
+        oneListView.twoLabel.text = LoginConfig.currentName
+        return oneListView
+    }()
+    
+    lazy var twoListView: CompeteListView = {
+        let twoListView = CompeteListView()
+        twoListView.oneLabel.text = LanguageManager.localizedString(for: "ID")
+        twoListView.twoLabel.text = LoginConfig.currentNumber
+        return twoListView
+    }()
+    
+    lazy var threeListView: CompeteListView = {
+        let threeListView = CompeteListView()
+        threeListView.oneLabel.text = LanguageManager.localizedString(for: "Birthday")
+        threeListView.twoLabel.text = LoginConfig.currentTime
+        return threeListView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -149,12 +179,34 @@ class ComleteViewController: BaseViewController {
             self.backToListPageVc()
         }).disposed(by: disposeBag)
         
-        Task {
-            await self.getCardInfo()
+        whiteView.addSubview(descLabel)
+        descLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(12)
+            make.left.equalToSuperview().inset(12)
+            make.height.equalTo(18)
         }
         
+        whiteView.addSubview(oneListView)
+        whiteView.addSubview(twoListView)
+        whiteView.addSubview(threeListView)
         
+        oneListView.snp.makeConstraints { make in
+            make.top.equalTo(descLabel.snp.bottom).offset(11)
+            make.left.right.equalToSuperview()
+            make.height.equalTo(36)
+        }
         
+        twoListView.snp.makeConstraints { make in
+            make.top.equalTo(oneListView.snp.bottom).offset(14)
+            make.left.right.equalToSuperview()
+            make.height.equalTo(36)
+        }
+        
+        threeListView.snp.makeConstraints { make in
+            make.top.equalTo(twoListView.snp.bottom).offset(14)
+            make.left.right.equalToSuperview()
+            make.height.equalTo(36)
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -165,13 +217,63 @@ class ComleteViewController: BaseViewController {
 
 extension ComleteViewController {
     
-    private func getCardInfo() async {
-        do {
-            let json = ["cannot": productID]
-            let _ = try await viewModel.getPersonalCardInfo(json: json)
-        } catch  {
-            
+    
+}
+
+
+class CompeteListView: UIView {
+    
+    lazy var oneView: UIView = {
+        let oneView = UIView(frame: .zero)
+        oneView.layer.cornerRadius = 5
+        oneView.layer.masksToBounds = true
+        oneView.backgroundColor = UIColor(hex: "#F5F5F5")
+        return oneView
+    }()
+   
+     lazy var oneLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor(hex: "#9C9C9C")
+        label.font = .systemFont(ofSize: 12, weight: UIFont.Weight(300))
+        label.textAlignment = .left
+        return label
+    }()
+    
+     lazy var twoLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor(hex: "#3B3B3B")
+        label.font = .systemFont(ofSize: 15, weight: UIFont.Weight(500))
+        label.textAlignment = .right
+        return label
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        addSubview(oneView)
+        oneView.addSubview(oneLabel)
+        oneView.addSubview(twoLabel)
+        
+        oneView.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.left.right.equalToSuperview().inset(12)
+            make.height.equalTo(36)
         }
+        
+        oneLabel.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.left.equalToSuperview().offset(10)
+            make.height.equalTo(36)
+        }
+        
+        twoLabel.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.right.equalToSuperview().offset(-8)
+            make.height.equalTo(36)
+        }
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
 }

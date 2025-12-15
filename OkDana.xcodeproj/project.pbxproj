@@ -53,6 +53,11 @@
 		73E6B1232EEFBAC400CC32FA /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6B1222EEFBAC300CC32FA /* CameraManager.swift */; };
 		73E6B1252EEFC06000CC32FA /* AppAlertSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6B1242EEFC06000CC32FA /* AppAlertSelectView.swift */; };
 		73E6B1272EEFCD3D00CC32FA /* AppAlertListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6B1262EEFCD3D00CC32FA /* AppAlertListView.swift */; };
+		73E6B12B2EEFE37600CC32FA /* PersonalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6B12A2EEFE37600CC32FA /* PersonalViewModel.swift */; };
+		73E6B12D2EEFE39D00CC32FA /* OneTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6B12C2EEFE39D00CC32FA /* OneTableViewCell.swift */; };
+		73E6B12F2EEFE3A600CC32FA /* TwoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6B12E2EEFE3A600CC32FA /* TwoTableViewCell.swift */; };
+		73E6B1312EEFEA4D00CC32FA /* PopAlertEnmuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6B1302EEFEA4300CC32FA /* PopAlertEnmuView.swift */; };
+		73E6B1332EEFF2AA00CC32FA /* WorkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6B1322EEFF2A500CC32FA /* WorkViewModel.swift */; };
 		F9F9EC17BA74DAE3EA6B1D07 /* Pods_OkDana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EED710BEBDFF0AF19F2B60B4 /* Pods_OkDana.framework */; };
 /* End PBXBuildFile section */
 
@@ -108,6 +113,11 @@
 		73E6B1222EEFBAC300CC32FA /* CameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
 		73E6B1242EEFC06000CC32FA /* AppAlertSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAlertSelectView.swift; sourceTree = "<group>"; };
 		73E6B1262EEFCD3D00CC32FA /* AppAlertListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAlertListView.swift; sourceTree = "<group>"; };
+		73E6B12A2EEFE37600CC32FA /* PersonalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalViewModel.swift; sourceTree = "<group>"; };
+		73E6B12C2EEFE39D00CC32FA /* OneTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneTableViewCell.swift; sourceTree = "<group>"; };
+		73E6B12E2EEFE3A600CC32FA /* TwoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoTableViewCell.swift; sourceTree = "<group>"; };
+		73E6B1302EEFEA4300CC32FA /* PopAlertEnmuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopAlertEnmuView.swift; sourceTree = "<group>"; };
+		73E6B1322EEFF2A500CC32FA /* WorkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkViewModel.swift; sourceTree = "<group>"; };
 		8223264657DF9D221A8EC8B3 /* Pods-OkDana.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OkDana.debug.xcconfig"; path = "Target Support Files/Pods-OkDana/Pods-OkDana.debug.xcconfig"; sourceTree = "<group>"; };
 		EED710BEBDFF0AF19F2B60B4 /* Pods_OkDana.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OkDana.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -289,7 +299,11 @@
 		73E6B1082EEF9E2F00CC32FA /* Personal */ = {
 			isa = PBXGroup;
 			children = (
+				73E6B1302EEFEA4300CC32FA /* PopAlertEnmuView.swift */,
 				73E6B1142EEFA9C500CC32FA /* PersonalViewController.swift */,
+				73E6B12A2EEFE37600CC32FA /* PersonalViewModel.swift */,
+				73E6B12C2EEFE39D00CC32FA /* OneTableViewCell.swift */,
+				73E6B12E2EEFE3A600CC32FA /* TwoTableViewCell.swift */,
 			);
 			path = Personal;
 			sourceTree = "<group>";
@@ -297,6 +311,7 @@
 		73E6B1092EEF9E3500CC32FA /* Worker */ = {
 			isa = PBXGroup;
 			children = (
+				73E6B1322EEFF2A500CC32FA /* WorkViewModel.swift */,
 				73E6B1162EEFA9D400CC32FA /* WorkViewController.swift */,
 			);
 			path = Worker;
@@ -469,9 +484,11 @@
 				73AD58CD2EEF093E0022899B /* ProductViewModel.swift in Sources */,
 				73E6B11B2EEFA9E700CC32FA /* WalletViewController.swift in Sources */,
 				73AD58C72EEEFE780022899B /* SettingViewController.swift in Sources */,
+				73E6B12F2EEFE3A600CC32FA /* TwoTableViewCell.swift in Sources */,
 				73E6B11F2EEFAD6800CC32FA /* CardView.swift in Sources */,
 				73E6B1152EEFA9C500CC32FA /* PersonalViewController.swift in Sources */,
 				73BD81312EECFBF700979190 /* AppDelegate.swift in Sources */,
+				73E6B12B2EEFE37600CC32FA /* PersonalViewModel.swift in Sources */,
 				73AD58AE2EEEAA0C0022899B /* CommonParaConfig.swift in Sources */,
 				73AD58C32EEEF3800022899B /* ProductDetailViewController.swift in Sources */,
 				73E6B1232EEFBAC400CC32FA /* CameraManager.swift in Sources */,
@@ -491,7 +508,9 @@
 				73AD58BF2EEED8380022899B /* NetworkMonitor.swift in Sources */,
 				7373C8FB2EED0AC20085A724 /* UIColorExtension.swift in Sources */,
 				73E6B1192EEFA9DD00CC32FA /* PhonesViewController.swift in Sources */,
+				73E6B12D2EEFE39D00CC32FA /* OneTableViewCell.swift in Sources */,
 				7373C8F72EED0A630085A724 /* OrderViewController.swift in Sources */,
+				73E6B1312EEFEA4D00CC32FA /* PopAlertEnmuView.swift in Sources */,
 				7373C8F32EED06F90085A724 /* BaseNavigationController.swift in Sources */,
 				7373C8F92EED0A6F0085A724 /* CenterViewController.swift in Sources */,
 				7373C8EF2EED06CF0085A724 /* BaseViewController.swift in Sources */,
@@ -501,6 +520,7 @@
 				73E6B10D2EEF9E8200CC32FA /* PhotoViewController.swift in Sources */,
 				7373C8F52EED0A4E0085A724 /* HomeViewController.swift in Sources */,
 				73E6B1172EEFA9D400CC32FA /* WorkViewController.swift in Sources */,
+				73E6B1332EEFF2AA00CC32FA /* WorkViewModel.swift in Sources */,
 				7373C8FD2EED0AF90085A724 /* LanguageManager.swift in Sources */,
 				73AD58BD2EEED75A0022899B /* StartViewModel.swift in Sources */,
 			);

@@ -262,14 +262,19 @@ extension PhotoViewController {
     private func saveInfo(with cardView: AppAlertSelectView) {
         Task {
             do {
+                let name = cardView.oneListView.nameTextFiled.text ?? ""
+                let idNumber = cardView.twoListView.nameTextFiled.text ?? ""
+                let dateStr = cardView.threeListView.nameTextFiled.text ?? ""
                 let json = ["cannot": productID,
-                            "concurrent": cardView.oneListView.nameTextFiled.text ?? "",
-                            "models": cardView.twoListView.nameTextFiled.text ?? "",
-                            "behavior": cardView.threeListView.nameTextFiled.text ?? ""
+                            "concurrent": name,
+                            "models": idNumber,
+                            "behavior": dateStr
                 ]
                 let model = try await viewModel.savePersonalCardInfo(json: json)
                 if model.somewhat == 0 {
-                    self.dismiss(animated: true)
+                    self.dismiss(animated: true) {
+                        LoginConfig.saveCardInfo(name: name, idNum: idNumber, time: dateStr)
+                    }
                     await self.getCardInfo()
                 }else {
                     ToastManager.showMessage(message: model.conversion ?? "")
