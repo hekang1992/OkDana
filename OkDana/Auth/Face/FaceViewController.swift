@@ -7,12 +7,24 @@
 
 import UIKit
 import SnapKit
+import RxSwift
+import RxCocoa
+import TYAlertController
+import Kingfisher
 
 class FaceViewController: BaseViewController {
     
     var productID: String = ""
+    
     var modelArray: [combiningModel] = []
+    
     var stepArray: [StepModel] = []
+    
+    let viewModel = ProductViewModel()
+    
+    var despiteModel: despiteModel?
+    
+    let disposeBag = DisposeBag()
     
     lazy var bgView: UIView = {
         let bgView = UIView()
@@ -41,10 +53,20 @@ class FaceViewController: BaseViewController {
         button.setTitle(LanguageManager.localizedString(for: "Next"), for: .normal)
         return button
     }()
-
+    
+    lazy var cardView: CardView = {
+        let cardView = CardView(frame: .zero)
+        let code = LanguageManager.currentLanguage
+        cardView.leftImageView.image = UIImage(named: "face_place_image")
+        cardView.oneImageView.image = code == .id ? UIImage(named: "id_one_s_image") : UIImage(named: "en_one_s_image")
+        cardView.twoImageView.image = code == .id ? UIImage(named: "id_faca_card_lia_image") : UIImage(named: "faca_card_lia_image")
+        cardView.footImageView.image = code == .id ? UIImage(named: "fc_id_fot_image") : UIImage(named: "cs_en_fot_image")
+        return cardView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.headerView.isHidden = true
         
         view.addSubview(bgView)
@@ -88,10 +110,135 @@ class FaceViewController: BaseViewController {
             make.size.equalTo(CGSize(width: 313, height: 50))
         }
         
+        view.addSubview(cardView)
+        cardView.snp.makeConstraints { make in
+            make.top.equalTo(stepView.snp.bottom)
+            make.left.equalToSuperview()
+            make.centerX.equalToSuperview()
+            make.bottom.equalTo(nextButton.snp.top).offset(-10)
+        }
+        
+        
+        cardView.tapClickBlock = { [weak self] in
+            guard let self = self, let model = despiteModel else { return }
+            let trail = model.trail ?? ""
+            if trail.isEmpty {
+                showAlert()
+            }else {
+                let compVc = ComleteViewController()
+                compVc.productID = productID
+                compVc.modelArray = modelArray
+                self.navigationController?.pushViewController(compVc, animated: true)
+            }
+        }
+        
+        nextButton.rx.tap.bind(onNext: { [weak self] in
+            guard let self = self, let model = despiteModel else { return }
+            let trail = model.trail ?? ""
+            if trail.isEmpty {
+                showAlert()
+            }else {
+                let compVc = ComleteViewController()
+                compVc.productID = productID
+                compVc.modelArray = modelArray
+                self.navigationController?.pushViewController(compVc, animated: true)
+            }
+        }).disposed(by: disposeBag)
+        
+        Task {
+            await self.getCardInfo()
+        }
+        
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         gradientLayer?.frame = bgView.bounds
     }
+}
+
+extension FaceViewController {
+    
+    private func showAlert() {
+        let alertController = UIAlertController(
+            title: LanguageManager.localizedString(for: "Please Select Image Source"),
+            message: nil,
+            preferredStyle: .actionSheet
+        )
+        
+        let cameraAction = UIAlertAction(title: LanguageManager.localizedString(for: "Camera"), style: .default) { _ in
+            self.dismiss(animated: true) {
+                self.takePhoto()
+            }
+        }
+        
+        let cancelAction = UIAlertAction(title: LanguageManager.localizedString(for: "Cancel"), style: .cancel) { _ in
+            self.dismiss(animated: true)
+        }
+        
+        if let cameraImage = UIImage(systemName: "camera") {
+            cameraAction.setValue(cameraImage, forKey: "image")
+        }
+        
+        alertController.addAction(cameraAction)
+        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    private func takePhoto() {
+        CameraManager.shared.takePhoto(with: "2") { image in
+            guard let image = image else {
+                return
+            }
+            DispatchQueue.main.async {
+                if let imageData = image.jpegData(compressionQuality: 0.3) {
+                    Task {
+                        await self.uploadCardInfo(with: imageData)
+                    }
+                }
+            }
+        }
+    }
+    
+}
+
+extension FaceViewController {
+    
+    private func getCardInfo() async {
+        do {
+            let json = ["cannot": productID]
+            let model = try await viewModel.getPersonalCardInfo(json: json)
+            if model.somewhat == 0 {
+                if let despiteModel = model.combined?.despite {
+                    self.despiteModel = despiteModel
+                    let trail = despiteModel.trail ?? ""
+                    if trail.isEmpty {
+                        showAlert()
+                    }else {
+                        self.cardView.leftImageView.kf.setImage(with: URL(string: trail))
+                    }
+                }
+            }else {
+                ToastManager.showMessage(message: model.conversion ?? "")
+            }
+        } catch  {
+            
+        }
+    }
+    
+    private func uploadCardInfo(with imageData: Data) async {
+        do {
+            let json = ["complications": "10", "preference": "1"]
+            let model = try await viewModel.uploadPersonalCardInfo(json: json, imageData: imageData)
+            if model.somewhat == 0 {
+                await self.getCardInfo()
+            }else {
+                ToastManager.showMessage(message: model.conversion ?? "")
+            }
+        } catch  {
+            
+        }
+    }
+
 }

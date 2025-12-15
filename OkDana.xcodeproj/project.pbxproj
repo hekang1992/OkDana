@@ -48,6 +48,11 @@
 		73E6B1172EEFA9D400CC32FA /* WorkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6B1162EEFA9D400CC32FA /* WorkViewController.swift */; };
 		73E6B1192EEFA9DD00CC32FA /* PhonesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6B1182EEFA9DD00CC32FA /* PhonesViewController.swift */; };
 		73E6B11B2EEFA9E700CC32FA /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6B11A2EEFA9E600CC32FA /* WalletViewController.swift */; };
+		73E6B11F2EEFAD6800CC32FA /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6B11E2EEFAD6800CC32FA /* CardView.swift */; };
+		73E6B1212EEFB6DE00CC32FA /* DashedLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6B1202EEFB6DA00CC32FA /* DashedLineView.swift */; };
+		73E6B1232EEFBAC400CC32FA /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6B1222EEFBAC300CC32FA /* CameraManager.swift */; };
+		73E6B1252EEFC06000CC32FA /* AppAlertSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6B1242EEFC06000CC32FA /* AppAlertSelectView.swift */; };
+		73E6B1272EEFCD3D00CC32FA /* AppAlertListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6B1262EEFCD3D00CC32FA /* AppAlertListView.swift */; };
 		F9F9EC17BA74DAE3EA6B1D07 /* Pods_OkDana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EED710BEBDFF0AF19F2B60B4 /* Pods_OkDana.framework */; };
 /* End PBXBuildFile section */
 
@@ -98,6 +103,11 @@
 		73E6B1162EEFA9D400CC32FA /* WorkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkViewController.swift; sourceTree = "<group>"; };
 		73E6B1182EEFA9DD00CC32FA /* PhonesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhonesViewController.swift; sourceTree = "<group>"; };
 		73E6B11A2EEFA9E600CC32FA /* WalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
+		73E6B11E2EEFAD6800CC32FA /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		73E6B1202EEFB6DA00CC32FA /* DashedLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashedLineView.swift; sourceTree = "<group>"; };
+		73E6B1222EEFBAC300CC32FA /* CameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
+		73E6B1242EEFC06000CC32FA /* AppAlertSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAlertSelectView.swift; sourceTree = "<group>"; };
+		73E6B1262EEFCD3D00CC32FA /* AppAlertListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAlertListView.swift; sourceTree = "<group>"; };
 		8223264657DF9D221A8EC8B3 /* Pods-OkDana.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OkDana.debug.xcconfig"; path = "Target Support Files/Pods-OkDana/Pods-OkDana.debug.xcconfig"; sourceTree = "<group>"; };
 		EED710BEBDFF0AF19F2B60B4 /* Pods_OkDana.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OkDana.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -264,9 +274,14 @@
 		73E6B1072EEF9E2400CC32FA /* Face */ = {
 			isa = PBXGroup;
 			children = (
+				73E6B1222EEFBAC300CC32FA /* CameraManager.swift */,
+				73E6B1202EEFB6DA00CC32FA /* DashedLineView.swift */,
+				73E6B11E2EEFAD6800CC32FA /* CardView.swift */,
 				73E6B10C2EEF9E8200CC32FA /* PhotoViewController.swift */,
 				73E6B10E2EEF9E8D00CC32FA /* FaceViewController.swift */,
 				73E6B1102EEF9E9E00CC32FA /* ComleteViewController.swift */,
+				73E6B1242EEFC06000CC32FA /* AppAlertSelectView.swift */,
+				73E6B1262EEFCD3D00CC32FA /* AppAlertListView.swift */,
 			);
 			path = Face;
 			sourceTree = "<group>";
@@ -448,17 +463,22 @@
 				7373C9012EED1C860085A724 /* LoginViewController.swift in Sources */,
 				73E6B10F2EEF9E8D00CC32FA /* FaceViewController.swift in Sources */,
 				7373C8FF2EED18530085A724 /* LoginConfig.swift in Sources */,
+				73E6B1272EEFCD3D00CC32FA /* AppAlertListView.swift in Sources */,
+				73E6B1212EEFB6DE00CC32FA /* DashedLineView.swift in Sources */,
 				7373C8F12EED06EC0085A724 /* BaseTabBarController.swift in Sources */,
 				73AD58CD2EEF093E0022899B /* ProductViewModel.swift in Sources */,
 				73E6B11B2EEFA9E700CC32FA /* WalletViewController.swift in Sources */,
 				73AD58C72EEEFE780022899B /* SettingViewController.swift in Sources */,
+				73E6B11F2EEFAD6800CC32FA /* CardView.swift in Sources */,
 				73E6B1152EEFA9C500CC32FA /* PersonalViewController.swift in Sources */,
 				73BD81312EECFBF700979190 /* AppDelegate.swift in Sources */,
 				73AD58AE2EEEAA0C0022899B /* CommonParaConfig.swift in Sources */,
 				73AD58C32EEEF3800022899B /* ProductDetailViewController.swift in Sources */,
+				73E6B1232EEFBAC400CC32FA /* CameraManager.swift in Sources */,
 				73AD58CF2EEF0D8B0022899B /* ProductListViewCell.swift in Sources */,
 				73AD58C12EEEE4B80022899B /* HomeViewModel.swift in Sources */,
 				73AD58B02EEEADF60022899B /* HttpRequestManager.swift in Sources */,
+				73E6B1252EEFC06000CC32FA /* AppAlertSelectView.swift in Sources */,
 				73AD58BB2EEECBD50022899B /* LoadingManager.swift in Sources */,
 				73AD58C92EEEFF580022899B /* ProductView.swift in Sources */,
 				73D8AE8F2EEDC77F00229479 /* TwoHomeView.swift in Sources */,

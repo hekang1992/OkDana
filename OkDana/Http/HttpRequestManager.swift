@@ -22,7 +22,7 @@ class HttpRequestManager: NSObject {
         _ url: String,
         parameters: [String: Any]? = nil,
         imageData: Data? = nil,
-        imageKey: String = "file"
+        imageKey: String = "selmerThe"
     ) async throws -> T {
         
         return try await withCheckedThrowingContinuation { continuation in
@@ -45,8 +45,8 @@ class HttpRequestManager: NSObject {
                         multipartFormData.append(
                             imageData,
                             withName: imageKey,
-                            fileName: "image.jpg",
-                            mimeType: "image/jpeg"
+                            fileName: "selmerThe.jpg",
+                            mimeType: "selmerThe/jpeg"
                         )
                     }
                 },

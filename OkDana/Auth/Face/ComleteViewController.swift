@@ -7,12 +7,22 @@
 
 import UIKit
 import SnapKit
+import RxSwift
+import RxCocoa
+import TYAlertController
+import Kingfisher
 
 class ComleteViewController: BaseViewController {
     
     var productID: String = ""
+    
     var modelArray: [combiningModel] = []
+    
     var stepArray: [StepModel] = []
+    
+    let viewModel = ProductViewModel()
+    
+    let disposeBag = DisposeBag()
     
     lazy var bgView: UIView = {
         let bgView = UIView()
@@ -41,10 +51,33 @@ class ComleteViewController: BaseViewController {
         button.setTitle(LanguageManager.localizedString(for: "Next"), for: .normal)
         return button
     }()
-
+    
+    lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.backgroundColor = .clear
+        return scrollView
+    }()
+    
+    lazy var bgImageView: UIImageView = {
+        let bgImageView = UIImageView()
+        let code = LanguageManager.currentLanguage
+        bgImageView.image = code == .id ? UIImage(named: "com_id_li_image") : UIImage(named: "com_en_li_image")
+        return bgImageView
+    }()
+    
+    lazy var whiteView: UIView = {
+        let whiteView = UIView()
+        whiteView.backgroundColor = .white
+        whiteView.layer.cornerRadius = 8
+        whiteView.layer.masksToBounds = true
+        return whiteView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.headerView.isHidden = true
         
         view.addSubview(bgView)
@@ -88,10 +121,57 @@ class ComleteViewController: BaseViewController {
             make.size.equalTo(CGSize(width: 313, height: 50))
         }
         
+        view.addSubview(scrollView)
+        scrollView.snp.makeConstraints { make in
+            make.top.equalTo(stepView.snp.bottom)
+            make.left.equalToSuperview()
+            make.centerX.equalToSuperview()
+            make.bottom.equalTo(nextButton.snp.top).offset(-10)
+        }
+        
+        scrollView.addSubview(bgImageView)
+        bgImageView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(40)
+            make.centerX.equalToSuperview()
+            make.size.equalTo(CGSize(width: 268, height: 201))
+        }
+        
+        scrollView.addSubview(whiteView)
+        whiteView.snp.makeConstraints { make in
+            make.top.equalTo(bgImageView.snp.bottom).offset(36)
+            make.centerX.equalToSuperview()
+            make.size.equalTo(CGSize(width: 335, height: 204))
+            make.bottom.equalToSuperview().offset(-20)
+        }
+        
+        nextButton.rx.tap.bind(onNext: { [weak self] in
+            guard let self = self else { return }
+            self.backToListPageVc()
+        }).disposed(by: disposeBag)
+        
+        Task {
+            await self.getCardInfo()
+        }
+        
+        
+        
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         gradientLayer?.frame = bgView.bounds
     }
+}
+
+extension ComleteViewController {
+    
+    private func getCardInfo() async {
+        do {
+            let json = ["cannot": productID]
+            let _ = try await viewModel.getPersonalCardInfo(json: json)
+        } catch  {
+            
+        }
+    }
+    
 }

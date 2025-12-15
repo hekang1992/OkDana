@@ -43,6 +43,9 @@ class combinedModel: Codable {
     var combining: [combiningModel]?
     var virtual: virtualModel?
     var despite: despiteModel?
+    var nest: [nestModel]?
+    var resulting: Int?
+    var img_url: String?
 }
 
 class consecutivelyModel: Codable {
@@ -91,4 +94,10 @@ class virtualModel: Codable {
     var inputs: String?
     var complications: Int?
     var geometric: String?
+}
+
+class nestModel: Codable {
+    var food: String?
+    var ants: String?
+    var somewhat: String?
 }

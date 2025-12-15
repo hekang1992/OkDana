@@ -7,12 +7,24 @@
 
 import UIKit
 import SnapKit
+import RxSwift
+import RxCocoa
+import TYAlertController
+import Kingfisher
 
 class PhotoViewController: BaseViewController {
     
     var productID: String = ""
+    
     var modelArray: [combiningModel] = []
+    
     var stepArray: [StepModel] = []
+    
+    let viewModel = ProductViewModel()
+    
+    var despiteModel: despiteModel?
+    
+    let disposeBag = DisposeBag()
     
     lazy var bgView: UIView = {
         let bgView = UIView()
@@ -41,10 +53,15 @@ class PhotoViewController: BaseViewController {
         button.setTitle(LanguageManager.localizedString(for: "Next"), for: .normal)
         return button
     }()
-
+    
+    lazy var cardView: CardView = {
+        let cardView = CardView(frame: .zero)
+        return cardView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.headerView.isHidden = true
         
         view.addSubview(bgView)
@@ -88,10 +105,179 @@ class PhotoViewController: BaseViewController {
             make.size.equalTo(CGSize(width: 313, height: 50))
         }
         
+        view.addSubview(cardView)
+        cardView.snp.makeConstraints { make in
+            make.top.equalTo(stepView.snp.bottom)
+            make.left.equalToSuperview()
+            make.centerX.equalToSuperview()
+            make.bottom.equalTo(nextButton.snp.top).offset(-10)
+        }
+        
+        
+        cardView.tapClickBlock = { [weak self] in
+            guard let self = self, let model = despiteModel else { return }
+            let deposited = model.deposited ?? ""
+            if deposited.isEmpty {
+                showAlert()
+            }else {
+                let faceVc = FaceViewController()
+                faceVc.productID = productID
+                faceVc.modelArray = modelArray
+                self.navigationController?.pushViewController(faceVc, animated: true)
+            }
+        }
+        
+        nextButton.rx.tap.bind(onNext: { [weak self] in
+            guard let self = self, let model = despiteModel else { return }
+            let deposited = model.deposited ?? ""
+            if deposited.isEmpty {
+                showAlert()
+            }else {
+                let faceVc = FaceViewController()
+                faceVc.productID = productID
+                faceVc.modelArray = modelArray
+                self.navigationController?.pushViewController(faceVc, animated: true)
+            }
+        }).disposed(by: disposeBag)
+        
+        Task {
+            await self.getCardInfo()
+        }
+        
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         gradientLayer?.frame = bgView.bounds
     }
+}
+
+extension PhotoViewController {
+    
+    private func showAlert() {
+        let alertController = UIAlertController(
+            title: LanguageManager.localizedString(for: "Please Select Image Source"),
+            message: nil,
+            preferredStyle: .actionSheet
+        )
+        
+        let cameraAction = UIAlertAction(title: LanguageManager.localizedString(for: "Camera"), style: .default) { _ in
+            self.dismiss(animated: true) {
+                self.takePhoto()
+            }
+        }
+        
+        let cancelAction = UIAlertAction(title: LanguageManager.localizedString(for: "Cancel"), style: .cancel) { _ in
+            self.dismiss(animated: true)
+        }
+        
+        if let cameraImage = UIImage(systemName: "camera") {
+            cameraAction.setValue(cameraImage, forKey: "image")
+        }
+        
+        alertController.addAction(cameraAction)
+        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    private func takePhoto() {
+        CameraManager.shared.takePhoto(with: "1") { image in
+            guard let image = image else {
+                return
+            }
+            DispatchQueue.main.async {
+                if let imageData = image.jpegData(compressionQuality: 0.3) {
+                    Task {
+                        await self.uploadCardInfo(with: imageData)
+                    }
+                }
+            }
+        }
+    }
+    
+}
+
+extension PhotoViewController {
+    
+    private func getCardInfo() async {
+        do {
+            let json = ["cannot": productID]
+            let model = try await viewModel.getPersonalCardInfo(json: json)
+            if model.somewhat == 0 {
+                if let despiteModel = model.combined?.despite {
+                    self.despiteModel = despiteModel
+                    let deposited = despiteModel.deposited ?? ""
+                    if deposited.isEmpty {
+                        showAlert()
+                    }else {
+                        self.cardView.leftImageView.kf.setImage(with: URL(string: deposited))
+                    }
+                }
+            }else {
+                ToastManager.showMessage(message: model.conversion ?? "")
+            }
+        } catch  {
+            
+        }
+    }
+    
+    private func uploadCardInfo(with imageData: Data) async {
+        do {
+            let json = ["complications": "11", "preference": "1"]
+            let model = try await viewModel.uploadPersonalCardInfo(json: json, imageData: imageData)
+            if model.somewhat == 0 {
+                let resulting = model.combined?.resulting ?? 1
+                if let modelArray = model.combined?.nest {
+                    if resulting == 0 {
+                        await self.getCardInfo()
+                    }else if resulting == 1 {
+                        self.alertCardView(with: modelArray)
+                    }
+                }
+            }else {
+                ToastManager.showMessage(message: model.conversion ?? "")
+            }
+        } catch  {
+            
+        }
+    }
+    
+    private func alertCardView(with modelArray: [nestModel]) {
+        let cardView = AppAlertSelectView(frame: self.view.bounds)
+        cardView.modelArray = modelArray
+        let alertVc = TYAlertController(alert: cardView, preferredStyle: .actionSheet)
+        self.present(alertVc!, animated: true)
+        
+        cardView.cancelBlock = { [weak self] in
+            self?.dismiss(animated: true)
+        }
+        
+        cardView.confirmBlock = { [weak self] in
+            self?.saveInfo(with: cardView)
+        }
+        
+    }
+    
+    private func saveInfo(with cardView: AppAlertSelectView) {
+        Task {
+            do {
+                let json = ["cannot": productID,
+                            "concurrent": cardView.oneListView.nameTextFiled.text ?? "",
+                            "models": cardView.twoListView.nameTextFiled.text ?? "",
+                            "behavior": cardView.threeListView.nameTextFiled.text ?? ""
+                ]
+                let model = try await viewModel.savePersonalCardInfo(json: json)
+                if model.somewhat == 0 {
+                    self.dismiss(animated: true)
+                    await self.getCardInfo()
+                }else {
+                    ToastManager.showMessage(message: model.conversion ?? "")
+                }
+            } catch {
+                
+            }
+        }
+    }
+    
 }
