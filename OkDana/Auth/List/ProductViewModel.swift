@@ -28,4 +28,23 @@ class ProductViewModel {
         }
     }
     
+    func getPersonalCardInfo(json: [String: String]) async throws -> BaseModel {
+        
+        LoadingManager.shared.show()
+        
+        defer {
+            DispatchQueue.main.async {
+                LoadingManager.shared.hide()
+            }
+        }
+        
+        do {
+            let model: BaseModel = try await HttpRequestManager.shared.uploadWithForm("/considerablyreal/pairs", parameters: json)
+            return model
+        } catch {
+            print("error===: \(error)")
+            throw error
+        }
+    }
+    
 }

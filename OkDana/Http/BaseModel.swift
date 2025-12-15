@@ -42,6 +42,7 @@ class combinedModel: Codable {
     var yves: yvesModel?
     var combining: [combiningModel]?
     var virtual: virtualModel?
+    var despite: despiteModel?
 }
 
 class consecutivelyModel: Codable {
@@ -65,6 +66,8 @@ class despiteModel: Codable {
     var actual: String?
     var obstacle: String?
     var discretized: String?
+    var deposited: String?
+    var trail: String?
 }
 
 class yvesModel: Codable {
@@ -80,6 +83,7 @@ class combiningModel: Codable {
     var probabilistically: String?
     var chooses: String?
     var discovery: Int?
+    var map: String?
 }
 
 class virtualModel: Codable {
