@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import WebKit
 import TYAlertController
 
 class APPWebViewController: BaseViewController {
@@ -33,6 +34,20 @@ class APPWebViewController: BaseViewController {
         return bgView.layer.sublayers?.first as? CAGradientLayer
     }
     
+     lazy var webView: WKWebView = {
+        let configuration = WKWebViewConfiguration()
+        let scriptNames = [
+            "HistoryAnd", "TravelingThe", "FirstAnd",
+            "WasThe", "MeasureConstructing"]
+        scriptNames.forEach {
+            configuration.userContentController.add(self, name: $0)
+        }
+        let webView = WKWebView(frame: .zero, configuration: configuration)
+        webView.translatesAutoresizingMaskIntoConstraints = false
+        webView.navigationDelegate = self
+        return webView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -52,8 +67,30 @@ class APPWebViewController: BaseViewController {
         }
         
         normalHeadView.backAction = { [weak self] in
-            self?.backToListPageVc()
+            guard let self = self else { return }
+            if self.webView.canGoBack {
+                self.webView.goBack()
+            }else {
+                self.navigationController?.popToRootViewController(animated: true)
+            }
         }
+        
+        view.addSubview(webView)
+        webView.snp.makeConstraints { make in
+            make.top.equalTo(normalHeadView.snp.bottom)
+            make.left.equalToSuperview()
+            make.centerX.equalToSuperview()
+            make.bottom.equalToSuperview()
+        }
+        
+        guard let encodedUrlString = pageUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+              let apiUrl = URLQueryHelper.buildURL(from: encodedUrlString, queryParameters: CommonParaConfig.getCommonParameters()),
+              let finalUrl = URL(string: apiUrl) else {
+            print("Failed to construct valid URL from: \(pageUrl)")
+            return
+        }
+        
+        webView.load(URLRequest(url: finalUrl))
         
     }
     
@@ -63,3 +100,12 @@ class APPWebViewController: BaseViewController {
     }
 }
 
+extension APPWebViewController: WKNavigationDelegate, WKScriptMessageHandler {
+    
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        let name = message.name
+        let body = message.body
+        print("name===🔥===\(name)=====\(body)")
+    }
+    
+}
