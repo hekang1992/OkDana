@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		73533DA02EF04E2D008E00E4 /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73533D9F2EF04E2D008E00E4 /* ProductTableViewCell.swift */; };
 		7373C8EA2EED06920085A724 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7373C8E82EED06920085A724 /* Localizable.strings */; };
 		7373C8ED2EED06C30085A724 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7373C8EC2EED06C30085A724 /* StartViewController.swift */; };
 		7373C8EF2EED06CF0085A724 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7373C8EE2EED06CF0085A724 /* BaseViewController.swift */; };
@@ -68,6 +69,7 @@
 
 /* Begin PBXFileReference section */
 		051F5B55662606AE75C05BA1 /* Pods-OkDana.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OkDana.release.xcconfig"; path = "Target Support Files/Pods-OkDana/Pods-OkDana.release.xcconfig"; sourceTree = "<group>"; };
+		73533D9F2EF04E2D008E00E4 /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
 		7373C8E22EED03F50085A724 /* OkDana.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OkDana.entitlements; sourceTree = "<group>"; };
 		7373C8E92EED06920085A724 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7373C8EB2EED06980085A724 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -241,10 +243,11 @@
 		73BD81372EECFF5600979190 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				73AD58C02EEEE4B40022899B /* HomeViewModel.swift */,
 				73D8AE8C2EEDC77100229479 /* OneHomeView.swift */,
 				73D8AE8E2EEDC77F00229479 /* TwoHomeView.swift */,
+				73AD58C02EEEE4B40022899B /* HomeViewModel.swift */,
 				7373C8F42EED0A4E0085A724 /* HomeViewController.swift */,
+				73533D9F2EF04E2D008E00E4 /* ProductTableViewCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -537,6 +540,7 @@
 				73AD58B72EEECB3A0022899B /* BaseModel.swift in Sources */,
 				73E6B1352EEFF7CE00CC32FA /* PhonesViewModel.swift in Sources */,
 				73E6B10D2EEF9E8200CC32FA /* PhotoViewController.swift in Sources */,
+				73533DA02EF04E2D008E00E4 /* ProductTableViewCell.swift in Sources */,
 				7373C8F52EED0A4E0085A724 /* HomeViewController.swift in Sources */,
 				73E6B1172EEFA9D400CC32FA /* WorkViewController.swift in Sources */,
 				73E6B1332EEFF2AA00CC32FA /* WorkViewModel.swift in Sources */,

@@ -30,14 +30,6 @@ class StartViewModel {
     
     func uploadIDInfo(json: [String: String]) async throws -> BaseModel {
         
-        LoadingManager.shared.show()
-        
-        defer {
-            DispatchQueue.main.async {
-                LoadingManager.shared.hide()
-            }
-        }
-        
         do {
             let model: BaseModel = try await HttpRequestManager.shared.uploadWithForm("/considerablyreal/right", parameters: json)
             return model

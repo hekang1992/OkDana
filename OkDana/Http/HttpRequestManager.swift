@@ -15,7 +15,7 @@ class HttpRequestManager: NSObject {
     static let shared = HttpRequestManager()
     
     func get<T: Codable>(_ url: String, parameters: [String: Any]? = nil) async throws -> T {
-        return try await request(url, method: .get, parameters: parameters, timeout: 10)
+        return try await request(url, method: .get, parameters: parameters, timeout: 30)
     }
     
     func uploadWithForm<T: Codable>(

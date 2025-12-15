@@ -17,7 +17,14 @@ class HomeViewController: BaseViewController {
     
     lazy var oneView: OneHomeView = {
         let oneView = OneHomeView(frame: .zero)
+        oneView.isHidden = true
         return oneView
+    }()
+    
+    lazy var twoView: TwoHomeView = {
+        let twoView = TwoHomeView(frame: .zero)
+        twoView.isHidden = true
+        return twoView
     }()
     
     override func viewDidLoad() {
@@ -30,11 +37,23 @@ class HomeViewController: BaseViewController {
             make.edges.equalToSuperview()
         }
         
+        view.addSubview(twoView)
+        twoView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
         let code = LanguageManager.currentLanguage
         oneView.privacyLabel.isHidden = code == .id
         oneView.termsLabel.isHidden = code == .id
         
         self.oneView.scrollView.mj_header = MJRefreshNormalHeader(refreshingBlock: { [weak self] in
+            guard let self = self else { return }
+            Task {
+                await self.fetchAllData()
+            }
+        })
+        
+        self.twoView.tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: { [weak self] in
             guard let self = self else { return }
             Task {
                 await self.fetchAllData()
@@ -50,7 +69,17 @@ class HomeViewController: BaseViewController {
                 nav.modalPresentationStyle = .overFullScreen
                 self.present(nav, animated: true)
             }
-            
+        }
+        
+        self.twoView.cellTapClickBlock = { [weak self] productID in
+            guard let self = self else { return }
+            if LoginConfig.isLoggedIn {
+                tapClickProduct(with: productID)
+            }else {
+                let nav = BaseNavigationController(rootViewController: LoginViewController())
+                nav.modalPresentationStyle = .overFullScreen
+                self.present(nav, animated: true)
+            }
         }
         
     }
@@ -86,10 +115,12 @@ extension HomeViewController {
                     self.fixHomeModel(with: model)
                 }
                 self.oneView.scrollView.mj_header?.endRefreshing()
+                self.twoView.tableView.mj_header?.endRefreshing()
             }
         } catch {
             await MainActor.run {
                 self.oneView.scrollView.mj_header?.endRefreshing()
+                self.twoView.tableView.mj_header?.endRefreshing()
             }
         }
     }
@@ -123,7 +154,7 @@ extension HomeViewController {
         
         if let firstEvenb = evenbModels.first {
             oneView.isHidden = false
-            //            twoView.isHidden = true
+            twoView.isHidden = true
             //            errorView.isHidden = true
             self.oneView.model = firstEvenb.despite?.first
         }
@@ -139,16 +170,16 @@ extension HomeViewController {
     
     private func configureTwoView(heads: String, model: easierModel) {
         oneView.isHidden = true
-        //        twoView.isHidden = false
-        //        errorView.isHidden = true
+        twoView.isHidden = false
+        //                errorView.isHidden = true
         
-        //        if heads == "asc" {
-        //            self.twoView.model = model.above?.first
-        //        } else if heads == "asd" {
-        //            self.twoView.modelArray = model.above
-        //        }
-        //
-        //        self.twoView.tableView.reloadData()
+        if heads == "evenc" {
+            self.twoView.bigModel = model.despite?.first
+        } else if heads == "evend" {
+            self.twoView.modelArray = model.despite
+        }
+        
+        self.twoView.tableView.reloadData()
     }
     
 }
@@ -166,7 +197,7 @@ extension HomeViewController {
                     ToastManager.showMessage(message: model.conversion ?? "")
                 }
             } catch {
-            
+                
             }
         }
     }
