@@ -57,14 +57,6 @@ class despiteModel: Codable {
     var trail: String?
 }
 
-class yvesModel: Codable {
-    var evaporation: String?
-    var pspace: String?
-    var disappear: String?
-    var subclass: String?
-    var hierarchy: String?
-}
-
 class combiningModel: Codable {
     var geometric: String?
     var probabilistically: String?
@@ -197,6 +189,43 @@ class combinedModel: Codable {
             virtual = v
         } else {
             virtual = nil
+        }
+    }
+}
+
+class yvesModel: Codable {
+    var evaporation: String?
+    var pspace: String?
+    var disappear: String?
+    var subclass: String?
+    var hierarchy: String?
+    var proportional: String?
+    var laying: String?
+    var lays: String?
+
+    enum CodingKeys: String, CodingKey {
+        case evaporation, pspace, disappear, subclass,
+             hierarchy, proportional, laying, lays
+    }
+
+    required init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+
+        evaporation = try? c.decode(String.self, forKey: .evaporation)
+        pspace = try? c.decode(String.self, forKey: .pspace)
+        disappear = try? c.decode(String.self, forKey: .disappear)
+        subclass = try? c.decode(String.self, forKey: .subclass)
+        hierarchy = try? c.decode(String.self, forKey: .hierarchy)
+        proportional = try? c.decode(String.self, forKey: .proportional)
+        laying = try? c.decode(String.self, forKey: .laying)
+
+        // ⭐ lays: String / Int
+        if let s = try? c.decode(String.self, forKey: .lays) {
+            lays = s
+        } else if let i = try? c.decode(Int.self, forKey: .lays) {
+            lays = String(i)
+        } else {
+            lays = nil
         }
     }
 }

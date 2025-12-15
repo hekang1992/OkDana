@@ -47,4 +47,10 @@ class BaseViewController: UIViewController {
         }
     }
     
+    func goWebVc(with pageUrl: String) {
+        let webVc = APPWebViewController()
+        webVc.pageUrl = pageUrl
+        self.navigationController?.pushViewController(webVc, animated: true)
+    }
+    
 }

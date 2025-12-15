@@ -15,6 +15,8 @@ class ProductDetailViewController: BaseViewController {
     
     var virtualModel: virtualModel?
     
+    var yvesModel: yvesModel?
+    
     let viewModel = ProductViewModel()
     
     var modelArray: [combiningModel] = []
@@ -58,8 +60,22 @@ class ProductDetailViewController: BaseViewController {
         listView.nextClickBlock = { [weak self] in
             guard let self = self else { return }
             let nextStr = self.virtualModel?.map ?? ""
-            //            let isAuth = String(self.virtualModel?.complications ?? 0)
-            self.tapClickToPageVc(with: nextStr)
+            if nextStr.isEmpty {
+                let proportional = self.yvesModel?.proportional ?? ""
+                let evaporation = self.yvesModel?.evaporation ?? ""
+                let laying = self.yvesModel?.laying ?? ""
+                let lays = self.yvesModel?.lays ?? ""
+                let json = ["proportional": proportional,
+                            "evaporation": evaporation,
+                            "laying": laying,
+                            "lays": lays
+                ]
+                Task {
+                    await self.applyOrder(with: json)
+                }
+            }else {
+                self.tapClickToPageVc(with: nextStr)
+            }
         }
         
         self.listView.tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: { [weak self] in
@@ -81,6 +97,26 @@ class ProductDetailViewController: BaseViewController {
 
 extension ProductDetailViewController {
     
+    private func applyOrder(with json: [String: String]) async {
+        do {
+            let model = try await viewModel.orderMessageInfo(json: json)
+            if model.somewhat == 0 {
+                let inputs = model.combined?.inputs ?? ""
+                if inputs.contains(AppScheme.base) {
+                    AppSchemeUrlConfig.handleRoute(pageUrl: inputs, from: self)
+                }else if inputs.contains("http://") || inputs.contains("https://") {
+                    self.goWebVc(with: inputs)
+                }else {
+                    
+                }
+            }else {
+                ToastManager.showMessage(message: model.conversion ?? "")
+            }
+        } catch {
+            
+        }
+    }
+    
     @MainActor
     private func getDetailInfo() async {
         do {
@@ -97,6 +133,7 @@ extension ProductDetailViewController {
                     let footTitle = model.combined?.yves?.hierarchy ?? ""
                     self.listView.nextButton.setTitle(footTitle, for: .normal)
                     self.listView.model = listModel
+                    self.yvesModel = listModel
                 }
                 if let virtualModel = model.combined?.virtual {
                     self.virtualModel = virtualModel
@@ -151,8 +188,6 @@ extension ProductDetailViewController {
             walletVc.productID = productID
             walletVc.modelArray = modelArray
             self.navigationController?.pushViewController(walletVc, animated: true)
-            break
-        case "":
             break
         default:
             break

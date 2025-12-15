@@ -174,7 +174,9 @@ extension HomeViewController {
     private func ocPageUrl(with pageUrl: String) {
         if pageUrl.contains(AppScheme.base) {
             AppSchemeUrlConfig.handleRoute(pageUrl: pageUrl, from: self)
-        } else {
+        } else if pageUrl.contains("http://") || pageUrl.contains("https://") {
+            self.goWebVc(with: pageUrl)
+        }else {
             
         }
     }
