@@ -30,12 +30,22 @@ class PhonesTableViewCell: UITableViewCell {
             
             
             let inserts = model.inserts ?? ""
+            
             let modelArray = model.simulation ?? []
+            
             for model in modelArray {
-                if model.concurrent == inserts {
+                if model.complications == inserts {
                     oneListView.nameTextFiled.text = model.concurrent ?? ""
                 }
             }
+            
+            let name = model.concurrent ?? ""
+            
+            let phone = model.hull ?? ""
+            
+            let displayText = phone.isEmpty ? name : "\(name)-\(phone)"
+            twoListView.nameTextFiled.text = displayText
+            
             
         }
     }

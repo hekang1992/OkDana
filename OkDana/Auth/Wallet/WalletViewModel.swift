@@ -1,5 +1,5 @@
 //
-//  PhonesViewModel.swift
+//  WalletViewModel.swift
 //  OkDana
 //
 //  Created by hekang on 2025/12/15.
@@ -7,8 +7,8 @@
 
 import Foundation
 
-class PhonesViewModel {
-    
+class WalletViewModel {
+
     func getPersonalDetailInfo(json: [String: String]) async throws -> BaseModel {
         
         LoadingManager.shared.show()
@@ -20,7 +20,7 @@ class PhonesViewModel {
         }
         
         do {
-            let model: BaseModel = try await HttpRequestManager.shared.uploadWithForm("/considerablyreal/street", parameters: json)
+            let model: BaseModel = try await HttpRequestManager.shared.uploadWithForm("/considerablyreal/guarantees", parameters: json)
             return model
         } catch {
             print("error===: \(error)")
@@ -39,17 +39,7 @@ class PhonesViewModel {
         }
         
         do {
-            let model: BaseModel = try await HttpRequestManager.shared.uploadWithForm("/considerablyreal/continue", parameters: json)
-            return model
-        } catch {
-            print("error===: \(error)")
-            throw error
-        }
-    }
-    
-    func saveAllPhoneslInfo(json: [String: String]) async throws -> BaseModel {
-        do {
-            let model: BaseModel = try await HttpRequestManager.shared.uploadWithForm("/considerablyreal/geometric", parameters: json)
+            let model: BaseModel = try await HttpRequestManager.shared.uploadWithForm("/considerablyreal/weaker", parameters: json)
             return model
         } catch {
             print("error===: \(error)")

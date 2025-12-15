@@ -61,6 +61,7 @@
 		73E6B1352EEFF7CE00CC32FA /* PhonesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6B1342EEFF7C800CC32FA /* PhonesViewModel.swift */; };
 		73E6B1372EEFF88C00CC32FA /* PhonesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6B1362EEFF88C00CC32FA /* PhonesTableViewCell.swift */; };
 		73E6B1392EF0029000CC32FA /* ContactManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6B1382EF0028F00CC32FA /* ContactManager.swift */; };
+		73E6B13B2EF00AEB00CC32FA /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6B13A2EF00AE700CC32FA /* WalletViewModel.swift */; };
 		F9F9EC17BA74DAE3EA6B1D07 /* Pods_OkDana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EED710BEBDFF0AF19F2B60B4 /* Pods_OkDana.framework */; };
 /* End PBXBuildFile section */
 
@@ -124,6 +125,7 @@
 		73E6B1342EEFF7C800CC32FA /* PhonesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhonesViewModel.swift; sourceTree = "<group>"; };
 		73E6B1362EEFF88C00CC32FA /* PhonesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhonesTableViewCell.swift; sourceTree = "<group>"; };
 		73E6B1382EF0028F00CC32FA /* ContactManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactManager.swift; sourceTree = "<group>"; };
+		73E6B13A2EF00AE700CC32FA /* WalletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewModel.swift; sourceTree = "<group>"; };
 		8223264657DF9D221A8EC8B3 /* Pods-OkDana.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OkDana.debug.xcconfig"; path = "Target Support Files/Pods-OkDana/Pods-OkDana.debug.xcconfig"; sourceTree = "<group>"; };
 		EED710BEBDFF0AF19F2B60B4 /* Pods_OkDana.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OkDana.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -337,6 +339,7 @@
 		73E6B10B2EEF9E4000CC32FA /* Wallet */ = {
 			isa = PBXGroup;
 			children = (
+				73E6B13A2EF00AE700CC32FA /* WalletViewModel.swift */,
 				73E6B11A2EEFA9E600CC32FA /* WalletViewController.swift */,
 			);
 			path = Wallet;
@@ -525,6 +528,7 @@
 				7373C8F32EED06F90085A724 /* BaseNavigationController.swift in Sources */,
 				7373C8F92EED0A6F0085A724 /* CenterViewController.swift in Sources */,
 				7373C8EF2EED06CF0085A724 /* BaseViewController.swift in Sources */,
+				73E6B13B2EF00AEB00CC32FA /* WalletViewModel.swift in Sources */,
 				7373C9032EED2B900085A724 /* LoginView.swift in Sources */,
 				73E6B1132EEF9FEB00CC32FA /* StepIndicatorView.swift in Sources */,
 				73AD58B72EEECB3A0022899B /* BaseModel.swift in Sources */,

@@ -8,12 +8,63 @@
 import UIKit
 import ContactsUI
 
+// MARK: - Contact Manager
 class ContactManager: NSObject {
     
+    // MARK: - Properties
     static let shared = ContactManager()
-    private let contactStore = CNContactStore()
     
-    private func checkContactAuthorization(completion: @escaping (Bool) -> Void) {
+    private let contactStore = CNContactStore()
+    private var singleSelectCompletion: ((CNContact?) -> Void)?
+    
+    private enum Constants {
+        static let contactKeys = [
+            CNContactGivenNameKey,
+            CNContactFamilyNameKey,
+            CNContactPhoneNumbersKey,
+            CNContactEmailAddressesKey
+        ] as [CNKeyDescriptor]
+    }
+    
+    // MARK: - Public Methods
+    func fetchAllContacts(
+        on viewController: UIViewController,
+        completion: @escaping ([[String: String]]) -> Void
+    ) {
+        checkContactAuthorization { [weak self] granted in
+            guard let self = self else { return }
+            
+            guard granted else {
+                self.showPermissionAlert(on: viewController)
+                return
+            }
+            
+            self.performFetchContacts(completion: completion)
+        }
+    }
+    
+    func selectSingleContact(
+        on viewController: UIViewController,
+        completion: @escaping (CNContact?) -> Void
+    ) {
+        checkContactAuthorization { [weak self] granted in
+            guard let self = self else { return }
+            
+            guard granted else {
+                self.showPermissionAlert(on: viewController)
+                return
+            }
+            
+            self.presentContactPicker(on: viewController, completion: completion)
+        }
+    }
+}
+
+// MARK: - Private Methods
+private extension ContactManager {
+    
+    // MARK: - Authorization
+    func checkContactAuthorization(completion: @escaping (Bool) -> Void) {
         let status = CNContactStore.authorizationStatus(for: .contacts)
         
         switch status {
@@ -35,87 +86,91 @@ class ContactManager: NSObject {
         }
     }
     
-    private func showPermissionAlert(on vc: UIViewController) {
+    // MARK: - Alert
+    func showPermissionAlert(on viewController: UIViewController) {
         let alert = UIAlertController(
             title: LanguageManager.localizedString(for: "Permission Needed"),
             message: LanguageManager.localizedString(for: "Contact access is required to process your loan application. Please enable it in Settings to continue."),
             preferredStyle: .alert
         )
-        alert.addAction(UIAlertAction(title: LanguageManager.localizedString(for: "Cancel"), style: .cancel))
-        alert.addAction(UIAlertAction(title: LanguageManager.localizedString(for: "Settings"), style: .default, handler: { _ in
-            if let url = URL(string: UIApplication.openSettingsURLString) {
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            }
-        }))
         
-        vc.present(alert, animated: true)
+        let cancelAction = UIAlertAction(
+            title: LanguageManager.localizedString(for: "Cancel"),
+            style: .cancel
+        )
+        
+        let settingsAction = UIAlertAction(
+            title: LanguageManager.localizedString(for: "Settings"),
+            style: .default
+        ) { _ in
+            self.openSettings()
+        }
+        
+        alert.addAction(cancelAction)
+        alert.addAction(settingsAction)
+        
+        viewController.present(alert, animated: true)
     }
     
-    func fetchAllContacts(on vc: UIViewController, completion: @escaping ([[String: String]]) -> Void) {
-        checkContactAuthorization { [weak self] granted in
-            guard let self = self else { return }
-            
-            guard granted else {
-                self.showPermissionAlert(on: vc)
-                return
-            }
-            
-            let keysToFetch = [
-                CNContactGivenNameKey,
-                CNContactFamilyNameKey,
-                CNContactPhoneNumbersKey,
-                CNContactEmailAddressesKey
-            ] as [CNKeyDescriptor]
-            
-            var results: [[String: String]] = []
-            let request = CNContactFetchRequest(keysToFetch: keysToFetch)
-            
+    func openSettings() {
+        guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
+    
+    // MARK: - Contact Operations
+    func performFetchContacts(completion: @escaping ([[String: String]]) -> Void) {
+        var results: [[String: String]] = []
+        let request = CNContactFetchRequest(keysToFetch: Constants.contactKeys)
+        
+        DispatchQueue.main.async {
             do {
                 try self.contactStore.enumerateContacts(with: request) { contact, _ in
-                    let contactDict = self.processContactToDict(contact)
+                    let contactDict = self.convertContactToDictionary(contact)
                     results.append(contactDict)
                 }
                 completion(results)
             } catch {
-                print("==========：\(error)")
+                print("Failed to fetch contacts: \(error)")
                 completion([])
             }
         }
     }
     
-    private func processContactToDict(_ contact: CNContact) -> [String: String] {
-        let familyName = contact.familyName
-        let givenName = contact.givenName
-        let fullName = "\(givenName) \(familyName)".trimmingCharacters(in: .whitespaces)
+    func presentContactPicker(
+        on viewController: UIViewController,
+        completion: @escaping (CNContact?) -> Void
+    ) {
+        let picker = CNContactPickerViewController()
+        picker.delegate = self
+        singleSelectCompletion = completion
         
-        let phoneNumbers = contact.phoneNumbers
-            .map { $0.value.stringValue }
-            .joined(separator: ",")
-        
-        var contactDict: [String: String] = [:]
-        contactDict["hull"] = phoneNumbers.isEmpty ? "" : phoneNumbers
-        contactDict["concurrent"] = fullName.isEmpty ? "" : fullName
-        return contactDict
+        viewController.present(picker, animated: true)
     }
     
-    func selectSingleContact(on vc: UIViewController, completion: @escaping (CNContact?) -> Void) {
-        checkContactAuthorization { [weak self] granted in
-            guard let self = self else { return }
-            
-            guard granted else {
-                self.showPermissionAlert(on: vc)
-                return
-            }
-            
-            let picker = CNContactPickerViewController()
-            picker.delegate = self
-            self.singleSelectCompletion = completion
-            
-            vc.present(picker, animated: true)
-        }
+    // MARK: - Contact Conversion
+    func convertContactToDictionary(_ contact: CNContact) -> [String: String] {
+        let fullName = self.formatFullName(
+            givenName: contact.givenName,
+            familyName: contact.familyName
+        )
+        
+        let phoneNumbers = self.formatPhoneNumbers(contact.phoneNumbers)
+        
+        return [
+            "motorways": phoneNumbers,
+            "concurrent": fullName
+        ]
     }
     
-    private var singleSelectCompletion: ((CNContact?) -> Void)?
+    func formatFullName(givenName: String, familyName: String) -> String {
+        let fullName = "\(givenName) \(familyName)"
+        return fullName.trimmingCharacters(in: .whitespaces)
+    }
+    
+    func formatPhoneNumbers(_ phoneNumbers: [CNLabeledValue<CNPhoneNumber>]) -> String {
+        let numbers = phoneNumbers.map { $0.value.stringValue }
+        return numbers.joined(separator: ",")
+    }
 }
 
 // MARK: - CNContactPickerDelegate

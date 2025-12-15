@@ -32,24 +32,6 @@ class BaseModel: Codable {
     }
 }
 
-class combinedModel: Codable {
-    var slip: String?
-    var alpha: String?
-    var reflecting: String?
-    var consecutively: consecutivelyModel?
-    var easier: [easierModel]?
-    var inputs: String?
-    var yves: yvesModel?
-    var combining: [combiningModel]?
-    var virtual: virtualModel?
-    var despite: despiteModel?
-    var nest: [nestModel]?
-    var resulting: Int?
-    var img_url: String?
-    var system: [systemModel]?
-    var artificial: [artificialModel]?
-}
-
 class consecutivelyModel: Codable {
     var pairs: String?
     var consists: String?
@@ -104,6 +86,18 @@ class nestModel: Codable {
     var somewhat: String?
 }
 
+class artificialModel: Codable {
+    var geometric: String?
+    var convex: String?
+    var insertion: String?
+    var constricting: String?
+    var entropy: String?
+    var simulation: [simulationModel]?
+    var inserts: String?
+    var concurrent: String?
+    var hull: String?
+}
+
 class simulationModel: Codable {
     var concurrent: String?
     var complications: String?
@@ -125,16 +119,6 @@ class simulationModel: Codable {
     }
 }
 
-class artificialModel: Codable {
-    var geometric: String?
-    var convex: String?
-    var insertion: String?
-    var constricting: String?
-    var entropy: String?
-    var simulation: [simulationModel]?
-    var inserts: String?
-}
-
 class systemModel: Codable {
     var geometric: String?
     var probabilistically: String?
@@ -144,15 +128,14 @@ class systemModel: Codable {
     var never: String?
     var heuristically: Int?
     var simulation: [simulationModel]?
-
+    
     enum CodingKeys: String, CodingKey {
         case geometric, probabilistically, somewhat, acs
         case complications, never, heuristically, simulation
     }
-
+    
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-
         geometric = try container.decodeIfPresent(String.self, forKey: .geometric)
         probabilistically = try container.decodeIfPresent(String.self, forKey: .probabilistically)
         somewhat = try container.decodeIfPresent(String.self, forKey: .somewhat)
@@ -160,13 +143,60 @@ class systemModel: Codable {
         never = try container.decodeIfPresent(String.self, forKey: .never)
         heuristically = try container.decodeIfPresent(Int.self, forKey: .heuristically)
         simulation = try container.decodeIfPresent([simulationModel].self, forKey: .simulation)
-
         if let str = try? container.decode(String.self, forKey: .complications) {
             complications = str
         } else if let int = try? container.decode(Int.self, forKey: .complications) {
             complications = String(int)
         } else {
             complications = nil
+        }
+    }
+}
+
+class combinedModel: Codable {
+    var slip: String?
+    var alpha: String?
+    var reflecting: String?
+    var consecutively: consecutivelyModel?
+    var easier: [easierModel]?
+    var inputs: String?
+    var yves: yvesModel?
+    var combining: [combiningModel]?
+    var virtual: virtualModel?
+    var despite: despiteModel?
+    var nest: [nestModel]?
+    var resulting: Int?
+    var img_url: String?
+    var system: [systemModel]?
+    var artificial: [artificialModel]?
+    
+    enum CodingKeys: String, CodingKey {
+        case slip, alpha, reflecting, consecutively, easier, inputs, yves,
+             combining, virtual, despite, nest, resulting, img_url,
+             system, artificial
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        
+        slip = try? c.decode(String.self, forKey: .slip)
+        alpha = try? c.decode(String.self, forKey: .alpha)
+        reflecting = try? c.decode(String.self, forKey: .reflecting)
+        consecutively = try? c.decode(consecutivelyModel.self, forKey: .consecutively)
+        easier = try? c.decode([easierModel].self, forKey: .easier)
+        inputs = try? c.decode(String.self, forKey: .inputs)
+        yves = try? c.decode(yvesModel.self, forKey: .yves)
+        combining = try? c.decode([combiningModel].self, forKey: .combining)
+        despite = try? c.decode(despiteModel.self, forKey: .despite)
+        nest = try? c.decode([nestModel].self, forKey: .nest)
+        resulting = try? c.decode(Int.self, forKey: .resulting)
+        img_url = try? c.decode(String.self, forKey: .img_url)
+        system = try? c.decode([systemModel].self, forKey: .system)
+        artificial = try? c.decode([artificialModel].self, forKey: .artificial)
+        if let v = try? c.decode(virtualModel.self, forKey: .virtual) {
+            virtual = v
+        } else {
+            virtual = nil
         }
     }
 }
