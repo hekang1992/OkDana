@@ -135,9 +135,9 @@ extension ProductDetailViewController {
                     self.listView.model = listModel
                     self.yvesModel = listModel
                 }
-                if let virtualModel = model.combined?.virtual {
-                    self.virtualModel = virtualModel
-                }
+                
+                self.virtualModel = model.combined?.virtual
+                
                 if let modelArray = model.combined?.combining {
                     self.modelArray = modelArray
                     self.listView.modelArray = modelArray

@@ -69,6 +69,7 @@ class OneHomeView: UIView {
         let imageView = UIImageView()
         let code = LanguageManager.currentLanguage
         imageView.image = code == .id ? UIImage(named: "id_foot_image") : UIImage(named: "en_foot_image")
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
@@ -267,7 +268,8 @@ class OneHomeView: UIView {
         footerImageView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(cardImageView.snp.bottom).offset(21)
-            make.width.equalTo(335)
+            make.width.equalTo(335.pix())
+            make.height.equalTo(184.pix())
         }
         
         // Footer Links

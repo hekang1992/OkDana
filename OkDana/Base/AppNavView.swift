@@ -127,7 +127,7 @@ final class AppNormalNavView: UIView {
         return view
     }()
     
-    private lazy var backButton: UIButton = {
+    lazy var backButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setImage(UIImage(named: "back_black_icon_image"), for: .normal)
         return button
@@ -193,5 +193,25 @@ private extension AppNormalNavView {
                 self?.backAction?()
             }
             .disposed(by: disposeBag)
+    }
+}
+
+let SCREEN_WIDTH = UIScreen.main.bounds.size.width
+
+extension Double {
+    func pix() -> CGFloat {
+        return CGFloat.init(CGFloat.init(self)/375.0 * SCREEN_WIDTH)
+    }
+}
+
+extension CGFloat {
+    func pix() -> CGFloat {
+        return CGFloat.init(CGFloat.init(self)/375.0 * SCREEN_WIDTH)
+    }
+}
+
+extension Int {
+    func pix() -> CGFloat {
+        return CGFloat.init(CGFloat.init(self)/375.0 * SCREEN_WIDTH)
     }
 }
