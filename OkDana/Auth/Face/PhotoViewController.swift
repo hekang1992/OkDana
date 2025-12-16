@@ -257,6 +257,23 @@ extension PhotoViewController {
             self?.saveInfo(with: cardView)
         }
         
+        cardView.timeBlock = { [weak self] timeStr in
+            guard let self = self else { return }
+            let timeView = PopTimeView(frame: self.view.bounds)
+            timeView.defaultDateString = timeStr.isEmpty ? "10-10-2000" : timeStr
+            guard let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) else { return }
+            window.addSubview(timeView)
+            
+            timeView.timeBlock = { time in
+                cardView.threeListView.nameTextFiled.text = time
+                timeView.defaultDateString = time
+                timeView.removeFromSuperview()
+            }
+            timeView.cancelBlock = {
+                timeView.removeFromSuperview()
+            }
+        }
+        
     }
     
     private func saveInfo(with cardView: AppAlertSelectView) {

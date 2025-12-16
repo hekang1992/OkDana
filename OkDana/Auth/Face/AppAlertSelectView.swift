@@ -12,6 +12,8 @@ import RxCocoa
 
 class AppAlertSelectView: UIView {
     
+    var timeBlock: ((String) -> Void)?
+    
     var modelArray: [nestModel]? {
         didSet {
             guard let modelArray = modelArray else { return }
@@ -155,6 +157,11 @@ class AppAlertSelectView: UIView {
             guard let self = self else { return }
             self.confirmBlock?()
         }).disposed(by: disposeBag)
+        
+        threeListView.clickBlock = { [weak self] timeStr in
+            guard let self = self else { return }
+            self.timeBlock?(timeStr)
+        }
     }
     
     required init?(coder: NSCoder) {

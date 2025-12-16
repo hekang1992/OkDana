@@ -54,20 +54,6 @@ class easierModel: Codable {
     var inputs: String?
 }
 
-class despiteModel: Codable {
-    var arbitrary: Int?
-    var pspace: String?
-    var subclass: String?
-    var hierarchy: String?
-    var rational: String?
-    var actual: String?
-    var obstacle: String?
-    var discretized: String?
-    var deposited: String?
-    var trail: String?
-    var dujals: dujalsModel?
-}
-
 class optimizationsModel: Codable {
     var geometric: String?
     var markov: String?
@@ -229,15 +215,15 @@ class yvesModel: Codable {
     var proportional: String?
     var laying: String?
     var lays: String?
-
+    
     enum CodingKeys: String, CodingKey {
         case evaporation, pspace, disappear, subclass,
              hierarchy, proportional, laying, lays
     }
-
+    
     required init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
-
+        
         evaporation = try? c.decode(String.self, forKey: .evaporation)
         pspace = try? c.decode(String.self, forKey: .pspace)
         disappear = try? c.decode(String.self, forKey: .disappear)
@@ -245,7 +231,7 @@ class yvesModel: Codable {
         hierarchy = try? c.decode(String.self, forKey: .hierarchy)
         proportional = try? c.decode(String.self, forKey: .proportional)
         laying = try? c.decode(String.self, forKey: .laying)
-
+        
         // ⭐ lays: String / Int
         if let s = try? c.decode(String.self, forKey: .lays) {
             lays = s
@@ -253,6 +239,51 @@ class yvesModel: Codable {
             lays = String(i)
         } else {
             lays = nil
+        }
+    }
+}
+
+class despiteModel: Codable {
+    var arbitrary: Int?
+    var pspace: String?
+    var subclass: String?
+    var hierarchy: String?
+    var rational: String?
+    var actual: String?
+    var obstacle: String?
+    var discretized: String?
+    var deposited: String?
+    var trail: String?
+    var dujals: dujalsModel?
+    var dujalsArray: [String]?
+    
+    enum CodingKeys: String, CodingKey {
+        case arbitrary, pspace, subclass, hierarchy
+        case rational, actual, obstacle, discretized
+        case deposited, trail, dujals
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        arbitrary = try container.decodeIfPresent(Int.self, forKey: .arbitrary)
+        pspace = try container.decodeIfPresent(String.self, forKey: .pspace)
+        subclass = try container.decodeIfPresent(String.self, forKey: .subclass)
+        hierarchy = try container.decodeIfPresent(String.self, forKey: .hierarchy)
+        rational = try container.decodeIfPresent(String.self, forKey: .rational)
+        actual = try container.decodeIfPresent(String.self, forKey: .actual)
+        obstacle = try container.decodeIfPresent(String.self, forKey: .obstacle)
+        discretized = try container.decodeIfPresent(String.self, forKey: .discretized)
+        deposited = try container.decodeIfPresent(String.self, forKey: .deposited)
+        trail = try container.decodeIfPresent(String.self, forKey: .trail)
+        if let model = try? container.decodeIfPresent(dujalsModel.self, forKey: .dujals) {
+            dujals = model
+            dujalsArray = nil
+        } else if let array = try? container.decodeIfPresent([String].self, forKey: .dujals) {
+            dujalsArray = array
+            dujals = nil
+        } else {
+            dujals = nil
+            dujalsArray = nil
         }
     }
 }
