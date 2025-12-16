@@ -131,12 +131,12 @@ private enum TabItem: CaseIterable {
     // MARK: - Text Attributes
     static let normalTextAttributes: [NSAttributedString.Key: Any] = [
         .foregroundColor: UIColor(hex: "#8C8C8C"),
-        .font: UIFont.systemFont(ofSize: 14, weight: UIFont.Weight(400))
+        .font: UIFont.systemFont(ofSize: 13, weight: UIFont.Weight(300))
     ]
 
     static let selectedTextAttributes: [NSAttributedString.Key: Any] = [
         .foregroundColor: UIColor(hex: "#00CA5D"),
-        .font: UIFont.systemFont(ofSize: 14, weight: UIFont.Weight(400))
+        .font: UIFont.systemFont(ofSize: 13, weight: UIFont.Weight(300))
     ]
 
     var normalTextAttributes: [NSAttributedString.Key: Any] {

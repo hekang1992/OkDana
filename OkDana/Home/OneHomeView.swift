@@ -194,7 +194,10 @@ class OneHomeView: UIView {
             make.edges.equalToSuperview()
         }
         
-        tapButton.rx.tap
+        tapButton
+            .rx
+            .tap
+            .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
                 self?.handleCardTap()
             })

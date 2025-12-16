@@ -369,6 +369,7 @@ class LoginView: UIView {
         codeBtn
             .rx
             .tap
+            .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
             .bind(onNext: { [weak self] in
                 guard let self = self else { return }
                 self.codeBlock?()
@@ -378,6 +379,7 @@ class LoginView: UIView {
         voiceLabel
             .rx
             .tapGesture()
+            .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
             .when(.recognized)
             .bind(onNext: { [weak self] _ in
                 guard let self = self else { return }
@@ -388,6 +390,7 @@ class LoginView: UIView {
         loginBtn
             .rx
             .tap
+            .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
             .bind(onNext: { [weak self] in
                 guard let self = self else { return }
                 self.loginBlock?()
@@ -397,6 +400,7 @@ class LoginView: UIView {
         mentLabel
             .rx
             .tapGesture()
+            .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
             .when(.recognized)
             .bind(onNext: { [weak self] _ in
                 guard let self = self else { return }

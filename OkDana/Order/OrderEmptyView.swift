@@ -87,7 +87,10 @@ class OrderEmptyView: UIView {
     }
     
     private func setupBindings() {
-        applyBtn.rx.tap
+        applyBtn
+            .rx
+            .tap
+            .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
             .bind(onNext: { [weak self] in
                 self?.applyBlock?()
             })

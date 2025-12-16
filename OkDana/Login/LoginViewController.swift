@@ -124,7 +124,7 @@ extension LoginViewController {
     }
     
     private func chageRootVc() async {
-        try? await Task.sleep(nanoseconds: 250_000_000)
+        try? await Task.sleep(nanoseconds: 200_000_000)
         NotificationCenter.default.post(name: NSNotification.Name("changeRootVc"), object: nil)
     }
     

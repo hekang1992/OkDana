@@ -267,10 +267,15 @@ extension TwoHomeView: UITableViewDelegate, UITableViewDataSource {
             applyButton.setTitle(bigModel.hierarchy ?? "", for: .normal)
         }
         
-        bigBtn.rx.tap.bind(onNext: { [weak self] in
+        bigBtn
+            .rx
+            .tap
+            .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
+            .bind(onNext: { [weak self] in
             guard let self = self else { return }
             self.cellTapClickBlock?(String(self.bigModel?.arbitrary ?? 0))
-        }).disposed(by: disposeBag)
+        })
+            .disposed(by: disposeBag)
         
         return headView
     }

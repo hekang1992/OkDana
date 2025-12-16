@@ -160,7 +160,9 @@ class ProductView: UIView {
     }
     
     private func bindActions() {
-        nextButton.rx.tap
+        nextButton
+            .rx
+            .tap
             .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
             .bind { [weak self] in
                 self?.nextClickBlock?()
