@@ -18,6 +18,8 @@ class OrderTableViewCell: UITableViewCell {
             logoImageView.kf.setImage(with: URL(string: logoUrl))
             nameLabel.text = model.pspace ?? ""
             typeLabel.text = model.hierarchy ?? ""
+            
+            coverListView(with: model.optimizations ?? [])
         }
     }
     
@@ -59,7 +61,12 @@ class OrderTableViewCell: UITableViewCell {
         typeLabel.font = UIFont.systemFont(ofSize: 11, weight: UIFont.Weight(500))
         return typeLabel
     }()
-
+    
+    lazy var coverView: UIView = {
+        let coverView = UIView()
+        return coverView
+    }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(bgView)
@@ -67,6 +74,7 @@ class OrderTableViewCell: UITableViewCell {
         bgView.addSubview(nameLabel)
         bgView.addSubview(lineView)
         bgView.addSubview(typeLabel)
+        bgView.addSubview(coverView)
         bgView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.left.equalToSuperview().offset(20)
@@ -94,6 +102,10 @@ class OrderTableViewCell: UITableViewCell {
             make.top.right.equalToSuperview()
             make.height.equalTo(28)
         }
+        coverView.snp.makeConstraints { make in
+            make.top.equalTo(lineView.snp.bottom)
+            make.left.right.equalToSuperview()
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -102,19 +114,44 @@ class OrderTableViewCell: UITableViewCell {
     
 }
 
-
-class PaddedLabel: UILabel {
-    var textInsets = UIEdgeInsets(top: 2, left: 6, bottom: 2, right: 6)
+extension OrderTableViewCell {
     
-    override func drawText(in rect: CGRect) {
-        super.drawText(in: rect.inset(by: textInsets))
+    private func coverListView(with modelArray: [optimizationsModel]) {
+        coverView.subviews.forEach { $0.removeFromSuperview() }
+        
+        guard !modelArray.isEmpty else { return }
+        
+        var previousView: OrderListView?
+        
+        for (index, item) in modelArray.enumerated() {
+            let listView = OrderListView()
+            listView.model = item
+            coverView.addSubview(listView)
+            if index == 0 {
+                listView.twoLabel.textColor = UIColor.init(hex: "#4BCD4D")
+                listView.twoLabel.font = UIFont.systemFont(ofSize: 20, weight: UIFont.Weight(500))
+            }else {
+                listView.twoLabel.textColor = UIColor.init(hex: "#000000")
+                listView.twoLabel.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight(500))
+            }
+            
+            listView.snp.makeConstraints { make in
+                make.left.right.equalToSuperview()
+                make.height.equalTo(28)
+                
+                if let previous = previousView {
+                    make.top.equalTo(previous.snp.bottom).offset(10)
+                } else {
+                    make.top.equalToSuperview().offset(10)
+                }
+                if index == modelArray.count - 1 {
+                    make.bottom.lessThanOrEqualToSuperview().offset(-10)
+                }
+            }
+            previousView = listView
+        }
     }
     
-    override var intrinsicContentSize: CGSize {
-        let size = super.intrinsicContentSize
-        return CGSize(
-            width: size.width + textInsets.left + textInsets.right,
-            height: size.height + textInsets.top + textInsets.bottom
-        )
-    }
 }
+
+

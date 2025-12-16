@@ -215,3 +215,19 @@ extension Int {
         return CGFloat.init(CGFloat.init(self)/375.0 * SCREEN_WIDTH)
     }
 }
+
+class PaddedLabel: UILabel {
+    var textInsets = UIEdgeInsets(top: 2, left: 6, bottom: 2, right: 6)
+    
+    override func drawText(in rect: CGRect) {
+        super.drawText(in: rect.inset(by: textInsets))
+    }
+    
+    override var intrinsicContentSize: CGSize {
+        let size = super.intrinsicContentSize
+        return CGSize(
+            width: size.width + textInsets.left + textInsets.right,
+            height: size.height + textInsets.top + textInsets.bottom
+        )
+    }
+}
