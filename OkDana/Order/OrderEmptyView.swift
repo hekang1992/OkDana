@@ -69,7 +69,7 @@ class OrderEmptyView: UIView {
     private func setupConstraints() {
         bgImageView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview().inset(50)
+            make.centerY.equalToSuperview().multipliedBy(0.7)
             make.size.equalTo(CGSize(width: 117, height: 117))
         }
         

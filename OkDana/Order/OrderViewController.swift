@@ -27,7 +27,7 @@ class OrderViewController: BaseViewController {
         bgImageView.image = UIImage(named: "order_bg_image")
         return bgImageView
     }()
-
+    
     private lazy var whiteView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -77,7 +77,7 @@ class OrderViewController: BaseViewController {
     }
     
     private func setupUI() {
-
+        
         view.addSubview(bgImageView)
         bgImageView.snp.makeConstraints { make in
             make.top.left.right.equalToSuperview()
@@ -248,6 +248,18 @@ extension OrderViewController: UITableViewDelegate, UITableViewDataSource {
         let model = self.modelArray[indexPath.row]
         cell.model = model
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let model = self.modelArray[indexPath.row]
+        let pageUrl = model.genetic ?? ""
+        if pageUrl.contains(AppScheme.base) {
+            AppSchemeUrlConfig.handleRoute(pageUrl: pageUrl, from: self)
+        } else if pageUrl.contains("http://") || pageUrl.contains("https://") {
+            self.goWebVc(with: pageUrl)
+        }else {
+            
+        }
     }
     
 }
