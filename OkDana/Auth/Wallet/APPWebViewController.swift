@@ -8,13 +8,14 @@
 import UIKit
 import SnapKit
 import WebKit
-import TYAlertController
+import StoreKit
 
 class APPWebViewController: BaseViewController {
     
     var productID: String = ""
-    
     var pageUrl: String = ""
+    
+    // MARK: - UI Components
     
     lazy var bgView: UIView = {
         let bgView = UIView()
@@ -34,25 +35,59 @@ class APPWebViewController: BaseViewController {
         return bgView.layer.sublayers?.first as? CAGradientLayer
     }
     
-     lazy var webView: WKWebView = {
+    lazy var webView: WKWebView = {
         let configuration = WKWebViewConfiguration()
         let scriptNames = [
             "HistoryAnd", "TravelingThe", "FirstAnd",
-            "WasThe", "MeasureConstructing"]
+            "WasThe", "MeasureConstructing"
+        ]
         scriptNames.forEach {
             configuration.userContentController.add(self, name: $0)
         }
         let webView = WKWebView(frame: .zero, configuration: configuration)
         webView.translatesAutoresizingMaskIntoConstraints = false
         webView.navigationDelegate = self
+        webView.allowsBackForwardNavigationGestures = true
         return webView
     }()
+    
+    private lazy var progressView: UIProgressView = {
+        let progressView = UIProgressView(progressViewStyle: .default)
+        progressView.progressTintColor = UIColor.systemBlue
+        progressView.trackTintColor = UIColor.clear
+        progressView.isHidden = true
+        return progressView
+    }()
+    
+    private var estimatedProgressObserver: NSKeyValueObservation?
+    private var titleObserver: NSKeyValueObservation?
+    
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.headerView.isHidden = true
-        
+        setupUI()
+        setupObservers()
+        loadWebPage()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        estimatedProgressObserver?.invalidate()
+        titleObserver?.invalidate()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        gradientLayer?.frame = bgView.bounds
+    }
+    
+    // MARK: - Setup Methods
+    
+    private func setupUI() {
+
         view.addSubview(bgView)
         bgView.snp.makeConstraints { make in
             make.top.left.right.equalToSuperview()
@@ -66,23 +101,45 @@ class APPWebViewController: BaseViewController {
             make.height.equalTo(40)
         }
         
+        view.addSubview(progressView)
+        progressView.snp.makeConstraints { make in
+            make.top.equalTo(normalHeadView.snp.bottom)
+            make.left.right.equalToSuperview()
+            make.height.equalTo(2)
+        }
+        
+        // WebView
+        view.addSubview(webView)
+        webView.snp.makeConstraints { make in
+            make.top.equalTo(progressView.snp.bottom)
+            make.left.right.bottom.equalToSuperview()
+        }
+        
         normalHeadView.backAction = { [weak self] in
             guard let self = self else { return }
             if self.webView.canGoBack {
                 self.webView.goBack()
-            }else {
+            } else {
                 self.navigationController?.popToRootViewController(animated: true)
             }
         }
-        
-        view.addSubview(webView)
-        webView.snp.makeConstraints { make in
-            make.top.equalTo(normalHeadView.snp.bottom)
-            make.left.equalToSuperview()
-            make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview()
+    }
+    
+    private func setupObservers() {
+        estimatedProgressObserver = webView.observe(\.estimatedProgress, options: [.new]) { [weak self] webView, change in
+            guard let self = self else { return }
+            self.updateProgressView(progress: webView.estimatedProgress)
         }
         
+        titleObserver = webView.observe(\.title, options: [.new]) { [weak self] webView, change in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                self.updateTitle(webView.title)
+            }
+        }
+    }
+    
+    private func loadWebPage() {
         guard let encodedUrlString = pageUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
               let apiUrl = URLQueryHelper.buildURL(from: encodedUrlString, queryParameters: CommonParaConfig.getCommonParameters()),
               let finalUrl = URL(string: apiUrl) else {
@@ -90,22 +147,95 @@ class APPWebViewController: BaseViewController {
             return
         }
         
-        webView.load(URLRequest(url: finalUrl))
-        
+        let request = URLRequest(url: finalUrl)
+        webView.load(request)
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        gradientLayer?.frame = bgView.bounds
+    // MARK: - Update Methods
+    
+    private func updateProgressView(progress: Double) {
+        DispatchQueue.main.async {
+            if progress >= 1.0 {
+                UIView.animate(withDuration: 0.3, animations: {
+                    self.progressView.alpha = 0
+                }) { _ in
+                    self.progressView.isHidden = true
+                    self.progressView.progress = 0
+                    self.progressView.alpha = 1
+                }
+            } else {
+                if self.progressView.isHidden {
+                    self.progressView.isHidden = false
+                    self.progressView.alpha = 0
+                    UIView.animate(withDuration: 0.3) {
+                        self.progressView.alpha = 1
+                    }
+                }
+                self.progressView.setProgress(Float(progress), animated: true)
+            }
+        }
     }
+    
+    private func updateTitle(_ title: String?) {
+        self.normalHeadView.nameLabel.text = title
+    }
+    
 }
 
+// MARK: - WKNavigationDelegate, WKScriptMessageHandler
 extension APPWebViewController: WKNavigationDelegate, WKScriptMessageHandler {
+    
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        progressView.isHidden = false
+        progressView.setProgress(0.1, animated: true)
+    }
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.progressView.setProgress(1.0, animated: true)
+        }
+    }
+    
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        progressView.isHidden = true
+    }
+    
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+        progressView.isHidden = true
+    }
     
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         let name = message.name
         let body = message.body
-        print("name===🔥===\(name)=====\(body)")
+        
+        if name == "HistoryAnd" {
+            self.navigationController?.popViewController(animated: true)
+        } else if name == "TravelingThe" {
+            let array = body as? [String]
+            let pageUrl = array?.first ?? ""
+            AppSchemeUrlConfig.handleRoute(pageUrl: pageUrl, from: self)
+        } else if name == "FirstAnd" {
+            NotificationCenter.default.post(name: NSNotification.Name("changeRootVc"), object: nil)
+        } else if name == "WasThe" {
+            requestAppReview()
+        } else if name == "MeasureConstructing" {
+            
+        }
     }
+}
+
+// MARK: - StoreKit
+extension APPWebViewController {
     
+    private func requestAppReview() {
+        guard #available(iOS 14.0, *) else { return }
+        
+        guard let windowScene = UIApplication.shared
+            .connectedScenes
+            .first(where: { $0 is UIWindowScene }) as? UIWindowScene else {
+            return
+        }
+        
+        SKStoreReviewController.requestReview(in: windowScene)
+    }
 }
