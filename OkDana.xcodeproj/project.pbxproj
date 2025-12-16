@@ -26,6 +26,7 @@
 		7381E37D2EF1873400F3008A /* SettingListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7381E37C2EF1873000F3008A /* SettingListViewModel.swift */; };
 		7381E37F2EF1892400F3008A /* AlertLogoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7381E37E2EF1891E00F3008A /* AlertLogoutView.swift */; };
 		7381E3812EF18F4B00F3008A /* PopTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7381E3802EF18F4B00F3008A /* PopTimeView.swift */; };
+		7381E3832EF195A600F3008A /* AlertWView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7381E3822EF195A600F3008A /* AlertWView.swift */; };
 		73A664D72EF1210100D4F52C /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A664D62EF1210100D4F52C /* OrderTableViewCell.swift */; };
 		73A664D92EF123D500D4F52C /* OrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A664D82EF123D100D4F52C /* OrderViewModel.swift */; };
 		73A664DB2EF128A700D4F52C /* OrderEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A664DA2EF128A700D4F52C /* OrderEmptyView.swift */; };
@@ -119,6 +120,7 @@
 		7381E37C2EF1873000F3008A /* SettingListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingListViewModel.swift; sourceTree = "<group>"; };
 		7381E37E2EF1891E00F3008A /* AlertLogoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertLogoutView.swift; sourceTree = "<group>"; };
 		7381E3802EF18F4B00F3008A /* PopTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopTimeView.swift; sourceTree = "<group>"; };
+		7381E3822EF195A600F3008A /* AlertWView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertWView.swift; sourceTree = "<group>"; };
 		73A664D62EF1210100D4F52C /* OrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
 		73A664D82EF123D100D4F52C /* OrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewModel.swift; sourceTree = "<group>"; };
 		73A664DA2EF128A700D4F52C /* OrderEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderEmptyView.swift; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 		7330798C2EF1595200C30412 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				7381E3822EF195A600F3008A /* AlertWView.swift */,
 				7381E37E2EF1891E00F3008A /* AlertLogoutView.swift */,
 				733079902EF15E3100C30412 /* AlertDeleteView.swift */,
 				7381E37C2EF1873000F3008A /* SettingListViewModel.swift */,
@@ -556,6 +559,7 @@
 				73AD58CD2EEF093E0022899B /* ProductViewModel.swift in Sources */,
 				73E6B11B2EEFA9E700CC32FA /* WalletViewController.swift in Sources */,
 				73AD58C72EEEFE780022899B /* SettingViewController.swift in Sources */,
+				7381E3832EF195A600F3008A /* AlertWView.swift in Sources */,
 				73E6B12F2EEFE3A600CC32FA /* TwoTableViewCell.swift in Sources */,
 				73E6B11F2EEFAD6800CC32FA /* CardView.swift in Sources */,
 				73E6B1152EEFA9C500CC32FA /* PersonalViewController.swift in Sources */,

@@ -78,7 +78,22 @@ class PhotoViewController: BaseViewController {
         }
         
         normalHeadView.backAction = { [weak self] in
-            self?.backToListPageVc()
+            guard let self = self else { return }
+            let leaveView = AlertWView(frame: self.view.bounds)
+            let alertVc = TYAlertController(alert: leaveView, preferredStyle: .alert)
+            self.present(alertVc!, animated: true)
+            
+            leaveView.oneBlock = { [weak self] in
+                guard let self = self else { return }
+                self.dismiss(animated: true)
+            }
+            
+            leaveView.twoBlock = { [weak self] in
+                guard let self = self else { return }
+                self.dismiss(animated: true) {
+                    self.backToListPageVc()
+                }
+            }
         }
         
         let stepView = StepIndicatorView()
@@ -259,6 +274,7 @@ extension PhotoViewController {
         
         cardView.timeBlock = { [weak self] timeStr in
             guard let self = self else { return }
+            self.view.endEditing(true)
             let timeView = PopTimeView(frame: self.view.bounds)
             timeView.defaultDateString = timeStr.isEmpty ? "10-10-2000" : timeStr
             guard let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) else { return }

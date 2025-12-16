@@ -86,7 +86,22 @@ class PersonalViewController: BaseViewController {
         }
         
         normalHeadView.backAction = { [weak self] in
-            self?.backToListPageVc()
+            guard let self = self else { return }
+            let leaveView = AlertWView(frame: self.view.bounds)
+            let alertVc = TYAlertController(alert: leaveView, preferredStyle: .alert)
+            self.present(alertVc!, animated: true)
+            
+            leaveView.oneBlock = { [weak self] in
+                guard let self = self else { return }
+                self.dismiss(animated: true)
+            }
+            
+            leaveView.twoBlock = { [weak self] in
+                guard let self = self else { return }
+                self.dismiss(animated: true) {
+                    self.backToListPageVc()
+                }
+            }
         }
         
         let stepView = StepIndicatorView()
