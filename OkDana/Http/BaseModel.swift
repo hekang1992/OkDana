@@ -51,6 +51,7 @@ class easierModel: Codable {
     var hierarchy: String?
     var sanjeev: String?
     var geometric: String?
+    var inputs: String?
 }
 
 class despiteModel: Codable {

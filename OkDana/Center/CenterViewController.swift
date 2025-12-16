@@ -75,6 +75,18 @@ class CenterViewController: BaseViewController {
             }
         })
         
+        self.centerView.cellBlock = { [weak self] model in
+            guard let self = self else { return }
+            let pageUrl = model.inputs ?? ""
+            if pageUrl.contains(AppScheme.base) {
+                AppSchemeUrlConfig.handleRoute(pageUrl: pageUrl, from: self)
+            } else if pageUrl.contains("http://") || pageUrl.contains("https://") {
+                self.goWebVc(with: pageUrl)
+            }else {
+                
+            }
+        }
+        
     }
     
     override func viewDidLayoutSubviews() {
