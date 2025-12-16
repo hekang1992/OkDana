@@ -58,7 +58,7 @@ class FaceViewController: BaseViewController {
         let cardView = CardView(frame: .zero)
         let code = LanguageManager.currentLanguage
         cardView.leftImageView.image = UIImage(named: "face_place_image")
-        cardView.oneImageView.image = code == .id ? UIImage(named: "id_one_s_image") : UIImage(named: "en_one_s_image")
+        cardView.oneImageView.image = code == .id ? UIImage(named: "id_two_s_image") : UIImage(named: "en_two_s_image")
         cardView.twoImageView.image = code == .id ? UIImage(named: "id_faca_card_lia_image") : UIImage(named: "faca_card_lia_image")
         cardView.footImageView.image = code == .id ? UIImage(named: "fc_id_fot_image") : UIImage(named: "cs_en_fot_image")
         return cardView

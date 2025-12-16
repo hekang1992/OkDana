@@ -333,7 +333,7 @@ class OneHomeView: UIView {
         applyButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.bottom.equalToSuperview().offset(-14)
-            make.size.equalTo(CGSize(width: 286, height: 52))
+            make.size.equalTo(CGSize(width: 286.pix(), height: 52.pix()))
         }
         
         contentView.snp.makeConstraints { make in

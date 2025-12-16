@@ -38,9 +38,9 @@ class AlertWView: UIView {
     
     lazy var twoBtn: UIButton = {
         let twoBtn = UIButton(type: .custom)
-        twoBtn.setTitle(LanguageManager.localizedString(for: "Delete"), for: .normal)
-        twoBtn.setTitleColor(UIColor.init(hex: "#00CA5D"), for: .normal)
-        oneBtn.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight(500))
+        twoBtn.setTitle(LanguageManager.localizedString(for: "Leave"), for: .normal)
+        twoBtn.setTitleColor(UIColor.init(hex: "#989898"), for: .normal)
+        twoBtn.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight(500))
         return twoBtn
     }()
     

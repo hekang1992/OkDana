@@ -274,7 +274,6 @@ extension PhotoViewController {
         
         cardView.timeBlock = { [weak self] timeStr in
             guard let self = self else { return }
-            self.view.endEditing(true)
             let timeView = PopTimeView(frame: self.view.bounds)
             timeView.defaultDateString = timeStr.isEmpty ? "10-10-2000" : timeStr
             guard let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) else { return }
@@ -288,6 +287,9 @@ extension PhotoViewController {
             timeView.cancelBlock = {
                 timeView.removeFromSuperview()
             }
+            self.view.endEditing(true)
+            cardView.oneListView.nameTextFiled.resignFirstResponder()
+            cardView.twoListView.nameTextFiled.resignFirstResponder()
         }
         
     }

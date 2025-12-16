@@ -11,6 +11,7 @@ import TYAlertController
 import Contacts
 import RxSwift
 import RxCocoa
+import MJRefresh
 
 class OrderViewController: BaseViewController {
     
@@ -122,6 +123,14 @@ class OrderViewController: BaseViewController {
             NotificationCenter.default.post(name: NSNotification.Name("changeRootVc"), object: nil)
         }
         
+        self.tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
+            [weak self] in
+            guard let self = self else { return }
+            Task {
+                await self.orderListInfo(with: self.type)
+            }
+        })
+        
     }
     
     private func setupButtons() {
@@ -228,9 +237,11 @@ extension OrderViewController {
                 }
             }
             self.tableView.reloadData()
+            await self.tableView.mj_header?.endRefreshing()
         } catch  {
             self.tableView.isHidden = true
             self.emptyView.isHidden = false
+            await self.tableView.mj_header?.endRefreshing()
         }
     }
 }
