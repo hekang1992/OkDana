@@ -10,6 +10,9 @@ import SnapKit
 
 class LoginViewController: BaseViewController {
     
+    var timer: Timer?
+    var count = 60
+    
     lazy var loginView: LoginView = {
         let loginView = LoginView()
         return loginView
@@ -31,6 +34,11 @@ class LoginViewController: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.loginView.phoneTextFiled.becomeFirstResponder()
+    }
+    
+    @MainActor
+    deinit {
+        timer?.invalidate()
     }
     
 }
@@ -81,6 +89,14 @@ extension LoginViewController {
                 let model: BaseModel = try await self.viewModel.getCodeInfo(json: json)
                 if model.somewhat == 0 {
                     self.loginView.codeTextFiled.becomeFirstResponder()
+                    count = 60
+                    timer = Timer.scheduledTimer(
+                        timeInterval: 1.0,
+                        target: self,
+                        selector: #selector(updateCount),
+                        userInfo: nil,
+                        repeats: true
+                    )
                 }
                 ToastManager.showMessage(message: model.conversion ?? "")
             } catch {
@@ -126,6 +142,25 @@ extension LoginViewController {
     private func chageRootVc() async {
         try? await Task.sleep(nanoseconds: 200_000_000)
         NotificationCenter.default.post(name: NSNotification.Name("changeRootVc"), object: nil)
+    }
+    
+}
+
+extension LoginViewController {
+    
+    @objc func updateCount() {
+        count -= 1
+        if count > 0 {
+            self.loginView.codeBtn.setTitle("\(count)s", for: .normal)
+            self.loginView.clineView.isHidden = true
+            self.loginView.codeBtn.isEnabled = false
+        } else {
+            timer?.invalidate()
+            timer = nil
+            self.loginView.codeBtn.isEnabled = true
+            self.loginView.codeBtn.setTitle(LanguageManager.localizedString(for: "Get Code"), for: .normal)
+            self.loginView.clineView.isHidden = false
+        }
     }
     
 }
