@@ -9,7 +9,7 @@ import UIKit
 
 class DashedLineView: UIView {
     
-    var lineColor: UIColor = .gray
+    var lineColor: UIColor = UIColor.init(hex: "#F2F2F2")
     var lineWidth: CGFloat = 1.0
     var dashPattern: [NSNumber] = [4, 4]
     

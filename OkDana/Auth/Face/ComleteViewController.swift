@@ -87,21 +87,18 @@ class ComleteViewController: BaseViewController {
     lazy var oneListView: CompeteListView = {
         let oneListView = CompeteListView()
         oneListView.oneLabel.text = LanguageManager.localizedString(for: "Name")
-        oneListView.twoLabel.text = LoginConfig.currentName
         return oneListView
     }()
     
     lazy var twoListView: CompeteListView = {
         let twoListView = CompeteListView()
         twoListView.oneLabel.text = LanguageManager.localizedString(for: "ID")
-        twoListView.twoLabel.text = LoginConfig.currentNumber
         return twoListView
     }()
     
     lazy var threeListView: CompeteListView = {
         let threeListView = CompeteListView()
         threeListView.oneLabel.text = LanguageManager.localizedString(for: "Birthday")
-        threeListView.twoLabel.text = LoginConfig.currentTime
         return threeListView
     }()
     
@@ -207,6 +204,11 @@ class ComleteViewController: BaseViewController {
             make.left.right.equalToSuperview()
             make.height.equalTo(36)
         }
+        
+        Task {
+            await self.getCardInfo()
+        }
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -216,7 +218,24 @@ class ComleteViewController: BaseViewController {
 }
 
 extension ComleteViewController {
-    
+
+    private func getCardInfo() async {
+        do {
+            let json = ["cannot": productID]
+            let model = try await viewModel.getPersonalCardInfo(json: json)
+            if model.somewhat == 0 {
+                if let dujalsModel = model.combined?.despite?.dujals {
+                    oneListView.twoLabel.text = dujalsModel.sdaftg ?? ""
+                    twoListView.twoLabel.text = dujalsModel.adsfar ?? ""
+                    threeListView.twoLabel.text = dujalsModel.hafee ?? ""
+                }
+            }else {
+                ToastManager.showMessage(message: model.conversion ?? "")
+            }
+        } catch  {
+            
+        }
+    }
     
 }
 

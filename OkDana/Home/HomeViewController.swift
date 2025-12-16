@@ -32,6 +32,8 @@ class HomeViewController: BaseViewController {
         
         // Do any additional setup after loading the view.
         
+        self.headerView.isHidden = true
+        
         view.addSubview(oneView)
         oneView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -112,6 +114,7 @@ extension HomeViewController {
             let model: BaseModel = try await viewModel.getHomeInfo(json: json)
             await MainActor.run {
                 if model.somewhat == 0 {
+                    self.headerView.isHidden = false
                     self.fixHomeModel(with: model)
                 }
                 self.oneView.scrollView.mj_header?.endRefreshing()

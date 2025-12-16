@@ -42,6 +42,13 @@ class consecutivelyModel: Codable {
 class easierModel: Codable {
     var complications: String?
     var despite: [despiteModel]?
+    var pspace: String?
+    var subclass: String?
+    var trail: String?
+    var dujals: dujalsModel?
+    var genetic: String?
+    var optimizations: [optimizationsModel]?
+    var hierarchy: String?
 }
 
 class despiteModel: Codable {
@@ -55,6 +62,18 @@ class despiteModel: Codable {
     var discretized: String?
     var deposited: String?
     var trail: String?
+    var dujals: dujalsModel?
+}
+
+class optimizationsModel: Codable {
+    var geometric: String?
+    var markov: String?
+}
+
+class dujalsModel: Codable {
+    var sdaftg: String?
+    var adsfar: String?
+    var hafee: String?
 }
 
 class combiningModel: Codable {
