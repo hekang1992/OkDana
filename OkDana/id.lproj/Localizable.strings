@@ -9,7 +9,6 @@
 "Home" = "Beranda";
 "Bills" = "Tagihan";
 "Mine" = "Saya";
-
 "Phone number" = "Nomor Telepon";
 "Please Enter Your Phone Number" = "Silakan Masukkan Nomor HP Anda";
 "Verification code" = "Kode Verifikasi";
@@ -46,3 +45,4 @@
 "Repayment" = "Pembayaran";
 "Finish" = "Selesai";
 "There are no orders at this time." = "Saat ini tidak ada pesanan.";
+"Welcome to OK Dana!" = "Selamat Datang di OK Dana!";

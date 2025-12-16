@@ -7,14 +7,15 @@
 
 import UIKit
 import SnapKit
-import TYAlertController
-import Contacts
 import RxSwift
 import RxCocoa
+import MJRefresh
 
 class CenterViewController: BaseViewController {
     
     let disposeBag = DisposeBag()
+    
+    let viewModel = CenterViewModel()
     
     lazy var bgView: UIView = {
         let bgView = UIView()
@@ -28,6 +29,11 @@ class CenterViewController: BaseViewController {
         gradientLayer.frame = CGRect.zero
         bgView.layer.insertSublayer(gradientLayer, at: 0)
         return bgView
+    }()
+    
+    lazy var centerView: CenterView = {
+        let centerView = CenterView()
+        return centerView
     }()
     
     private var gradientLayer: CAGradientLayer? {
@@ -53,11 +59,51 @@ class CenterViewController: BaseViewController {
         }
         normalHeadView.backButton.isHidden = true
         
+        view.addSubview(centerView)
+        centerView.snp.makeConstraints { make in
+            make.top.equalTo(bgView.snp.bottom).offset(5)
+            make.left.equalToSuperview()
+            make.centerX.equalToSuperview()
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
+        }
+        
+        self.centerView.scrollView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
+            [weak self] in
+            guard let self = self else { return }
+            Task {
+                await self.getCentetInfo()
+            }
+        })
+        
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         gradientLayer?.frame = bgView.bounds
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        Task {
+            await self.getCentetInfo()
+        }
+    }
 }
 
+extension CenterViewController {
+    
+    private func getCentetInfo() async {
+        do {
+            let model = try await viewModel.getCenterInfo()
+            if model.somewhat == 0 {
+                self.centerView.phoneLabel.text = model.combined?.userInfo?.motorways ?? ""
+                self.centerView.modelArray = model.combined?.easier ?? []
+            }
+            self.centerView.tableView.reloadData()
+            await self.centerView.scrollView.mj_header?.endRefreshing()
+        } catch  {
+            await self.centerView.scrollView.mj_header?.endRefreshing()
+        }
+    }
+    
+}

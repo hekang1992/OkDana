@@ -25,6 +25,9 @@
 		73A664D92EF123D500D4F52C /* OrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A664D82EF123D100D4F52C /* OrderViewModel.swift */; };
 		73A664DB2EF128A700D4F52C /* OrderEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A664DA2EF128A700D4F52C /* OrderEmptyView.swift */; };
 		73A664DD2EF1308800D4F52C /* OrderListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A664DC2EF1308800D4F52C /* OrderListView.swift */; };
+		73A664DF2EF1361F00D4F52C /* CenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A664DE2EF1361F00D4F52C /* CenterView.swift */; };
+		73A664E12EF1363A00D4F52C /* CenterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A664E02EF1363900D4F52C /* CenterViewModel.swift */; };
+		73A664E32EF1372400D4F52C /* CenterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A664E22EF1372200D4F52C /* CenterTableViewCell.swift */; };
 		73AD58AE2EEEAA0C0022899B /* CommonParaConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AD58AD2EEEAA0C0022899B /* CommonParaConfig.swift */; };
 		73AD58B02EEEADF60022899B /* HttpRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AD58AF2EEEADE90022899B /* HttpRequestManager.swift */; };
 		73AD58B52EEEC7E60022899B /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AD58B42EEEC7E30022899B /* LoginViewModel.swift */; };
@@ -93,6 +96,9 @@
 		73A664D82EF123D100D4F52C /* OrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewModel.swift; sourceTree = "<group>"; };
 		73A664DA2EF128A700D4F52C /* OrderEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderEmptyView.swift; sourceTree = "<group>"; };
 		73A664DC2EF1308800D4F52C /* OrderListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListView.swift; sourceTree = "<group>"; };
+		73A664DE2EF1361F00D4F52C /* CenterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterView.swift; sourceTree = "<group>"; };
+		73A664E02EF1363900D4F52C /* CenterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterViewModel.swift; sourceTree = "<group>"; };
+		73A664E22EF1372200D4F52C /* CenterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterTableViewCell.swift; sourceTree = "<group>"; };
 		73AD58AD2EEEAA0C0022899B /* CommonParaConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonParaConfig.swift; sourceTree = "<group>"; };
 		73AD58AF2EEEADE90022899B /* HttpRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpRequestManager.swift; sourceTree = "<group>"; };
 		73AD58B42EEEC7E30022899B /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -275,8 +281,11 @@
 		73BD81392EECFF5C00979190 /* Center */ = {
 			isa = PBXGroup;
 			children = (
+				73A664E22EF1372200D4F52C /* CenterTableViewCell.swift */,
+				73A664E02EF1363900D4F52C /* CenterViewModel.swift */,
 				7373C8F82EED0A6F0085A724 /* CenterViewController.swift */,
 				73AD58C62EEEFE780022899B /* SettingViewController.swift */,
+				73A664DE2EF1361F00D4F52C /* CenterView.swift */,
 			);
 			path = Center;
 			sourceTree = "<group>";
@@ -531,6 +540,7 @@
 				73AD58BB2EEECBD50022899B /* LoadingManager.swift in Sources */,
 				73E6B1372EEFF88C00CC32FA /* PhonesTableViewCell.swift in Sources */,
 				73AD58C92EEEFF580022899B /* ProductView.swift in Sources */,
+				73A664E32EF1372400D4F52C /* CenterTableViewCell.swift in Sources */,
 				73D8AE8F2EEDC77F00229479 /* TwoHomeView.swift in Sources */,
 				73E6B1112EEF9E9E00CC32FA /* ComleteViewController.swift in Sources */,
 				73AD58CB2EEF007C0022899B /* AppNavView.swift in Sources */,
@@ -539,6 +549,7 @@
 				73AD58C52EEEFD530022899B /* AppSchemeUrlConfig.swift in Sources */,
 				7373C8ED2EED06C30085A724 /* StartViewController.swift in Sources */,
 				73E6B1392EF0029000CC32FA /* ContactManager.swift in Sources */,
+				73A664DF2EF1361F00D4F52C /* CenterView.swift in Sources */,
 				73AD58BF2EEED8380022899B /* NetworkMonitor.swift in Sources */,
 				7373C8FB2EED0AC20085A724 /* UIColorExtension.swift in Sources */,
 				73E6B1192EEFA9DD00CC32FA /* PhonesViewController.swift in Sources */,
@@ -549,6 +560,7 @@
 				7373C8F92EED0A6F0085A724 /* CenterViewController.swift in Sources */,
 				7373C8EF2EED06CF0085A724 /* BaseViewController.swift in Sources */,
 				73E6B13B2EF00AEB00CC32FA /* WalletViewModel.swift in Sources */,
+				73A664E12EF1363A00D4F52C /* CenterViewModel.swift in Sources */,
 				7373C9032EED2B900085A724 /* LoginView.swift in Sources */,
 				73E6B1132EEF9FEB00CC32FA /* StepIndicatorView.swift in Sources */,
 				73AD58B72EEECB3A0022899B /* BaseModel.swift in Sources */,

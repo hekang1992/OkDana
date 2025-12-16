@@ -9,7 +9,6 @@
 "Home" = "Home";
 "Bills" = "Bills";
 "Mine" = "Mine";
-
 "Phone number" = "Phone number";
 "Please Enter Your Phone Number" = "Please Enter Your Phone Number";
 "Verification code" = "Verification code";
@@ -46,3 +45,4 @@
 "Repayment" = "Repayment";
 "Finish" = "Finish";
 "There are no orders at this time." = "There are no orders at this time.";
+"Welcome to OK Dana!" = "Welcome to OK Dana!";

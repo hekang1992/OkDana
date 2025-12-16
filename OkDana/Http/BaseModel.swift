@@ -49,6 +49,8 @@ class easierModel: Codable {
     var genetic: String?
     var optimizations: [optimizationsModel]?
     var hierarchy: String?
+    var sanjeev: String?
+    var geometric: String?
 }
 
 class despiteModel: Codable {
@@ -164,6 +166,10 @@ class systemModel: Codable {
     }
 }
 
+class userInfoModel: Codable {
+    var motorways: String?
+}
+
 class combinedModel: Codable {
     var slip: String?
     var alpha: String?
@@ -180,16 +186,17 @@ class combinedModel: Codable {
     var img_url: String?
     var system: [systemModel]?
     var artificial: [artificialModel]?
+    var userInfo: userInfoModel?
     
     enum CodingKeys: String, CodingKey {
         case slip, alpha, reflecting, consecutively, easier, inputs, yves,
              combining, virtual, despite, nest, resulting, img_url,
-             system, artificial
+             system, artificial, userInfo
     }
     
     required init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
-        
+        userInfo = try? c.decode(userInfoModel.self, forKey: .userInfo)
         slip = try? c.decode(String.self, forKey: .slip)
         alpha = try? c.decode(String.self, forKey: .alpha)
         reflecting = try? c.decode(String.self, forKey: .reflecting)
