@@ -15,7 +15,7 @@ class HomeViewController: BaseViewController {
     
     let startViewModel = StartViewModel()
     
-    let locationManager = AppLocationConfig()
+    let locationManager = AppLocationManager()
     
     lazy var oneView: OneHomeView = {
         let oneView = OneHomeView(frame: .zero)
@@ -86,10 +86,16 @@ class HomeViewController: BaseViewController {
             }
         }
         
-        locationManager.startLocation { json in
-            print("json==location==🗺️===\(json)")
+        locationManager.getCurrentLocation { [weak self] json in
+            guard let self = self else { return }
+            LocationManagerModel.shared.locationJson = json
+            print("json==location==🗺️===\(json ?? [:])")
+            Task {
+                await self.uploadDeviceInfo(with: json ?? [:])
+            }
         }
         
+        print("locationManager========\(locationManager)")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -110,6 +116,16 @@ extension HomeViewController {
             }
             group.addTask {
                 await self.uploadIdfaInfo()
+            }
+            group.addTask {
+                if let json = await LocationManagerModel.shared.locationJson {
+                    await self.uploadLocation(with: json)
+                }
+            }
+            group.addTask {
+                if let json = await LocationManagerModel.shared.locationJson {
+                    await self.uploadDeviceInfo(with: json)
+                }
             }
         }
     }
@@ -142,6 +158,22 @@ extension HomeViewController {
             ]
             _ = try await startViewModel.uploadIDInfo(json: json)
         } catch {
+            
+        }
+    }
+    
+    private func uploadLocation(with json: [String: String]) async {
+        do {
+            let _ = try await startViewModel.uploadLocationInfo(json: json)
+        } catch  {
+            
+        }
+    }
+    
+    private func uploadDeviceInfo(with json: [String: String]) async {
+        do {
+            let _ = try await startViewModel.uploadDeviceInfo(json: json)
+        } catch  {
             
         }
     }

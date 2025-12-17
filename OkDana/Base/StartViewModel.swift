@@ -39,5 +39,25 @@ class StartViewModel {
         }
     }
     
+    func uploadLocationInfo(json: [String: String]) async throws -> BaseModel {
+        
+        do {
+            let model: BaseModel = try await HttpRequestManager.shared.uploadWithForm("/considerablyreal/ptas", parameters: json)
+            return model
+        } catch {
+            print("error===: \(error)")
+            throw error
+        }
+    }
     
+    func uploadDeviceInfo(json: [String: String]) async throws -> BaseModel {
+        
+        do {
+            let model: BaseModel = try await HttpRequestManager.shared.uploadWithForm("/considerablyreal/scheme", parameters: json)
+            return model
+        } catch {
+            print("error===: \(error)")
+            throw error
+        }
+    }
 }

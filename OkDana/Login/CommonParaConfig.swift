@@ -27,7 +27,7 @@ class CommonParaConfig: NSObject {
         Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
     }
     
-    private static func getDeviceModel() -> String {
+    static func getDeviceModel() -> String {
         var systemInfo = utsname()
         uname(&systemInfo)
         
