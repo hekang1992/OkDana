@@ -15,6 +15,8 @@ class HomeViewController: BaseViewController {
     
     let startViewModel = StartViewModel()
     
+    let locationManager = AppLocationConfig()
+    
     lazy var oneView: OneHomeView = {
         let oneView = OneHomeView(frame: .zero)
         oneView.isHidden = true
@@ -82,6 +84,10 @@ class HomeViewController: BaseViewController {
                 nav.modalPresentationStyle = .overFullScreen
                 self.present(nav, animated: true)
             }
+        }
+        
+        locationManager.startLocation { json in
+            print("json==location==🗺️===\(json)")
         }
         
     }

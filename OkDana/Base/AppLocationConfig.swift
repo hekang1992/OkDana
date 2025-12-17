@@ -11,33 +11,34 @@ import CoreLocation
 class AppLocationConfig: NSObject, CLLocationManagerDelegate {
     private let locationManager = CLLocationManager()
     private var onLocationResult: (([String: String]) -> Void)?
-    
+
     override init() {
         super.init()
         locationManager.delegate = self
-        locationManager.distanceFilter = kCLLocationAccuracyBest
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
     }
-    
+
     func startLocation(completion: @escaping ([String: String]) -> Void) {
         self.onLocationResult = completion
-        locationManager.startUpdatingLocation()
+        locationManager.requestLocation()
     }
-    
+
     // MARK: - CLLocationManagerDelegate
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.first else { return }
-        locationManager.stopUpdatingLocation()
-        
+        guard let location = locations.last else { return }
+
         let latitude = location.coordinate.latitude
         let longitude = location.coordinate.longitude
-        
+
         let geocoder = CLGeocoder()
-        geocoder.reverseGeocodeLocation(location) { placemarks, error in
-            guard let placemark = placemarks?.first, error == nil else {
-                return
-            }
-            
+        geocoder.reverseGeocodeLocation(location) { [weak self] placemarks, error in
+            guard
+                let self = self,
+                let placemark = placemarks?.first,
+                error == nil
+            else { return }
+
             let result: [String: String] = [
                 "local": placemark.administrativeArea ?? "",
                 "enough": placemark.isoCountryCode ?? "",
@@ -48,12 +49,14 @@ class AppLocationConfig: NSObject, CLLocationManagerDelegate {
                 "basic": placemark.locality ?? "",
                 "evolutionary": placemark.subLocality ?? "",
             ]
-            
+
             self.onLocationResult?(result)
+            self.onLocationResult = nil
         }
     }
-    
+
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("\(error.localizedDescription)")
+        print("Location error: \(error.localizedDescription)")
+        onLocationResult = nil
     }
 }
