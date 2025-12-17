@@ -130,8 +130,14 @@ class systemModel: Codable {
     var simulation: [simulationModel]?
     
     enum CodingKeys: String, CodingKey {
-        case geometric, probabilistically, somewhat, acs
-        case complications, never, heuristically, simulation
+        case geometric,
+             probabilistically,
+             somewhat,
+             acs
+        case complications,
+             never,
+             heuristically,
+             simulation
     }
     
     required init(from decoder: Decoder) throws {
@@ -174,11 +180,26 @@ class combinedModel: Codable {
     var system: [systemModel]?
     var artificial: [artificialModel]?
     var userInfo: userInfoModel?
+    var other_url: [other_urlModel]?
     
     enum CodingKeys: String, CodingKey {
-        case slip, alpha, reflecting, consecutively, easier, inputs, yves,
-             combining, virtual, despite, nest, resulting, img_url,
-             system, artificial, userInfo
+        case slip,
+             alpha,
+             reflecting,
+             consecutively,
+             easier,
+             inputs,
+             yves,
+             combining,
+             virtual,
+             despite,
+             nest,
+             resulting,
+             img_url,
+             system,
+             artificial,
+             userInfo,
+             other_url
     }
     
     required init(from decoder: Decoder) throws {
@@ -198,6 +219,7 @@ class combinedModel: Codable {
         img_url = try? c.decode(String.self, forKey: .img_url)
         system = try? c.decode([systemModel].self, forKey: .system)
         artificial = try? c.decode([artificialModel].self, forKey: .artificial)
+        other_url = try? c.decode([other_urlModel].self, forKey: .other_url)
         if let v = try? c.decode(virtualModel.self, forKey: .virtual) {
             virtual = v
         } else {
@@ -217,8 +239,14 @@ class yvesModel: Codable {
     var lays: String?
     
     enum CodingKeys: String, CodingKey {
-        case evaporation, pspace, disappear, subclass,
-             hierarchy, proportional, laying, lays
+        case evaporation,
+             pspace,
+             disappear,
+             subclass,
+             hierarchy,
+             proportional,
+             laying,
+             lays
     }
     
     required init(from decoder: Decoder) throws {
@@ -293,4 +321,10 @@ class despiteModel: Codable {
             dujalsArray = nil
         }
     }
+}
+
+class other_urlModel: Codable {
+    var geometric: String?
+    var inputs: String?
+    var sanjeev: String?
 }

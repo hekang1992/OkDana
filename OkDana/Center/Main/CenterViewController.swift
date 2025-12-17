@@ -17,6 +17,8 @@ class CenterViewController: BaseViewController {
     
     let viewModel = CenterViewModel()
     
+    var baseModel: BaseModel?
+    
     lazy var bgView: UIView = {
         let bgView = UIView()
         let gradientLayer = CAGradientLayer()
@@ -79,12 +81,17 @@ class CenterViewController: BaseViewController {
             guard let self = self else { return }
             let pageUrl = model.inputs ?? ""
             if pageUrl.contains(AppScheme.base) {
-                AppSchemeUrlConfig.handleRoute(pageUrl: pageUrl, from: self)
+                let modelArray = self.baseModel?.combined?.other_url ?? []
+                AppSchemeUrlConfig.handleRoute(pageUrl: pageUrl, from: self, modelArray: modelArray)
             } else if pageUrl.contains("http://") || pageUrl.contains("https://") {
                 self.goWebVc(with: pageUrl)
             }else {
                 
             }
+        }
+        
+        self.centerView.mentBlock = {
+            NotificationCenter.default.post(name: NSNotification.Name("changeRootVc"), object: nil)
         }
         
         let phone = LoginConfig.currentPhone
@@ -110,6 +117,7 @@ extension CenterViewController {
         do {
             let model = try await viewModel.getCenterInfo()
             if model.somewhat == 0 {
+                self.baseModel = model
                 self.centerView.phoneLabel.text = model.combined?.userInfo?.motorways ?? ""
                 self.centerView.modelArray = model.combined?.easier ?? []
             }

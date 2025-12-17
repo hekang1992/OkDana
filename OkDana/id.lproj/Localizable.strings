@@ -36,9 +36,6 @@
 "ID" = "KTP Nomor:";
 "Birthday" = "Tanggal Lahir:";
 "Please select one option" = "Tolong pilih satu opsi";
-"Settings" = "Pengaturan";
-"Permission Needed" = "Izin Diperlukan";
-"Contact access is required to process your loan application. Please enable it in Settings to continue." = "Akses kontak diperlukan untuk memproses aplikasi pinjaman Anda. Harap aktifkan di Pengaturan untuk melanjutkan.";
 "Apply" = "Ajukan";
 "My Order" = "Pesanan Saya";
 "All" = "Semua";
@@ -60,3 +57,10 @@
 "Select A Date" = "Pilih Tanggal";
 "Complete the remaining steps to immediately get a maximum limit of 9.500.000, with funds arriving in seconds." = "Selesaikan langkah tersisa untuk segera mendapatkan batas maksimum Rp 9.500.000, dana cair dalam hitungan detik!";
 "Leave" = "Keluar";
+"I am aware of the risks." = "Saya menyadari risiko yang ada.";
+
+"Go to Settings" = "Buka Pengaturan";
+"Permission Required" = "Izin Diperlukan";
+"Contact permission is disabled. Please enable it in Settings to allow your loan application to be processed." = "Izin kontak dinonaktifkan. Harap aktifkan di Pengaturan agar pengajuan pinjaman Anda dapat diproses.";
+"Camera permission is disabled. Please enable it in Settings to allow your loan application to be processed." = "Izin kamera dinonaktifkan. Harap aktifkan di Pengaturan agar pengajuan pinjaman Anda dapat diproses.";
+"Location access is required to process your loan application. Please enable it in Settings to continue." = "Akses lokasi diperlukan untuk memproses pengajuan pinjaman Anda. Harap aktifkan izin tersebut di Pengaturan untuk melanjutkan.";

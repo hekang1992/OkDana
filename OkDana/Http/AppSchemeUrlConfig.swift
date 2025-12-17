@@ -43,12 +43,12 @@ class AppSchemeUrlConfig {
         case unknown
     }
     
-    static func handleRoute(pageUrl: String, from viewController: BaseViewController) {
+    static func handleRoute(pageUrl: String, from viewController: BaseViewController, modelArray: [other_urlModel]? = []) {
         let destination = parseRoute(from: pageUrl)
         
         switch destination {
         case .setting:
-            navigateToSetting(from: viewController)
+            navigateToSetting(from: viewController, modelArray: modelArray)
             
         case .home:
             navigateToHome()
@@ -97,8 +97,9 @@ class AppSchemeUrlConfig {
         }
     }
     
-    private static func navigateToSetting(from viewController: BaseViewController) {
+    private static func navigateToSetting(from viewController: BaseViewController, modelArray: [other_urlModel]? = []) {
         let settingVC = SettingViewController()
+        settingVC.modelArray = modelArray
         viewController.navigationController?.pushViewController(settingVC, animated: true)
     }
     

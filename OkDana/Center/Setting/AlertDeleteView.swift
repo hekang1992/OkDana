@@ -75,7 +75,7 @@ class AlertDeleteView: UIView {
         descLabel.textColor = UIColor(hex: "#FF0000")
         descLabel.font = UIFont.systemFont(ofSize: 13, weight: UIFont.Weight(400))
         descLabel.textAlignment = .left
-        descLabel.text = LanguageManager.localizedString(for: " I am aware of the risks.")
+        descLabel.text = LanguageManager.localizedString(for: "I am aware of the risks.")
         return descLabel
     }()
     

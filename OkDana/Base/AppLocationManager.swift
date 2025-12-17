@@ -125,7 +125,7 @@ class LocationPermissionAlert {
         guard shouldShowAlert() else { return }
         
         let alert = UIAlertController(
-            title: LanguageManager.localizedString(for: "Location Services Disabled"),
+            title: LanguageManager.localizedString(for: "Permission Required"),
             message: LanguageManager.localizedString(for: "Location access is required to process your loan application. Please enable it in Settings to continue."),
             preferredStyle: .alert
         )
@@ -136,7 +136,7 @@ class LocationPermissionAlert {
         )
         
         let settingsAction = UIAlertAction(
-            title: LanguageManager.localizedString(for: "Settings"),
+            title: LanguageManager.localizedString(for: "Go to Settings"),
             style: .cancel
         ) { _ in
             if let settingsURL = URL(string: UIApplication.openSettingsURLString) {

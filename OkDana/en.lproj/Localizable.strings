@@ -36,9 +36,6 @@
 "ID" = "ID:";
 "Birthday" = "Birthday:";
 "Please select one option" = "Please select one option";
-"Settings" = "Settings";
-"Permission Needed" = "Permission Needed";
-"Contact access is required to process your loan application. Please enable it in Settings to continue." = "Contact access is required to process your loan application. Please enable it in Settings to continue.";
 "Apply" = "Apply";
 "My Order" = "My Order";
 "All" = "All";
@@ -60,3 +57,12 @@
 "Select A Date" = "Select A Date";
 "Complete the remaining steps to immediately get a maximum limit of 9.500.000, with funds arriving in seconds." = "Complete the remaining steps to immediately get a maximum limit of 9.500.000, with funds arriving in seconds.";
 "Leave" = "Leave";
+"I am aware of the risks." = "I am aware of the risks.";
+
+
+"Go to Settings" = "Go to Settings";
+"Permission Required" = "Permission Required";
+"Contact permission is disabled. Please enable it in Settings to allow your loan application to be processed." = "Contact permission is disabled. Please enable it in Settings to allow your loan application to be processed.";
+
+"Camera permission is disabled. Please enable it in Settings to allow your loan application to be processed." = "Camera permission is disabled. Please enable it in Settings to allow your loan application to be processed.";
+"Location access is required to process your loan application. Please enable it in Settings to continue." = "Location access is required to process your loan application. Please enable it in Settings to continue.";

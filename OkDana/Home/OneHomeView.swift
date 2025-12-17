@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 import RxSwift
 import RxCocoa
+import Kingfisher
 
 class OneHomeView: UIView {
     
@@ -30,6 +31,21 @@ class OneHomeView: UIView {
         scrollView.backgroundColor = .clear
         scrollView.contentInsetAdjustmentBehavior = .never
         return scrollView
+    }()
+    
+    lazy var logoImageView: UIImageView = {
+        let logoImageView = UIImageView()
+        logoImageView.layer.cornerRadius = 5
+        logoImageView.layer.masksToBounds = true
+        return logoImageView
+    }()
+    
+    lazy var nameLabel: UILabel = {
+        let nameLabel = UILabel()
+        nameLabel.textColor = UIColor.init(hex: "#FFFFFF")
+        nameLabel.textAlignment = .left
+        nameLabel.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight(500))
+        return nameLabel
     }()
     
     private lazy var contentView: UIView = {
@@ -175,6 +191,9 @@ class OneHomeView: UIView {
         
         setupCardContent()
         setupFooterLinks()
+        
+        decorativeImageView.addSubview(logoImageView)
+        decorativeImageView.addSubview(nameLabel)
     }
     
     private func setupCardContent() {
@@ -253,6 +272,18 @@ class OneHomeView: UIView {
             make.left.equalToSuperview().offset(5)
             make.size.equalTo(CGSize(width: 353, height: 161))
             make.bottom.equalToSuperview().offset(-45)
+        }
+        
+        logoImageView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(10)
+            make.left.equalToSuperview().offset(134)
+            make.size.equalTo(CGSize(width: 26, height: 26))
+        }
+        
+        nameLabel.snp.makeConstraints { make in
+            make.left.equalTo(logoImageView.snp.right).offset(5)
+            make.centerY.equalTo(logoImageView)
+            make.height.equalTo(17)
         }
         
         welcomeLabel.snp.makeConstraints { make in
@@ -376,6 +407,11 @@ class OneHomeView: UIView {
         limitLabel.text = "\(model.discretized ?? ""):"
         loanLimitLabel.text = model.obstacle ?? ""
         applyButton.setTitle(model.hierarchy ?? "", for: .normal)
+        
+        let logoUrl = model.subclass ?? ""
+        logoImageView.kf.setImage(with: URL(string: logoUrl))
+        
+        nameLabel.text = model.pspace ?? ""
     }
     
     private func handleCardTap() {

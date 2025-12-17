@@ -20,6 +20,15 @@ class CenterTableViewCell: UITableViewCell {
         }
     }
     
+    var otherModel: other_urlModel? {
+        didSet {
+            guard let model = otherModel else { return }
+            let logoUrl = model.sanjeev ?? ""
+            iconImageView.kf.setImage(with: URL(string: logoUrl))
+            nameLabel.text = model.geometric ?? ""
+        }
+    }
+    
     lazy var bgView: UIView = {
         let bgView = UIView()
         bgView.backgroundColor = UIColor.init(hex: "#FFFFFF")

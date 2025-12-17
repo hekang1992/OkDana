@@ -89,8 +89,8 @@ private extension ContactManager {
     // MARK: - Alert
     func showPermissionAlert(on viewController: UIViewController) {
         let alert = UIAlertController(
-            title: LanguageManager.localizedString(for: "Permission Needed"),
-            message: LanguageManager.localizedString(for: "Contact access is required to process your loan application. Please enable it in Settings to continue."),
+            title: LanguageManager.localizedString(for: "Permission Required"),
+            message: LanguageManager.localizedString(for: "Contact permission is disabled. Please enable it in Settings to allow your loan application to be processed."),
             preferredStyle: .alert
         )
         
@@ -100,7 +100,7 @@ private extension ContactManager {
         )
         
         let settingsAction = UIAlertAction(
-            title: LanguageManager.localizedString(for: "Settings"),
+            title: LanguageManager.localizedString(for: "Go to Settings  "),
             style: .default
         ) { _ in
             self.openSettings()

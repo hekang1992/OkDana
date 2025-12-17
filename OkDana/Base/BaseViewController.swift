@@ -48,6 +48,15 @@ class BaseViewController: UIViewController {
         }
     }
     
+    func backToPopPageVc() {
+        guard let navigationController = self.navigationController else { return }
+        if let targetVC = navigationController.viewControllers.first(where: { $0 is SettingViewController }) {
+            navigationController.popToViewController(targetVC, animated: true)
+        } else {
+            navigationController.popToRootViewController(animated: true)
+        }
+    }
+    
     func goWebVc(with pageUrl: String) {
         let webVc = APPWebViewController()
         webVc.pageUrl = pageUrl

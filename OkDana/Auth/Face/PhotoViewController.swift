@@ -182,30 +182,33 @@ class PhotoViewController: BaseViewController {
 extension PhotoViewController {
     
     private func showAlert() {
-        let alertController = UIAlertController(
-            title: LanguageManager.localizedString(for: "Please Select Image Source"),
-            message: nil,
-            preferredStyle: .actionSheet
-        )
         
-        let cameraAction = UIAlertAction(title: LanguageManager.localizedString(for: "Camera"), style: .default) { _ in
-            self.dismiss(animated: true) {
-                self.takePhoto()
-            }
-        }
+        self.takePhoto()
         
-        let cancelAction = UIAlertAction(title: LanguageManager.localizedString(for: "Cancel"), style: .cancel) { _ in
-            self.dismiss(animated: true)
-        }
-        
-        if let cameraImage = UIImage(systemName: "camera") {
-            cameraAction.setValue(cameraImage, forKey: "image")
-        }
-        
-        alertController.addAction(cameraAction)
-        alertController.addAction(cancelAction)
-        
-        self.present(alertController, animated: true, completion: nil)
+//        let alertController = UIAlertController(
+//            title: LanguageManager.localizedString(for: "Please Select Image Source"),
+//            message: nil,
+//            preferredStyle: .actionSheet
+//        )
+//        
+//        let cameraAction = UIAlertAction(title: LanguageManager.localizedString(for: "Camera"), style: .default) { _ in
+//            self.dismiss(animated: true) {
+//                self.takePhoto()
+//            }
+//        }
+//        
+//        let cancelAction = UIAlertAction(title: LanguageManager.localizedString(for: "Cancel"), style: .cancel) { _ in
+//            self.dismiss(animated: true)
+//        }
+//        
+//        if let cameraImage = UIImage(systemName: "camera") {
+//            cameraAction.setValue(cameraImage, forKey: "image")
+//        }
+//        
+//        alertController.addAction(cameraAction)
+//        alertController.addAction(cancelAction)
+//        
+//        self.present(alertController, animated: true, completion: nil)
     }
     
     private func takePhoto() {
@@ -236,7 +239,7 @@ extension PhotoViewController {
                     self.despiteModel = despiteModel
                     let deposited = despiteModel.deposited ?? ""
                     if deposited.isEmpty {
-                        showAlert()
+//                        showAlert()
                     }else {
                         self.cardView.leftImageView.kf.setImage(with: URL(string: deposited))
                     }

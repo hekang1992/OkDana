@@ -80,16 +80,16 @@ class CameraManager: NSObject {
     
     private func showPermissionAlert() {
         let alert = UIAlertController(
-            title: "相机权限未开启",
-            message: "请前往设置开启相机权限，以便使用拍照功能",
+            title: LanguageManager.localizedString(for: "Permission Required"),
+            message: LanguageManager.localizedString(for: "Camera permission is disabled. Please enable it in Settings to allow your loan application to be processed."),
             preferredStyle: .alert
         )
         
-        let cancelAction = UIAlertAction(title: "取消", style: .cancel) { _ in
+        let cancelAction = UIAlertAction(title: LanguageManager.localizedString(for: "Cancel"), style: .cancel) { _ in
             self.captureCompletion?(nil)
         }
         
-        let settingsAction = UIAlertAction(title: "去设置", style: .default) { _ in
+        let settingsAction = UIAlertAction(title: LanguageManager.localizedString(for: "Go to Settings"), style: .default) { _ in
             self.openAppSettings()
         }
         

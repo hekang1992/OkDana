@@ -12,12 +12,19 @@ import Contacts
 import RxSwift
 import RxCocoa
 import RxGesture
+import Kingfisher
 
 class SettingViewController: BaseViewController {
     
     let disposeBag = DisposeBag()
     
     let viewModel = SettingListViewModel()
+    
+    var modelArray: [other_urlModel]? {
+        didSet {
+            
+        }
+    }
     
     lazy var bgView: UIView = {
         let bgView = UIView()
@@ -37,25 +44,22 @@ class SettingViewController: BaseViewController {
         return bgView.layer.sublayers?.first as? CAGradientLayer
     }
     
-    lazy var oneListView: SettingListView = {
-        let oneListView = SettingListView()
-        oneListView.iconImageView.image = UIImage(named: "set_li_one_image")
-        oneListView.nameLabel.text = LanguageManager.localizedString(for: "Privacy Policy")
-        return oneListView
-    }()
-    
-    lazy var twoListView: SettingListView = {
-        let twoListView = SettingListView()
-        twoListView.iconImageView.image = UIImage(named: "set_li_two_image")
-        twoListView.nameLabel.text = LanguageManager.localizedString(for: "Loan Terms")
-        return twoListView
-    }()
-    
-    lazy var threeListView: SettingListView = {
-        let threeListView = SettingListView()
-        threeListView.iconImageView.image = UIImage(named: "set_li_three_image")
-        threeListView.nameLabel.text = LanguageManager.localizedString(for: "Log Out")
-        return threeListView
+    lazy var tableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .plain)
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = .clear
+        tableView.estimatedRowHeight = 80
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.showsVerticalScrollIndicator = false
+        tableView.contentInsetAdjustmentBehavior = .never
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.isScrollEnabled = false
+        tableView.register(CenterTableViewCell.self, forCellReuseIdentifier: "CenterTableViewCell")
+        if #available(iOS 15.0, *) {
+            tableView.sectionHeaderTopPadding = 0
+        }
+        return tableView
     }()
     
     lazy var deleteLabel: UILabel = {
@@ -72,6 +76,12 @@ class SettingViewController: BaseViewController {
         let lineView = UIView()
         lineView.backgroundColor = UIColor.init(hex: "#B4B4B4")
         return lineView
+    }()
+    
+    lazy var coverView: UIView = {
+        let coverView = UIView()
+        coverView.backgroundColor = .red
+        return coverView
     }()
     
     override func viewDidLoad() {
@@ -96,27 +106,7 @@ class SettingViewController: BaseViewController {
         }
         normalHeadView.nameLabel.text = LanguageManager.localizedString(for: "Set Up")
         
-        view.addSubview(oneListView)
-        view.addSubview(twoListView)
-        view.addSubview(threeListView)
         
-        oneListView.snp.makeConstraints { make in
-            make.size.equalTo(CGSize(width: 335.pix(), height: 45))
-            make.top.equalTo(normalHeadView.snp.bottom).offset(20)
-            make.centerX.equalToSuperview()
-        }
-        
-        twoListView.snp.makeConstraints { make in
-            make.size.equalTo(CGSize(width: 335.pix(), height: 45))
-            make.top.equalTo(oneListView.snp.bottom).offset(14)
-            make.centerX.equalToSuperview()
-        }
-        
-        threeListView.snp.makeConstraints { make in
-            make.size.equalTo(CGSize(width: 335.pix(), height: 45))
-            make.top.equalTo(twoListView.snp.bottom).offset(14)
-            make.centerX.equalToSuperview()
-        }
         
         view.addSubview(deleteLabel)
         deleteLabel.snp.makeConstraints { make in
@@ -131,33 +121,11 @@ class SettingViewController: BaseViewController {
             make.height.equalTo(1)
         }
         
-        
-        oneListView.tapClickBlock = { [weak self] in
-            guard let self = self else { return }
-            ToastManager.showMessage(message: "1")
-        }
-        
-        twoListView.tapClickBlock = { [weak self] in
-            guard let self = self else { return }
-            ToastManager.showMessage(message: "2")
-        }
-        
-        threeListView.tapClickBlock = { [weak self] in
-            guard let self = self else { return }
-            let popView = AlertLogoutView(frame: self.view.bounds)
-            let alertVc = TYAlertController(alert: popView, preferredStyle: .alert)
-            self.present(alertVc!, animated: true)
-            
-            popView.oneBlock = {
-                self.dismiss(animated: true)
-            }
-            
-            popView.twoBlock = { [weak self] in
-                guard let self = self else { return }
-                Task {
-                    await self.logoutInfo()
-                }
-            }
+        view.addSubview(tableView)
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(self.normalHeadView.snp.bottom).offset(20)
+            make.left.right.equalToSuperview().inset(20)
+            make.height.equalTo(200)
         }
         
         deleteLabel
@@ -225,6 +193,43 @@ extension SettingViewController {
             ToastManager.showMessage(message: model.conversion ?? "")
         } catch  {
             
+        }
+    }
+}
+
+extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return modelArray?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CenterTableViewCell", for: indexPath) as! CenterTableViewCell
+        cell.backgroundColor = .clear
+        cell.selectionStyle = .none
+        cell.otherModel = modelArray?[indexPath.row]
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let model = modelArray?[indexPath.row]
+        let inputs = model?.inputs ?? ""
+        if inputs == "logout" {
+            let popView = AlertLogoutView(frame: self.view.bounds)
+            let alertVc = TYAlertController(alert: popView, preferredStyle: .alert)
+            self.present(alertVc!, animated: true)
+            
+            popView.oneBlock = {
+                self.dismiss(animated: true)
+            }
+            
+            popView.twoBlock = { [weak self] in
+                guard let self = self else { return }
+                Task {
+                    await self.logoutInfo()
+                }
+            }
+        }else {
+            self.goWebVc(with: inputs)
         }
     }
     

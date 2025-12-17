@@ -113,7 +113,7 @@ class LoginView: UIView {
     
     lazy var loginBtn: UIButton = {
         let loginBtn = UIButton(type: .custom)
-        loginBtn.setTitle(LanguageManager.localizedString(for: "Log in"), for: .normal)
+        loginBtn.setTitle(LanguageManager.localizedString(for: "Log In"), for: .normal)
         loginBtn.setTitleColor(.white, for: .normal)
         loginBtn.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight(500))
         loginBtn.setBackgroundImage(UIImage(named: "login_btn_image"), for: .normal)
