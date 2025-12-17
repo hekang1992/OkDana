@@ -254,7 +254,8 @@ class OneHomeView: UIView {
         // Scroll View
         scrollView.snp.makeConstraints { make in
             make.top.equalTo(self.safeAreaLayoutGuide.snp.top)
-            make.left.right.bottom.equalToSuperview()
+            make.left.right.equalToSuperview()
+            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom)
         }
         
         contentView.snp.makeConstraints { make in
@@ -368,7 +369,7 @@ class OneHomeView: UIView {
         }
         
         contentView.snp.makeConstraints { make in
-            make.bottom.equalTo(privacyLabel.snp.bottom).offset(20)
+            make.bottom.equalTo(privacyLabel.snp.bottom).offset(50)
         }
     }
     

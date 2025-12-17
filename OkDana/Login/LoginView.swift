@@ -223,6 +223,7 @@ class LoginView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        let code = LanguageManager.currentLanguage
         addSubview(bgImageView)
         addSubview(backBtn)
         addSubview(logoImageView)
@@ -345,7 +346,12 @@ class LoginView: UIView {
         
         codeBtn.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.size.equalTo(CGSize(width: 105, height: 15))
+            make.height.equalTo(15)
+            if code == .id {
+                make.width.equalTo(105)
+            }else {
+                make.width.equalTo(70)
+            }
             make.right.equalToSuperview().offset(-8)
         }
         

@@ -64,3 +64,6 @@
 "Contact permission is disabled. Please enable it in Settings to allow your loan application to be processed." = "Izin kontak dinonaktifkan. Harap aktifkan di Pengaturan agar pengajuan pinjaman Anda dapat diproses.";
 "Camera permission is disabled. Please enable it in Settings to allow your loan application to be processed." = "Izin kamera dinonaktifkan. Harap aktifkan di Pengaturan agar pengajuan pinjaman Anda dapat diproses.";
 "Location access is required to process your loan application. Please enable it in Settings to continue." = "Akses lokasi diperlukan untuk memproses pengajuan pinjaman Anda. Harap aktifkan izin tersebut di Pengaturan untuk melanjutkan.";
+
+"Try Again" = "Coba Lagi";
+"Network Connection Failure" = "Gagal Koneksi Jaringan";

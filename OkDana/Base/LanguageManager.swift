@@ -39,7 +39,7 @@ class LanguageManager {
     
     static var currentLanguage: AppLanguage {
         let savedCode = UserDefaults.standard.string(forKey: "app_language")
-        return AppLanguage(rawValue: savedCode ?? "2") ?? .en
+        return AppLanguage(rawValue: savedCode ?? "1") ?? .en
     }
     
     static func setup() {

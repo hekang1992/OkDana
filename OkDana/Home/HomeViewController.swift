@@ -32,6 +32,12 @@ class HomeViewController: BaseViewController {
         return twoView
     }()
     
+    lazy var errorView: AppNetErrorView = {
+        let errorView = AppNetErrorView(frame: .zero)
+        errorView.isHidden = true
+        return errorView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,6 +53,18 @@ class HomeViewController: BaseViewController {
         view.addSubview(twoView)
         twoView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
+        }
+        
+        view.addSubview(errorView)
+        errorView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        errorView.againBtnBlock = { [weak self] in
+            guard let self = self else { return }
+            Task {
+                await self.fetchAllData()
+            }
         }
         
         let code = LanguageManager.currentLanguage
@@ -172,6 +190,9 @@ extension HomeViewController {
                 self.oneView.scrollView.mj_header?.endRefreshing()
                 self.twoView.tableView.mj_header?.endRefreshing()
             }
+            self.oneView.isHidden = true
+            self.oneView.isHidden = true
+            self.errorView.isHidden = false
         }
     }
     
@@ -249,7 +270,7 @@ extension HomeViewController {
         if let firstEvenb = evenbModels.first {
             oneView.isHidden = false
             twoView.isHidden = true
-            //            errorView.isHidden = true
+            errorView.isHidden = true
             self.oneView.model = firstEvenb.despite?.first
         }
         
@@ -265,7 +286,7 @@ extension HomeViewController {
     private func configureTwoView(heads: String, model: easierModel) {
         oneView.isHidden = true
         twoView.isHidden = false
-        //                errorView.isHidden = true
+        errorView.isHidden = true
         
         if heads == "evenc" {
             self.twoView.bigModel = model.despite?.first

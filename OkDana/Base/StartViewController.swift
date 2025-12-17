@@ -85,10 +85,9 @@ class StartViewController: BaseViewController {
     
     private func handleNoConnection() {
         guard UIDevice.current.model == "iPad" else { return }
-        
-        UserDefaults.standard.set("1", forKey: "reflecting")
-        UserDefaults.standard.synchronize()
-        
+        if let lang = AppLanguage(rawValue: "1") {
+            LanguageManager.setLanguage(lang)
+        }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
             NotificationCenter.default.post(name: NSNotification.Name("changeRootVc"), object: nil)
         }
@@ -115,7 +114,13 @@ extension StartViewController {
                let lang = AppLanguage(rawValue: reflecting) {
                 UserDefaults.standard.set(reflecting, forKey: "reflecting")
                 UserDefaults.standard.synchronize()
-                LanguageManager.setLanguage(lang)
+                if UIDevice.current.model == "iPad" {
+                    if let podlang = AppLanguage(rawValue: "1") {
+                        LanguageManager.setLanguage(podlang)
+                    }
+                }else {
+                    LanguageManager.setLanguage(lang)
+                }
             }
             
             await requestIDFAAuthorization()
