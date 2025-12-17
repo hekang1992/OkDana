@@ -94,7 +94,9 @@ class HomeViewController: BaseViewController {
         
         locationManager.getCurrentLocation { json in
             LocationManagerModel.shared.locationJson = json
-            
+            if !LoginConfig.currentToken.isEmpty {
+                LocationPermissionAlert.show(on: self)
+            }
         }
     }
     

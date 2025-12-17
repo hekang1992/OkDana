@@ -50,10 +50,10 @@ class LoginConfig {
         return UserDefaults.standard.string(forKey: Keys.phone) ?? ""
     }
     
-    static var currentToken: String? {
+    static var currentToken: String {
         guard let token = UserDefaults.standard.string(forKey: Keys.token),
               !token.isEmpty else {
-            return nil
+            return ""
         }
         return token
     }
