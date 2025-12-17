@@ -40,6 +40,7 @@ class AppNetErrorView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        backgroundColor = UIColor(hex: "#F5F5F5")
         addSubview(bgImageView)
         addSubview(nameLabel)
         addSubview(applyBtn)
