@@ -44,20 +44,14 @@ class HomeViewController: BaseViewController {
         // Do any additional setup after loading the view.
         
         self.headerView.isHidden = true
-        
         view.addSubview(oneView)
-        oneView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-        
         view.addSubview(twoView)
-        twoView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-        
         view.addSubview(errorView)
-        errorView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+        
+        [oneView, twoView, errorView].forEach { view in
+            view.snp.makeConstraints { make in
+                make.edges.equalToSuperview()
+            }
         }
         
         errorView.againBtnBlock = { [weak self] in
