@@ -57,16 +57,17 @@ class HomeViewController: BaseViewController {
             guard let self = self else { return }
             Task {
                 await self.fetchAllData()
+                await self.locationMessage()
             }
-            self.locationMessage()
         })
         
         self.twoView.tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: { [weak self] in
             guard let self = self else { return }
             Task {
                 await self.fetchAllData()
+                await self.locationMessage()
             }
-            self.locationMessage()
+            
         })
         
         self.oneView.clickBlock = { [weak self] productID in
@@ -101,15 +102,16 @@ class HomeViewController: BaseViewController {
         super.viewWillAppear(animated)
         Task {
             await fetchAllData()
+            await locationMessage()
         }
-        locationMessage()
+        
     }
     
 }
 
 extension HomeViewController {
     
-    private func locationMessage() {
+    private func locationMessage() async {
         var allJson = AppDeviceManager.allJson
         locationManager.getCurrentLocation { [weak self] json in
             guard let self = self else { return }
@@ -144,6 +146,9 @@ extension HomeViewController {
             }
             group.addTask {
                 await self.uploadIdfaInfo()
+            }
+            group.addTask {
+                await self.pointMessage()
             }
         }
     }
@@ -197,6 +202,28 @@ extension HomeViewController {
                 return
             }
             let _ = try await startViewModel.uploadDeviceInfo(json: ["combined": jsonStr])
+        } catch  {
+            
+        }
+    }
+    
+    private func pointMessage() async {
+        do {
+            let start_time = LoginPointTimeManager.getStartTime()
+            let end_time = LoginPointTimeManager.getEndTime()
+            let locationJson = LocationManagerModel.shared.locationJson
+            let apiJson = ["advanced": "1",
+                           "compute": locationJson?["compute"] ?? "",
+                           "perturb": locationJson?["perturb"] ?? "",
+                           "mentioned": start_time,
+                           "family": end_time
+            ]
+            if !start_time.isEmpty && !end_time.isEmpty {
+                let model = try await startViewModel.uploadPointInfo(json: apiJson)
+                if model.somewhat == 0 {
+                    LoginPointTimeManager.removeTime()
+                }
+            }
         } catch  {
             
         }

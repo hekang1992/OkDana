@@ -21,6 +21,10 @@ class ProductDetailViewController: BaseViewController {
     
     var modelArray: [combiningModel] = []
     
+    let startViewModel = StartViewModel()
+    
+    let locationManager = AppLocationManager()
+    
     lazy var listView: ProductView = {
         let listView = ProductView(frame: .zero)
         return listView
@@ -84,6 +88,11 @@ class ProductDetailViewController: BaseViewController {
                 await self.getDetailInfo()
             }
         })
+        
+        locationManager.getCurrentLocation { json in
+            LocationManagerModel.shared.locationJson = json
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -106,6 +115,7 @@ extension ProductDetailViewController {
                     AppSchemeUrlConfig.handleRoute(pageUrl: inputs, from: self)
                 }else if inputs.contains("http://") || inputs.contains("https://") {
                     self.goWebVc(with: inputs)
+                    await self.pointMessage(with: json["proportional"] ?? "")
                 }else {
                     
                 }
@@ -228,6 +238,25 @@ extension ProductDetailViewController {
             
         }
         
+    }
+    
+    private func pointMessage(with ocn: String) async {
+        do {
+            let end_time = String(Int(Date().timeIntervalSince1970))
+            let locationJson = LocationManagerModel.shared.locationJson
+            let apiJson = ["advanced": "8",
+                           "compute": locationJson?["compute"] ?? "",
+                           "perturb": locationJson?["perturb"] ?? "",
+                           "mentioned": end_time,
+                           "family": end_time,
+                           "continues": ocn
+            ]
+            
+            let _ = try await startViewModel.uploadPointInfo(json: apiJson)
+            
+        } catch  {
+            
+        }
     }
     
 }

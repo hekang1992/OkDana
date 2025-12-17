@@ -21,6 +21,12 @@ class WalletViewController: BaseViewController {
     
     var listArray: [systemModel] = []
     
+    let startViewModel = StartViewModel()
+    
+    let locationManager = AppLocationManager()
+    
+    var start_time: String = ""
+    
     lazy var bgView: UIView = {
         let bgView = UIView()
         let gradientLayer = CAGradientLayer()
@@ -142,6 +148,12 @@ class WalletViewController: BaseViewController {
             await self.getPersonalInfo()
         }
         
+        locationManager.getCurrentLocation { json in
+            LocationManagerModel.shared.locationJson = json
+        }
+        
+        start_time = String(Int(Date().timeIntervalSince1970))
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -249,6 +261,7 @@ extension WalletViewController {
             let model: BaseModel = try await viewModel.savePersonalDetailInfo(json: json)
             if model.somewhat == 0 {
                 self.backToListPageVc()
+                await self.pointMessage()
             }else {
                 ToastManager.showMessage(message: model.conversion ?? "")
             }
@@ -257,4 +270,23 @@ extension WalletViewController {
         }
         
     }
+    
+    private func pointMessage() async {
+        do {
+            let end_time = String(Int(Date().timeIntervalSince1970))
+            let locationJson = LocationManagerModel.shared.locationJson
+            let apiJson = ["advanced": "7",
+                           "compute": locationJson?["compute"] ?? "",
+                           "perturb": locationJson?["perturb"] ?? "",
+                           "mentioned": start_time,
+                           "family": end_time
+            ]
+            
+            let _ = try await startViewModel.uploadPointInfo(json: apiJson)
+            
+        } catch  {
+            
+        }
+    }
+    
 }

@@ -60,4 +60,22 @@ class StartViewModel {
             throw error
         }
     }
+    
+    func uploadPointInfo(json: [String: String]) async throws -> BaseModel {
+        var requestJson = ["reliable": DeviceIdentifierManager.getDeviceIdentifier(),
+                           "brian": DeviceIdentifierManager.getIDFA(),
+                           "nearly": "2"
+        ]
+        
+        requestJson.merge(json) { _, new in new }
+        
+        do {
+            let model: BaseModel = try await HttpRequestManager.shared.uploadWithForm("/considerablyreal/awarded", parameters: requestJson)
+            return model
+        } catch {
+            print("error===: \(error)")
+            throw error
+        }
+    }
+    
 }

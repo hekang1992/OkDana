@@ -11,14 +11,17 @@ import SnapKit
 class LoginViewController: BaseViewController {
     
     var timer: Timer?
+    
     var count = 60
+    
+    let locationManager = AppLocationManager()
+    
+    let viewModel = LoginViewModel()
     
     lazy var loginView: LoginView = {
         let loginView = LoginView()
         return loginView
     }()
-    
-    let viewModel = LoginViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +32,13 @@ class LoginViewController: BaseViewController {
         }
         
         tapClick()
+        
+        LoginPointTimeManager.saveStartTime()
+        
+        locationManager.getCurrentLocation { json in
+            LocationManagerModel.shared.locationJson = json
+        }
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -36,10 +46,10 @@ class LoginViewController: BaseViewController {
         self.loginView.phoneTextFiled.becomeFirstResponder()
     }
     
-    @MainActor
-    deinit {
-        timer?.invalidate()
-    }
+//    @MainActor
+//    deinit {
+//        timer?.invalidate()
+//    }
     
 }
 
@@ -59,7 +69,9 @@ extension LoginViewController {
                 ToastManager.showMessage(message: "Please enter your phone number")
                 return
             }
-            self.getCodeInfo()
+            Task {
+                await self.getCodeInfo()
+            }
         }
         
         loginView.voiceBlock = { [weak self] in
@@ -69,6 +81,7 @@ extension LoginViewController {
         
         loginView.loginBlock = { [weak self] in
             guard let self = self else { return }
+            LoginPointTimeManager.saveEndTime()
             self.loginView.phoneTextFiled.resignFirstResponder()
             self.loginView.codeTextFiled.resignFirstResponder()
             let grand = self.loginView.mentBtn.isSelected
@@ -82,26 +95,24 @@ extension LoginViewController {
         
     }
     
-    private func getCodeInfo() {
-        Task { @MainActor in
-            do {
-                let json = ["motorways": self.loginView.phoneTextFiled.text ?? ""]
-                let model: BaseModel = try await self.viewModel.getCodeInfo(json: json)
-                if model.somewhat == 0 {
-                    self.loginView.codeTextFiled.becomeFirstResponder()
-                    count = 60
-                    timer = Timer.scheduledTimer(
-                        timeInterval: 1.0,
-                        target: self,
-                        selector: #selector(updateCount),
-                        userInfo: nil,
-                        repeats: true
-                    )
-                }
-                ToastManager.showMessage(message: model.conversion ?? "")
-            } catch {
-                
+    private func getCodeInfo() async {
+        do {
+            let json = ["motorways": self.loginView.phoneTextFiled.text ?? ""]
+            let model: BaseModel = try await self.viewModel.getCodeInfo(json: json)
+            if model.somewhat == 0 {
+                self.loginView.codeTextFiled.becomeFirstResponder()
+                count = 60
+                timer = Timer.scheduledTimer(
+                    timeInterval: 1.0,
+                    target: self,
+                    selector: #selector(updateCount),
+                    userInfo: nil,
+                    repeats: true
+                )
             }
+            ToastManager.showMessage(message: model.conversion ?? "")
+        } catch {
+            
         }
     }
     
@@ -161,6 +172,38 @@ extension LoginViewController {
             self.loginView.codeBtn.setTitle(LanguageManager.localizedString(for: "Get Code"), for: .normal)
             self.loginView.clineView.isHidden = false
         }
+    }
+    
+}
+
+class LoginPointTimeManager {
+    
+    static func saveStartTime() {
+        let time = String(Int(Date().timeIntervalSince1970))
+        UserDefaults.standard.set(time, forKey: "start_time")
+        UserDefaults.standard.synchronize()
+    }
+    
+    static func saveEndTime() {
+        let time = String(Int(Date().timeIntervalSince1970))
+        UserDefaults.standard.set(time, forKey: "end_time")
+        UserDefaults.standard.synchronize()
+    }
+    
+    static func getStartTime() -> String {
+        let start_time = UserDefaults.standard.object(forKey: "start_time") as? String ?? ""
+        return start_time
+    }
+    
+    static func getEndTime() -> String {
+        let end_time = UserDefaults.standard.object(forKey: "end_time") as? String ?? ""
+        return end_time
+    }
+    
+    static func removeTime() {
+        UserDefaults.standard.removeObject(forKey: "start_time")
+        UserDefaults.standard.removeObject(forKey: "end_time")
+        UserDefaults.standard.synchronize()
     }
     
 }

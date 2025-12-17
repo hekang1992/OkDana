@@ -26,6 +26,12 @@ class PhotoViewController: BaseViewController {
     
     let disposeBag = DisposeBag()
     
+    let startViewModel = StartViewModel()
+    
+    let locationManager = AppLocationManager()
+    
+    var start_time: String = ""
+    
     lazy var bgView: UIView = {
         let bgView = UIView()
         let gradientLayer = CAGradientLayer()
@@ -159,6 +165,12 @@ class PhotoViewController: BaseViewController {
             await self.getCardInfo()
         }
         
+        locationManager.getCurrentLocation { json in
+            LocationManagerModel.shared.locationJson = json
+        }
+        
+        start_time = String(Int(Date().timeIntervalSince1970))
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -246,6 +258,7 @@ extension PhotoViewController {
                 if let modelArray = model.combined?.nest {
                     if resulting == 0 {
                         await self.getCardInfo()
+                        await self.pointMessage()
                     }else if resulting == 1 {
                         self.alertCardView(with: modelArray)
                     }
@@ -311,12 +324,31 @@ extension PhotoViewController {
                         LoginConfig.saveCardInfo(name: name, idNum: idNumber, time: dateStr)
                     }
                     await self.getCardInfo()
+                    await self.pointMessage()
                 }else {
                     ToastManager.showMessage(message: model.conversion ?? "")
                 }
             } catch {
                 
             }
+        }
+    }
+    
+    private func pointMessage() async {
+        do {
+            let end_time = String(Int(Date().timeIntervalSince1970))
+            let locationJson = LocationManagerModel.shared.locationJson
+            let apiJson = ["advanced": "2",
+                           "compute": locationJson?["compute"] ?? "",
+                           "perturb": locationJson?["perturb"] ?? "",
+                           "mentioned": start_time,
+                           "family": end_time
+            ]
+            
+            let _ = try await startViewModel.uploadPointInfo(json: apiJson)
+            
+        } catch  {
+            
         }
     }
     

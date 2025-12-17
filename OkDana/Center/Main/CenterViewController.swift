@@ -87,6 +87,8 @@ class CenterViewController: BaseViewController {
             }
         }
         
+        let phone = LoginConfig.currentPhone
+        print("phone==☎️===\(phone)")
     }
     
     override func viewDidLayoutSubviews() {

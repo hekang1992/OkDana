@@ -13,7 +13,12 @@ import StoreKit
 class APPWebViewController: BaseViewController {
     
     var productID: String = ""
+    
     var pageUrl: String = ""
+    
+    let startViewModel = StartViewModel()
+    
+    let locationManager = AppLocationManager()
     
     // MARK: - UI Components
     
@@ -219,7 +224,19 @@ extension APPWebViewController: WKNavigationDelegate, WKScriptMessageHandler {
         } else if name == "WasThe" {
             requestAppReview()
         } else if name == "MeasureConstructing" {
-            
+            locationManager.getCurrentLocation { json in
+                if let json = json {
+                    Task {
+                       await self.pointMessage(with: json)
+                    }
+                }else {
+                    if let locationJson = LocationManagerModel.shared.locationJson {
+                        Task {
+                            await self.pointMessage(with: locationJson)
+                        }
+                    }
+                }
+            }
         }
     }
 }
@@ -238,4 +255,22 @@ extension APPWebViewController {
         
         SKStoreReviewController.requestReview(in: windowScene)
     }
+    
+    private func pointMessage(with locationJson: [String: String]) async {
+        do {
+            let end_time = String(Int(Date().timeIntervalSince1970))
+            let apiJson = ["advanced": "9",
+                           "compute": locationJson["compute"] ?? "",
+                           "perturb": locationJson["perturb"] ?? "",
+                           "mentioned": end_time,
+                           "family": end_time
+            ]
+            
+            let _ = try await startViewModel.uploadPointInfo(json: apiJson)
+            
+        } catch  {
+            
+        }
+    }
+    
 }

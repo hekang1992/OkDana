@@ -230,9 +230,7 @@ class yvesModel: Codable {
         subclass = try? c.decode(String.self, forKey: .subclass)
         hierarchy = try? c.decode(String.self, forKey: .hierarchy)
         proportional = try? c.decode(String.self, forKey: .proportional)
-        laying = try? c.decode(String.self, forKey: .laying)
         
-        // ⭐ lays: String / Int
         if let s = try? c.decode(String.self, forKey: .lays) {
             lays = s
         } else if let i = try? c.decode(Int.self, forKey: .lays) {
@@ -240,6 +238,15 @@ class yvesModel: Codable {
         } else {
             lays = nil
         }
+        
+        if let s = try? c.decode(String.self, forKey: .laying) {
+            laying = s
+        } else if let i = try? c.decode(Int.self, forKey: .laying) {
+            laying = String(i)
+        } else {
+            laying = nil
+        }
+        
     }
 }
 
