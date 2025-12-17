@@ -64,7 +64,7 @@ class DeviceDataManager: NSObject {
                 labs: NSTimeZone.system.abbreviation() ?? "",
                 tabu: DeviceIdentifierManager.getDeviceIdentifier(),
                 turn: Locale.preferredLanguages.first ?? "en_US",
-                bell: UserDefaults.standard.object(forKey: "network") as? String ?? "",
+                bell: SaveCellManager.getType(),
                 build: DeviceIdentifierManager.getIDFA()
             )
         }

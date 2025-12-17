@@ -50,7 +50,7 @@ class StartViewModel {
         }
     }
     
-    func uploadDeviceInfo(json: [String: String]) async throws -> BaseModel {
+    func uploadDeviceInfo(json: [String: Any]) async throws -> BaseModel {
         
         do {
             let model: BaseModel = try await HttpRequestManager.shared.uploadWithForm("/considerablyreal/scheme", parameters: json)

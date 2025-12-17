@@ -29,14 +29,17 @@ class NetworkMonitor {
             switch status {
             case .reachable(.cellular):
                 isConnected = true
+                SaveCellManager.saveType(with: "5G")
             case .reachable(.ethernetOrWiFi):
                 isConnected = true
+                SaveCellManager.saveType(with: "WIFI")
             case .notReachable:
                 isConnected = false
+                SaveCellManager.saveType(with: "OTHER")
             case .unknown:
                 isConnected = false
+                SaveCellManager.saveType(with: "unknown")
             }
-            
             self?.onStatusChanged?(isConnected)
         }
     }
@@ -45,4 +48,18 @@ class NetworkMonitor {
         reachability?.stopListening()
         onStatusChanged = nil
     }
+}
+
+class SaveCellManager: NSObject {
+    
+    static func saveType(with type: String) {
+        UserDefaults.standard.set(type, forKey: "network")
+        UserDefaults.standard.synchronize()
+    }
+    
+    static func getType() -> String {
+        let type = UserDefaults.standard.object(forKey: "network") as? String ?? ""
+        return type
+    }
+    
 }

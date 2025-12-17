@@ -13,6 +13,7 @@
 		7330BF912EF249E900692C30 /* AppDeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7330BF902EF249DE00692C30 /* AppDeviceManager.swift */; };
 		7330BF932EF24C9200692C30 /* GrowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7330BF922EF24C9200692C30 /* GrowManager.swift */; };
 		7330BF952EF24CA600692C30 /* DeviceDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7330BF942EF24CA500692C30 /* DeviceDataManager.swift */; };
+		7330BF972EF24FF800692C30 /* WiFiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7330BF962EF24FF000692C30 /* WiFiManager.swift */; };
 		73533DA02EF04E2D008E00E4 /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73533D9F2EF04E2D008E00E4 /* ProductTableViewCell.swift */; };
 		7373C8EA2EED06920085A724 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7373C8E82EED06920085A724 /* Localizable.strings */; };
 		7373C8ED2EED06C30085A724 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7373C8EC2EED06C30085A724 /* StartViewController.swift */; };
@@ -109,6 +110,7 @@
 		7330BF902EF249DE00692C30 /* AppDeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDeviceManager.swift; sourceTree = "<group>"; };
 		7330BF922EF24C9200692C30 /* GrowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrowManager.swift; sourceTree = "<group>"; };
 		7330BF942EF24CA500692C30 /* DeviceDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDataManager.swift; sourceTree = "<group>"; };
+		7330BF962EF24FF000692C30 /* WiFiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiManager.swift; sourceTree = "<group>"; };
 		73533D9F2EF04E2D008E00E4 /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
 		7373C8E22EED03F50085A724 /* OkDana.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OkDana.entitlements; sourceTree = "<group>"; };
 		7373C8E92EED06920085A724 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -281,6 +283,7 @@
 		73BD81342EECFF4F00979190 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				7330BF962EF24FF000692C30 /* WiFiManager.swift */,
 				7330BF922EF24C9200692C30 /* GrowManager.swift */,
 				7330BF942EF24CA500692C30 /* DeviceDataManager.swift */,
 				7330BF902EF249DE00692C30 /* AppDeviceManager.swift */,
@@ -566,6 +569,7 @@
 				73A664DD2EF1308800D4F52C /* OrderListView.swift in Sources */,
 				73E6B1272EEFCD3D00CC32FA /* AppAlertListView.swift in Sources */,
 				7330798F2EF1598A00C30412 /* SettingListView.swift in Sources */,
+				7330BF972EF24FF800692C30 /* WiFiManager.swift in Sources */,
 				7330BF912EF249E900692C30 /* AppDeviceManager.swift in Sources */,
 				73E6B1212EEFB6DE00CC32FA /* DashedLineView.swift in Sources */,
 				7373C8F12EED06EC0085A724 /* BaseTabBarController.swift in Sources */,

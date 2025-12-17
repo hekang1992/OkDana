@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import MJRefresh
+import CoreLocation
 
 class HomeViewController: BaseViewController {
     
@@ -16,6 +17,8 @@ class HomeViewController: BaseViewController {
     let startViewModel = StartViewModel()
     
     let locationManager = AppLocationManager()
+    
+    let wifiManager = WiFiManager()
     
     lazy var oneView: OneHomeView = {
         let oneView = OneHomeView(frame: .zero)
@@ -55,6 +58,7 @@ class HomeViewController: BaseViewController {
             Task {
                 await self.fetchAllData()
             }
+            self.locationMessage()
         })
         
         self.twoView.tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: { [weak self] in
@@ -62,6 +66,7 @@ class HomeViewController: BaseViewController {
             Task {
                 await self.fetchAllData()
             }
+            self.locationMessage()
         })
         
         self.oneView.clickBlock = { [weak self] productID in
@@ -86,16 +91,10 @@ class HomeViewController: BaseViewController {
             }
         }
         
-        locationManager.getCurrentLocation { [weak self] json in
-            guard let self = self else { return }
+        locationManager.getCurrentLocation { json in
             LocationManagerModel.shared.locationJson = json
-            print("json==location==🗺️===\(json ?? [:])")
-            Task {
-                await self.uploadDeviceInfo(with: json ?? [:])
-            }
+            
         }
-        
-        print("locationManager========\(locationManager)")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -103,11 +102,40 @@ class HomeViewController: BaseViewController {
         Task {
             await fetchAllData()
         }
+        locationMessage()
     }
     
 }
 
 extension HomeViewController {
+    
+    private func locationMessage() {
+        var allJson = AppDeviceManager.allJson
+        locationManager.getCurrentLocation { [weak self] json in
+            guard let self = self else { return }
+            LocationManagerModel.shared.locationJson = json
+            if let json = json {
+                Task {
+                    await self.uploadLocation(with: json)
+                }
+            }
+            
+            Task {
+                let wifiInfo = await self.wifiManager.getCurrentWiFiInfo()
+                let original = wifiInfo.introduced.original
+                let concurrent = wifiInfo.introduced.concurrent
+                let wifiJson = ["shen":
+                                    ["introduced":
+                                        ["original": original,
+                                         "concurrent": concurrent]]]
+                allJson.merge(wifiJson) { _, new in new }
+                
+                await self.uploadDeviceInfo(with: allJson)
+                
+            }
+            
+        }
+    }
     
     private func fetchAllData() async {
         await withTaskGroup(of: Void.self) { group in
@@ -116,16 +144,6 @@ extension HomeViewController {
             }
             group.addTask {
                 await self.uploadIdfaInfo()
-            }
-            group.addTask {
-                if let json = await LocationManagerModel.shared.locationJson {
-                    await self.uploadLocation(with: json)
-                }
-            }
-            group.addTask {
-                if let json = await LocationManagerModel.shared.locationJson {
-                    await self.uploadDeviceInfo(with: json)
-                }
             }
         }
     }
@@ -170,9 +188,15 @@ extension HomeViewController {
         }
     }
     
-    private func uploadDeviceInfo(with json: [String: String]) async {
+    private func uploadDeviceInfo(with json: [String: Any]) async {
         do {
-            let _ = try await startViewModel.uploadDeviceInfo(json: json)
+            guard let data = try? JSONSerialization.data(withJSONObject: json,
+                                                         options: [.prettyPrinted]),
+                  let jsonStr = String(data: data, encoding: .utf8) else {
+                print("JSON Error===")
+                return
+            }
+            let _ = try await startViewModel.uploadDeviceInfo(json: ["combined": jsonStr])
         } catch  {
             
         }

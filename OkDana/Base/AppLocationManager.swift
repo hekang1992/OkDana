@@ -99,15 +99,9 @@ extension AppLocationManager: CLLocationManagerDelegate {
                     "evolutionary": placemark?.subLocality ?? ""
                 ]
                 
-                Task {
-                    await self.uploadLocation(with: locationJson)
-                }
-                
                 self.completion?(locationJson)
             }
         }
-        
-        
         
         debounceWorkItem = workItem
         DispatchQueue.main.asyncAfter(deadline: .now() + debounceInterval, execute: workItem)
@@ -118,19 +112,6 @@ extension AppLocationManager: CLLocationManagerDelegate {
         completion?(nil)
     }
 }
-
-extension AppLocationManager {
-    
-    private func uploadLocation(with json: [String: String]) async {
-        do {
-            let _ = try await viewModel.uploadLocationInfo(json: json)
-        } catch  {
-            
-        }
-    }
-    
-}
-
 
 class LocationManagerModel {
     static let shared = LocationManagerModel()
