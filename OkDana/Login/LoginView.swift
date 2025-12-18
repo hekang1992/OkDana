@@ -141,7 +141,7 @@ class LoginView: UIView {
     lazy var phoneTextFiled: UITextField = {
         let phoneTextFiled = UITextField()
         phoneTextFiled.keyboardType = .numberPad
-        let attrString = NSMutableAttributedString(string: "Please Enter Your Phone Number", attributes: [
+        let attrString = NSMutableAttributedString(string: LanguageManager.localizedString(for: "Please Enter Your Phone Number"), attributes: [
             .foregroundColor: UIColor.init(hex: "#BDBDBD") as Any,
             .font: UIFont.systemFont(ofSize: 13, weight: UIFont.Weight(500))
         ])
@@ -154,7 +154,7 @@ class LoginView: UIView {
     lazy var codeTextFiled: UITextField = {
         let codeTextFiled = UITextField()
         codeTextFiled.keyboardType = .numberPad
-        let attrString = NSMutableAttributedString(string: "Please Enter Verification Code", attributes: [
+        let attrString = NSMutableAttributedString(string: LanguageManager.localizedString(for: "Please Enter Verification Code"), attributes: [
             .foregroundColor: UIColor.init(hex: "#BDBDBD") as Any,
             .font: UIFont.systemFont(ofSize: 13, weight: UIFont.Weight(500))
         ])
