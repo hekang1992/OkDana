@@ -78,7 +78,7 @@ class StartViewController: BaseViewController {
             
             if hasConnection {
                 Task {
-                    await self.getJsonInfo()
+                    await self.getApiJsonInfo()
                 }
                 NetworkMonitor.shared.stopMonitoring()
             } else {
@@ -101,7 +101,7 @@ class StartViewController: BaseViewController {
 // MARK: - App Initialization
 extension StartViewController {
     
-    private func getJsonInfo() async {
+    private func getApiJsonInfo() async {
         
         LoadingManager.shared.show()
         
