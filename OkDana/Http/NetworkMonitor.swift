@@ -63,3 +63,37 @@ class SaveCellManager: NSObject {
     }
     
 }
+
+struct HTTPProxyInfo {
+    
+    enum ConnectionStatus: Int {
+        case inactive = 0
+        case active = 1
+    }
+    
+    static var proxyStatus: ConnectionStatus {
+        guard let settings = CFNetworkCopySystemProxySettings()?.takeUnretainedValue() as? [String: Any] else {
+            return .inactive
+        }
+        
+        let hasHTTPProxy = !(settings["HTTPProxy"] as? String ?? "").isEmpty
+        let hasHTTPSProxy = !(settings["HTTPSProxy"] as? String ?? "").isEmpty
+        
+        return (hasHTTPProxy || hasHTTPSProxy) ? .active : .inactive
+    }
+    
+    static var vpnStatus: ConnectionStatus {
+        guard let settings = CFNetworkCopySystemProxySettings()?.takeRetainedValue() as? [String: Any],
+              let scopes = settings["__SCOPED__"] as? [String: Any] else {
+            return .inactive
+        }
+        
+        let vpnKeywords = ["tap", "tun", "ppp", "ipsec", "utun"]
+        
+        return scopes.keys.contains { key in
+            vpnKeywords.contains { keyword in
+                key.contains(keyword)
+            }
+        } ? .active : .inactive
+    }
+}

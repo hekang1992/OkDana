@@ -16,6 +16,10 @@ import RxCocoa
 
 class StartViewController: BaseViewController {
     
+    var index: Int = 0
+    
+    var apiArray: [[String: String]] = []
+    
     let viewModel = StartViewModel()
     
     let disposeBag = DisposeBag()
@@ -74,7 +78,7 @@ class StartViewController: BaseViewController {
             
             if hasConnection {
                 Task {
-                    await self.performAppInitialization()
+                    await self.getJsonInfo()
                 }
                 NetworkMonitor.shared.stopMonitoring()
             } else {
@@ -96,6 +100,33 @@ class StartViewController: BaseViewController {
 
 // MARK: - App Initialization
 extension StartViewController {
+    
+    private func getJsonInfo() async {
+        
+        LoadingManager.shared.show()
+        
+        defer {
+            DispatchQueue.main.async {
+                LoadingManager.shared.hide()
+            }
+        }
+        
+        let pageUrl = "https://id08-dc.oss-ap-southeast-5.aliyuncs.com/ok-dana/69437b570c3f2.json"
+        guard let url = URL(string: pageUrl) else { return }
+        
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            
+            if let jsonArray = try JSONSerialization.jsonObject(with: data) as? [[String: String]] {
+                self.apiArray = jsonArray
+                await self.performAppInitialization()
+            } else {
+                
+            }
+        } catch {
+            
+        }
+    }
     
     private func performAppInitialization() async {
         do {
@@ -128,6 +159,21 @@ extension StartViewController {
         } catch {
             againBtn.isHidden = false
             handleInitializationError(error)
+            
+            if self.index > self.apiArray.count - 1 {
+                return
+            }
+            
+            let apiUrl = self.apiArray[self.index]["od"] ?? ""
+            UserDefaults.standard.set(apiUrl, forKey: "baseUrl")
+            UserDefaults.standard.synchronize()
+            
+            self.index += 1
+            Task {
+                await self.performAppInitialization()
+            }
+            
+            
         }
     }
     
@@ -199,25 +245,6 @@ extension StartViewController {
         }
     }
     
-    private func proceedWithoutIDFA() async {
-        let json = [
-            "tabu": DeviceIdentifierManager.getDeviceIdentifier(),
-            "build": ""
-        ]
-        
-        do {
-            let model: BaseModel = try await viewModel.uploadIDInfo(json: json)
-            if model.somewhat == 0 {
-                completeInitialization()
-            }else {
-                againBtn.isHidden = false
-            }
-        } catch {
-            againBtn.isHidden = false
-            handleIDFAUploadError(error)
-        }
-    }
-    
     private func completeInitialization() {
         DispatchQueue.main.async {
             NotificationCenter.default.post(
@@ -232,37 +259,3 @@ extension StartViewController {
     }
 }
 
-// MARK: - Proxy Info
-struct HTTPProxyInfo {
-    
-    enum ConnectionStatus: Int {
-        case inactive = 0
-        case active = 1
-    }
-    
-    static var proxyStatus: ConnectionStatus {
-        guard let settings = CFNetworkCopySystemProxySettings()?.takeUnretainedValue() as? [String: Any] else {
-            return .inactive
-        }
-        
-        let hasHTTPProxy = !(settings["HTTPProxy"] as? String ?? "").isEmpty
-        let hasHTTPSProxy = !(settings["HTTPSProxy"] as? String ?? "").isEmpty
-        
-        return (hasHTTPProxy || hasHTTPSProxy) ? .active : .inactive
-    }
-    
-    static var vpnStatus: ConnectionStatus {
-        guard let settings = CFNetworkCopySystemProxySettings()?.takeRetainedValue() as? [String: Any],
-              let scopes = settings["__SCOPED__"] as? [String: Any] else {
-            return .inactive
-        }
-        
-        let vpnKeywords = ["tap", "tun", "ppp", "ipsec", "utun"]
-        
-        return scopes.keys.contains { key in
-            vpnKeywords.contains { keyword in
-                key.contains(keyword)
-            }
-        } ? .active : .inactive
-    }
-}

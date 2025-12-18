@@ -10,7 +10,10 @@ import Alamofire
 
 class HttpRequestManager: NSObject {
     
-    let base_url = "http://8.215.47.12/actualcomplete"
+    private var base_url: String {
+        let apiUrl = UserDefaults.standard.string(forKey: "baseUrl")
+        return apiUrl?.isEmpty == false ? apiUrl! : "https://odm.hari-trafin.com/actualcomplete"
+    }
     
     static let shared = HttpRequestManager()
     
