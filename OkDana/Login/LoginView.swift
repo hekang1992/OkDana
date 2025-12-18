@@ -368,8 +368,8 @@ class LoginView: UIView {
         
         stackView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.size.equalTo(CGSize(width: 270, height: 30))
-            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).offset(-10)
+            make.size.equalTo(CGSize(width: 280, height: 30))
+            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).offset(-15)
         }
         
         codeBtn

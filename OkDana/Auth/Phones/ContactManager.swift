@@ -96,12 +96,12 @@ private extension ContactManager {
         
         let cancelAction = UIAlertAction(
             title: LanguageManager.localizedString(for: "Cancel"),
-            style: .cancel
+            style: .default
         )
         
         let settingsAction = UIAlertAction(
             title: LanguageManager.localizedString(for: "Go to Settings  "),
-            style: .default
+            style: .cancel
         ) { _ in
             self.openSettings()
         }

@@ -106,10 +106,24 @@ class HomeViewController: BaseViewController {
         
         locationManager.getCurrentLocation { json in
             LocationManagerModel.shared.locationJson = json
-            if !LoginConfig.currentToken.isEmpty {
-                LocationPermissionAlert.show(on: self)
+            if LoginConfig.isLoggedIn == false {
+                let code = LanguageManager.currentLanguage
+                if code == .id {
+                    LocationPermissionAlert.show(on: self)
+                }
             }
         }
+        
+        oneView.agreementBlock = { [weak self] pageUrl in
+            guard let self = self else { return }
+            self.goWebVc(with: pageUrl)
+        }
+        
+        oneView.termsBlock = { [weak self] pageUrl in
+            guard let self = self else { return }
+            self.goWebVc(with: pageUrl)
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -266,6 +280,7 @@ extension HomeViewController {
             twoView.isHidden = true
             errorView.isHidden = true
             self.oneView.model = firstEvenb.despite?.first
+            self.oneView.baseModel = model
         }
         
         if let firstEvenc = evencModels.first {

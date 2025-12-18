@@ -163,6 +163,11 @@ class userInfoModel: Codable {
     var motorways: String?
 }
 
+class leftModel: Codable {
+    var geometric: String?
+    var finds: String?
+}
+
 class combinedModel: Codable {
     var slip: String?
     var alpha: String?
@@ -181,6 +186,8 @@ class combinedModel: Codable {
     var artificial: [artificialModel]?
     var userInfo: userInfoModel?
     var other_url: [other_urlModel]?
+    var left: leftModel?
+    var space: String?
     
     enum CodingKeys: String, CodingKey {
         case slip,
@@ -199,11 +206,15 @@ class combinedModel: Codable {
              system,
              artificial,
              userInfo,
-             other_url
+             other_url,
+             left,
+             space
     }
     
     required init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
+        space = try? c.decode(String.self, forKey: .space)
+        left = try? c.decode(leftModel.self, forKey: .left)
         userInfo = try? c.decode(userInfoModel.self, forKey: .userInfo)
         slip = try? c.decode(String.self, forKey: .slip)
         alpha = try? c.decode(String.self, forKey: .alpha)

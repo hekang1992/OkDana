@@ -10,16 +10,33 @@ import SnapKit
 import RxSwift
 import RxCocoa
 import Kingfisher
+import RxGesture
 
 class OneHomeView: UIView {
     
     // MARK: - Properties
     private let disposeBag = DisposeBag()
+    
     var clickBlock: ((String) -> Void)?
+    
+    var agreementBlock: ((String) -> Void)?
+    
+    var termsBlock: (((String)) -> Void)?
     
     var model: despiteModel? {
         didSet {
             updateUI()
+        }
+    }
+    
+    var baseModel: BaseModel? {
+        didSet {
+            guard let baseModel = baseModel else { return }
+            let space = baseModel.combined?.space ?? ""
+            let finds = baseModel.combined?.left?.finds ?? ""
+            
+            privacyLabel.isHidden = space.isEmpty
+            termsLabel.isHidden = finds.isEmpty
         }
     }
     
@@ -136,7 +153,7 @@ class OneHomeView: UIView {
         return label
     }()
     
-    private lazy var loanLimitLabel: UILabel = {
+    lazy var loanLimitLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(hex: "#3B3B3B")
         label.font = UIFont.systemFont(ofSize: 13, weight: UIFont.Weight(300))
@@ -241,6 +258,29 @@ class OneHomeView: UIView {
             make.leading.trailing.bottom.equalToSuperview()
             make.height.equalTo(1)
         }
+        
+        privacyLabel
+            .rx
+            .tapGesture()
+            .when(.recognized)
+            .bind(onNext: { [weak self] _ in
+                guard let self = self, let baseModel = baseModel else { return }
+                let pageUrl = baseModel.combined?.space ?? ""
+                self.agreementBlock?(pageUrl)
+            })
+            .disposed(by: disposeBag)
+        
+        termsLabel
+            .rx
+            .tapGesture()
+            .when(.recognized)
+            .bind(onNext: { [weak self] _ in
+                guard let self = self, let baseModel = baseModel else { return }
+                let pageUrl = baseModel.combined?.left?.finds ?? ""
+                self.termsBlock?(pageUrl)
+            })
+            .disposed(by: disposeBag)
+        
     }
     
     private func setupConstraints() {
@@ -413,6 +453,7 @@ class OneHomeView: UIView {
         logoImageView.kf.setImage(with: URL(string: logoUrl))
         
         nameLabel.text = model.pspace ?? ""
+        
     }
     
     private func handleCardTap() {

@@ -38,7 +38,7 @@ class OneTableViewCell: UITableViewCell {
         static let bgViewHeight: CGFloat = 40
         static let bgViewCornerRadius: CGFloat = 4
         static let textFieldLeftPadding: CGFloat = 15
-        static let textFieldRightInset: CGFloat = 40
+        static let textFieldRightInset: CGFloat = 5
         static let textFieldLeftViewWidth: CGFloat = 10
         
         enum Colors {

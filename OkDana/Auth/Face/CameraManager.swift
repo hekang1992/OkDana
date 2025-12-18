@@ -85,11 +85,11 @@ class CameraManager: NSObject {
             preferredStyle: .alert
         )
         
-        let cancelAction = UIAlertAction(title: LanguageManager.localizedString(for: "Cancel"), style: .cancel) { _ in
+        let cancelAction = UIAlertAction(title: LanguageManager.localizedString(for: "Cancel"), style: .default) { _ in
             self.captureCompletion?(nil)
         }
         
-        let settingsAction = UIAlertAction(title: LanguageManager.localizedString(for: "Go to Settings"), style: .default) { _ in
+        let settingsAction = UIAlertAction(title: LanguageManager.localizedString(for: "Go to Settings"), style: .cancel) { _ in
             self.openAppSettings()
         }
         

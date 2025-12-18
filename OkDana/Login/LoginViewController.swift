@@ -58,6 +58,10 @@ extension LoginViewController {
     
     private func tapClick() {
         
+        loginView.mentBlock = { [weak self] in
+            ToastManager.showMessage(message: "1")
+        }
+        
         loginView.backBlock = { [weak self] in
             self?.dismiss(animated: true)
         }
@@ -66,7 +70,7 @@ extension LoginViewController {
             guard let self = self else { return }
             let phone = self.loginView.phoneTextFiled.text ?? ""
             if phone.isEmpty {
-                ToastManager.showMessage(message: "Please enter your phone number")
+                ToastManager.showMessage(message: LanguageManager.localizedString(for: "Please enter your phone number"))
                 return
             }
             Task {
@@ -84,11 +88,25 @@ extension LoginViewController {
             LoginPointTimeManager.saveEndTime()
             self.loginView.phoneTextFiled.resignFirstResponder()
             self.loginView.codeTextFiled.resignFirstResponder()
+            let phone = self.loginView.phoneTextFiled.text ?? ""
+            let code = self.loginView.codeTextFiled.text ?? ""
+            
+            if phone.isEmpty {
+                ToastManager.showMessage(message: LanguageManager.localizedString(for: "Please enter your phone number"))
+                return
+            }
+            
+            if code.isEmpty {
+                ToastManager.showMessage(message: LanguageManager.localizedString(for: "Please enter the verification code"))
+                return
+            }
+            
+            
             let grand = self.loginView.mentBtn.isSelected
             if grand {
                 self.loginInfo()
             }else {
-                ToastManager.showMessage(message: "Please read and confirm the app's privacy agreement.")
+                ToastManager.showMessage(message: LanguageManager.localizedString(for: "Please read and confirm the app's privacy policy."))
             }
             
         }
