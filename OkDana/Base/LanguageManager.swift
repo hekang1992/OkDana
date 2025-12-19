@@ -19,18 +19,22 @@ enum AppLanguage: String {
     }
 }
 
-class LanguageManager {
+final class LanguageManager {
+    
     private static var currentBundle: Bundle = .main
+    private static let userDefaultsKey = "app_language"
     
     static func setLanguage(_ language: AppLanguage) {
-        guard let path = Bundle.main.path(forResource: language.localeIdentifier, ofType: "lproj"),
-              let langBundle = Bundle(path: path) else {
+        guard let bundlePath = Bundle.main.path(forResource: language.localeIdentifier, ofType: "lproj"),
+              let languageBundle = Bundle(path: bundlePath) else {
             currentBundle = .main
+            UserDefaults.standard.set(language.rawValue, forKey: userDefaultsKey)
             return
         }
-        currentBundle = langBundle
         
-        UserDefaults.standard.set(language.rawValue, forKey: "app_language")
+        currentBundle = languageBundle
+        
+        UserDefaults.standard.set(language.rawValue, forKey: userDefaultsKey)
     }
     
     static func localizedString(for key: String) -> String {
@@ -38,12 +42,13 @@ class LanguageManager {
     }
     
     static var currentLanguage: AppLanguage {
-        let savedCode = UserDefaults.standard.string(forKey: "app_language")
-        return AppLanguage(rawValue: savedCode ?? "1") ?? .en
+        guard let savedCode = UserDefaults.standard.string(forKey: userDefaultsKey) else {
+            return .en
+        }
+        return AppLanguage(rawValue: savedCode) ?? .en
     }
     
     static func setup() {
-        let language = currentLanguage
-        setLanguage(language)
+        setLanguage(currentLanguage)
     }
 }

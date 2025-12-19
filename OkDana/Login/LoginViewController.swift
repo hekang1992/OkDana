@@ -59,7 +59,9 @@ extension LoginViewController {
     private func tapClick() {
         
         loginView.mentBlock = { [weak self] in
-            ToastManager.showMessage(message: "1")
+            guard let slef = self else { return }
+            let pageUrl = "https://hari-trafin.com/ODPrivacy.html"
+            self?.goWebVc(with: pageUrl)
         }
         
         loginView.backBlock = { [weak self] in

@@ -32,72 +32,6 @@ class BaseModel: Codable {
     }
 }
 
-class consecutivelyModel: Codable {
-    var pairs: String?
-    var consists: String?
-    var crane: String?
-    var stacker: String?
-}
-
-class easierModel: Codable {
-    var complications: String?
-    var despite: [despiteModel]?
-    var pspace: String?
-    var subclass: String?
-    var trail: String?
-    var dujals: dujalsModel?
-    var genetic: String?
-    var optimizations: [optimizationsModel]?
-    var hierarchy: String?
-    var sanjeev: String?
-    var geometric: String?
-    var inputs: String?
-}
-
-class optimizationsModel: Codable {
-    var geometric: String?
-    var markov: String?
-}
-
-class dujalsModel: Codable {
-    var sdaftg: String?
-    var adsfar: String?
-    var hafee: String?
-}
-
-class combiningModel: Codable {
-    var geometric: String?
-    var probabilistically: String?
-    var chooses: String?
-    var discovery: Int?
-    var map: String?
-}
-
-class virtualModel: Codable {
-    var map: String?
-    var inputs: String?
-    var complications: Int?
-    var geometric: String?
-}
-
-class nestModel: Codable {
-    var food: String?
-    var ants: String?
-    var somewhat: String?
-}
-
-class artificialModel: Codable {
-    var geometric: String?
-    var convex: String?
-    var insertion: String?
-    var constricting: String?
-    var entropy: String?
-    var simulation: [simulationModel]?
-    var inserts: String?
-    var concurrent: String?
-    var hull: String?
-}
-
 class simulationModel: Codable {
     var concurrent: String?
     var complications: String?
@@ -167,6 +101,73 @@ class leftModel: Codable {
     var geometric: String?
     var finds: String?
 }
+
+class consecutivelyModel: Codable {
+    var pairs: String?
+    var consists: String?
+    var crane: String?
+    var stacker: String?
+}
+
+class easierModel: Codable {
+    var complications: String?
+    var despite: [despiteModel]?
+    var pspace: String?
+    var subclass: String?
+    var trail: String?
+    var dujals: dujalsModel?
+    var genetic: String?
+    var optimizations: [optimizationsModel]?
+    var hierarchy: String?
+    var sanjeev: String?
+    var geometric: String?
+    var inputs: String?
+}
+
+class optimizationsModel: Codable {
+    var geometric: String?
+    var markov: String?
+}
+
+class dujalsModel: Codable {
+    var sdaftg: String?
+    var adsfar: String?
+    var hafee: String?
+}
+
+class combiningModel: Codable {
+    var geometric: String?
+    var probabilistically: String?
+    var chooses: String?
+    var discovery: Int?
+    var map: String?
+}
+
+class virtualModel: Codable {
+    var map: String?
+    var inputs: String?
+    var complications: Int?
+    var geometric: String?
+}
+
+class nestModel: Codable {
+    var food: String?
+    var ants: String?
+    var somewhat: String?
+}
+
+class artificialModel: Codable {
+    var geometric: String?
+    var convex: String?
+    var insertion: String?
+    var constricting: String?
+    var entropy: String?
+    var simulation: [simulationModel]?
+    var inserts: String?
+    var concurrent: String?
+    var hull: String?
+}
+
 
 class combinedModel: Codable {
     var slip: String?

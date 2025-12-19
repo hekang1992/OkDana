@@ -227,8 +227,8 @@ extension StartViewController {
     private func uploadDeviceInfo() async {
         do {
             let json = [
-                "tabu": DeviceIdentifierManager.getDeviceIdentifier(),
-                "build": DeviceIdentifierManager.getIDFA()
+                "tabu": DeviceIdentifierConfig.getDeviceIdentifier(),
+                "build": DeviceIdentifierConfig.getIDFA()
             ]
             
             let model: BaseModel = try await viewModel.uploadIDInfo(json: json)

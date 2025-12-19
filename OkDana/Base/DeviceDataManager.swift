@@ -62,10 +62,10 @@ class DeviceDataManager: NSObject {
         static var current: AdjacentData {
             AdjacentData(
                 labs: NSTimeZone.system.abbreviation() ?? "",
-                tabu: DeviceIdentifierManager.getDeviceIdentifier(),
+                tabu: DeviceIdentifierConfig.getDeviceIdentifier(),
                 turn: Locale.preferredLanguages.first ?? "en_US",
                 bell: SaveCellManager.getType(),
-                build: DeviceIdentifierManager.getIDFA()
+                build: DeviceIdentifierConfig.getIDFA()
             )
         }
         

@@ -20,7 +20,7 @@ class StartViewModel {
         }
         
         do {
-            let model: BaseModel = try await HttpRequestManager.shared.get("/considerablyreal/turn", parameters: json)
+            let model: BaseModel = try await HttpRequestManager.shared.getInitApi("/considerablyreal/turn", parameters: json)
             return model
         } catch {
             print("error===: \(error)")
@@ -62,8 +62,8 @@ class StartViewModel {
     }
     
     func uploadPointInfo(json: [String: String]) async throws -> BaseModel {
-        var requestJson = ["reliable": DeviceIdentifierManager.getDeviceIdentifier(),
-                           "brian": DeviceIdentifierManager.getIDFA(),
+        var requestJson = ["reliable": DeviceIdentifierConfig.getDeviceIdentifier(),
+                           "brian": DeviceIdentifierConfig.getIDFA(),
                            "nearly": "2"
         ]
         

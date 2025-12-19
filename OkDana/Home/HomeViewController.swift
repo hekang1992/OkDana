@@ -207,8 +207,8 @@ extension HomeViewController {
     private func uploadIdfaInfo() async {
         do {
             let json = [
-                "tabu": DeviceIdentifierManager.getDeviceIdentifier(),
-                "build": DeviceIdentifierManager.getIDFA()
+                "tabu": DeviceIdentifierConfig.getDeviceIdentifier(),
+                "build": DeviceIdentifierConfig.getIDFA()
             ]
             _ = try await startViewModel.uploadIDInfo(json: json)
         } catch {

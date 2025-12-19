@@ -21,6 +21,10 @@ class HttpRequestManager: NSObject {
         return try await request(url, method: .get, parameters: parameters, timeout: 30)
     }
     
+    func getInitApi<T: Codable>(_ url: String, parameters: [String: Any]? = nil) async throws -> T {
+        return try await request(url, method: .get, parameters: parameters, timeout: 10)
+    }
+    
     func uploadWithForm<T: Codable>(
         _ url: String,
         parameters: [String: Any]? = nil,
