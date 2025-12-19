@@ -2,7 +2,7 @@
 //  AppLocationManager.swift
 //  OkDana
 //
-//  Created by hekang on 2025/12/17.
+//  Created by Scott Reed on 2025/12/17.
 //
 
 import UIKit
@@ -113,74 +113,3 @@ extension AppLocationManager: CLLocationManagerDelegate {
     }
 }
 
-class LocationManagerModel {
-    static let shared = LocationManagerModel()
-    private init() {}
-    var locationJson: [String: String]?
-}
-
-class LocationPermissionAlert {
-    private static let lastAlertDateKey = "LocationPermissionAlert.lastAlertDate"
-    static func show(on viewController: UIViewController) {
-        guard shouldShowAlert() else { return }
-        
-        let alert = UIAlertController(
-            title: LanguageManager.localizedString(for: "Permission Required"),
-            message: LanguageManager.localizedString(for: "Location access is required to process your loan application. Please enable it in Settings to continue."),
-            preferredStyle: .alert
-        )
-        
-        let cancelAction = UIAlertAction(
-            title: LanguageManager.localizedString(for: "Cancel"),
-            style: .default
-        )
-        
-        let settingsAction = UIAlertAction(
-            title: LanguageManager.localizedString(for: "Go to Settings"),
-            style: .cancel
-        ) { _ in
-            if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
-                UIApplication.shared.open(settingsURL)
-            }
-        }
-        
-        alert.addAction(cancelAction)
-        alert.addAction(settingsAction)
-        
-        recordAlertShown()
-        
-        viewController.present(alert, animated: true)
-    }
-    
-    private static func shouldShowAlert() -> Bool {
-        guard let lastDate = UserDefaults.standard.object(forKey: lastAlertDateKey) as? Date else {
-            return true
-        }
-        
-        guard let nextAvailableDate = Calendar.current.date(
-            byAdding: .hour,
-            value: 24,
-            to: lastDate
-        ) else {
-            return true
-        }
-        
-        return Date() >= nextAvailableDate
-    }
-    
-    private static func recordAlertShown() {
-        UserDefaults.standard.set(Date(), forKey: lastAlertDateKey)
-    }
-    
-    static func resetAlertRecord() {
-        UserDefaults.standard.removeObject(forKey: lastAlertDateKey)
-    }
-    
-    static func nextAvailableTime() -> Date? {
-        guard let lastDate = UserDefaults.standard.object(forKey: lastAlertDateKey) as? Date else {
-            return nil
-        }
-        
-        return Calendar.current.date(byAdding: .hour, value: 24, to: lastDate)
-    }
-}

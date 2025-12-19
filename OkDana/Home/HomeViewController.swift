@@ -2,7 +2,7 @@
 //  HomeViewController.swift
 //  OkDana
 //
-//  Created by hekang on 2025/12/13.
+//  Created by Scott Reed on 2025/12/13.
 //
 
 import UIKit
@@ -106,7 +106,7 @@ class HomeViewController: BaseViewController {
         
         locationManager.getCurrentLocation { json in
             LocationManagerModel.shared.locationJson = json
-            if LoginConfig.isLoggedIn == false {
+            if LoginConfig.isLoggedIn == true {
                 let code = LanguageManager.currentLanguage
                 if code == .id {
                     LocationPermissionAlert.show(on: self)

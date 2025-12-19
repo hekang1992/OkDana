@@ -2,21 +2,23 @@
 //  ContactManager.swift
 //  OkDana
 //
-//  Created by hekang on 2025/12/15.
+//  Created by Scott Reed on 2025/12/15.
 //
 
 import UIKit
 import ContactsUI
 
 // MARK: - Contact Manager
-class ContactManager: NSObject {
+final class ContactManager: NSObject {
     
-    // MARK: - Properties
+    // MARK: - Shared Instance
     static let shared = ContactManager()
     
+    // MARK: - Properties
     private let contactStore = CNContactStore()
     private var singleSelectCompletion: ((CNContact?) -> Void)?
     
+    // MARK: - Private Constants
     private enum Constants {
         static let contactKeys = [
             CNContactGivenNameKey,
@@ -26,20 +28,28 @@ class ContactManager: NSObject {
         ] as [CNKeyDescriptor]
     }
     
-    // MARK: - Public Methods
+    // MARK: - Initializer
+    private override init() {
+        super.init()
+    }
+}
+
+// MARK: - Public Interface
+extension ContactManager {
+    
     func fetchAllContacts(
         on viewController: UIViewController,
         completion: @escaping ([[String: String]]) -> Void
     ) {
-        checkContactAuthorization { [weak self] granted in
+        requestContactAuthorization { [weak self] isGranted in
             guard let self = self else { return }
             
-            guard granted else {
+            if isGranted {
+                self.fetchContacts(completion: completion)
+            } else {
                 self.showPermissionAlert(on: viewController)
-                return
+                completion([])
             }
-            
-            self.performFetchContacts(completion: completion)
         }
     }
     
@@ -47,24 +57,23 @@ class ContactManager: NSObject {
         on viewController: UIViewController,
         completion: @escaping (CNContact?) -> Void
     ) {
-        checkContactAuthorization { [weak self] granted in
+        requestContactAuthorization { [weak self] isGranted in
             guard let self = self else { return }
             
-            guard granted else {
+            if isGranted {
+                self.presentContactPicker(on: viewController, completion: completion)
+            } else {
                 self.showPermissionAlert(on: viewController)
-                return
+                completion(nil)
             }
-            
-            self.presentContactPicker(on: viewController, completion: completion)
         }
     }
 }
 
-// MARK: - Private Methods
+// MARK: - Authorization Handling
 private extension ContactManager {
     
-    // MARK: - Authorization
-    func checkContactAuthorization(completion: @escaping (Bool) -> Void) {
+    func requestContactAuthorization(completion: @escaping (Bool) -> Void) {
         let status = CNContactStore.authorizationStatus(for: .contacts)
         
         switch status {
@@ -86,51 +95,53 @@ private extension ContactManager {
         }
     }
     
-    // MARK: - Alert
     func showPermissionAlert(on viewController: UIViewController) {
-        let alert = UIAlertController(
-            title: LanguageManager.localizedString(for: "Permission Required"),
-            message: LanguageManager.localizedString(for: "Contact permission is disabled. Please enable it in Settings to allow your loan application to be processed."),
+        let alertController = UIAlertController(
+            title: LocalizedString.title,
+            message: LocalizedString.permissionMessage,
             preferredStyle: .alert
         )
         
         let cancelAction = UIAlertAction(
-            title: LanguageManager.localizedString(for: "Cancel"),
+            title: LocalizedString.cancel,
             style: .default
         )
         
         let settingsAction = UIAlertAction(
-            title: LanguageManager.localizedString(for: "Go to Settings  "),
+            title: LocalizedString.settings,
             style: .cancel
         ) { _ in
-            self.openSettings()
+            self.openAppSettings()
         }
         
-        alert.addAction(cancelAction)
-        alert.addAction(settingsAction)
+        alertController.addAction(cancelAction)
+        alertController.addAction(settingsAction)
         
-        viewController.present(alert, animated: true)
+        viewController.present(alertController, animated: true)
     }
     
-    func openSettings() {
-        guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
-        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    func openAppSettings() {
+        guard let settingsURL = URL(string: UIApplication.openSettingsURLString) else { return }
+        UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
     }
+}
+
+// MARK: - Contact Operations
+private extension ContactManager {
     
-    // MARK: - Contact Operations
-    func performFetchContacts(completion: @escaping ([[String: String]]) -> Void) {
-        var results: [[String: String]] = []
-        let request = CNContactFetchRequest(keysToFetch: Constants.contactKeys)
+    func fetchContacts(completion: @escaping ([[String: String]]) -> Void) {
+        var contacts: [[String: String]] = []
+        let fetchRequest = CNContactFetchRequest(keysToFetch: Constants.contactKeys)
         
         DispatchQueue.main.async {
             do {
-                try self.contactStore.enumerateContacts(with: request) { contact, _ in
-                    let contactDict = self.convertContactToDictionary(contact)
-                    results.append(contactDict)
+                try self.contactStore.enumerateContacts(with: fetchRequest) { contact, _ in
+                    let contactDictionary = self.makeDictionary(from: contact)
+                    contacts.append(contactDictionary)
                 }
-                completion(results)
+                completion(contacts)
             } catch {
-                print("Failed to fetch contacts: \(error)")
+                print("Contact fetch error: \(error.localizedDescription)")
                 completion([])
             }
         }
@@ -140,25 +151,20 @@ private extension ContactManager {
         on viewController: UIViewController,
         completion: @escaping (CNContact?) -> Void
     ) {
-        let picker = CNContactPickerViewController()
-        picker.delegate = self
+        let contactPicker = CNContactPickerViewController()
+        contactPicker.delegate = self
         singleSelectCompletion = completion
         
-        viewController.present(picker, animated: true)
+        viewController.present(contactPicker, animated: true)
     }
     
-    // MARK: - Contact Conversion
-    func convertContactToDictionary(_ contact: CNContact) -> [String: String] {
-        let fullName = self.formatFullName(
-            givenName: contact.givenName,
-            familyName: contact.familyName
-        )
-        
-        let phoneNumbers = self.formatPhoneNumbers(contact.phoneNumbers)
-        
-        return [
-            "motorways": phoneNumbers,
-            "concurrent": fullName
+    func makeDictionary(from contact: CNContact) -> [String: String] {
+        [
+            "motorways": formatPhoneNumbers(contact.phoneNumbers),
+            "concurrent": formatFullName(
+                givenName: contact.givenName,
+                familyName: contact.familyName
+            )
         ]
     }
     
@@ -168,8 +174,9 @@ private extension ContactManager {
     }
     
     func formatPhoneNumbers(_ phoneNumbers: [CNLabeledValue<CNPhoneNumber>]) -> String {
-        let numbers = phoneNumbers.map { $0.value.stringValue }
-        return numbers.joined(separator: ",")
+        phoneNumbers
+            .map { $0.value.stringValue }
+            .joined(separator: ",")
     }
 }
 
@@ -185,4 +192,12 @@ extension ContactManager: CNContactPickerDelegate {
         singleSelectCompletion?(nil)
         singleSelectCompletion = nil
     }
+}
+
+// MARK: - Localized Strings
+private enum LocalizedString {
+    static let title = LanguageManager.localizedString(for: "Permission Required")
+    static let permissionMessage = LanguageManager.localizedString(for: "Contact permission is disabled. Please enable it in Settings to allow your loan application to be processed.")
+    static let cancel = LanguageManager.localizedString(for: "Cancel")
+    static let settings = LanguageManager.localizedString(for: "Go to Settings")
 }

@@ -2,7 +2,7 @@
 //  WiFiManager.swift
 //  OkDana
 //
-//  Created by hekang on 2025/12/17.
+//  Created by Scott Reed on 2025/12/17.
 //
 
 import UIKit

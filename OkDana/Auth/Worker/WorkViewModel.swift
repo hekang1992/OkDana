@@ -2,7 +2,7 @@
 //  WorkViewModel.swift
 //  OkDana
 //
-//  Created by hekang on 2025/12/15.
+//  Created by Scott Reed on 2025/12/15.
 //
 
 import Foundation

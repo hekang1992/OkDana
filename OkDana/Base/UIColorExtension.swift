@@ -2,7 +2,7 @@
 //  Untitled.swift
 //  OkDana
 //
-//  Created by hekang on 2025/12/13.
+//  Created by Scott Reed on 2025/12/13.
 //
 
 import UIKit

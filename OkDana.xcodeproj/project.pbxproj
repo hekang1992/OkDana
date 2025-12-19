@@ -17,6 +17,7 @@
 		7330BF972EF24FF800692C30 /* WiFiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7330BF962EF24FF000692C30 /* WiFiManager.swift */; };
 		73533DA02EF04E2D008E00E4 /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73533D9F2EF04E2D008E00E4 /* ProductTableViewCell.swift */; };
 		735C8D082EF4EB8200C7D507 /* DeviceIdentifierConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735C8D072EF4EB8100C7D507 /* DeviceIdentifierConfig.swift */; };
+		735C8D0A2EF4ECF900C7D507 /* LocationPermissionAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735C8D092EF4ECF800C7D507 /* LocationPermissionAlert.swift */; };
 		7373C8EA2EED06920085A724 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7373C8E82EED06920085A724 /* Localizable.strings */; };
 		7373C8ED2EED06C30085A724 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7373C8EC2EED06C30085A724 /* StartViewController.swift */; };
 		7373C8EF2EED06CF0085A724 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7373C8EE2EED06CF0085A724 /* BaseViewController.swift */; };
@@ -114,6 +115,7 @@
 		7330BF962EF24FF000692C30 /* WiFiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiManager.swift; sourceTree = "<group>"; };
 		73533D9F2EF04E2D008E00E4 /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
 		735C8D072EF4EB8100C7D507 /* DeviceIdentifierConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceIdentifierConfig.swift; sourceTree = "<group>"; };
+		735C8D092EF4ECF800C7D507 /* LocationPermissionAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPermissionAlert.swift; sourceTree = "<group>"; };
 		7373C8E22EED03F50085A724 /* OkDana.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OkDana.entitlements; sourceTree = "<group>"; };
 		7373C8E92EED06920085A724 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7373C8EB2EED06980085A724 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -297,6 +299,7 @@
 				7373C8F02EED06EC0085A724 /* BaseTabBarController.swift */,
 				7373C8F22EED06F90085A724 /* BaseNavigationController.swift */,
 				7330BF8E2EF23ADC00692C30 /* AppLocationManager.swift */,
+				735C8D092EF4ECF800C7D507 /* LocationPermissionAlert.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -574,6 +577,7 @@
 				7330BF972EF24FF800692C30 /* WiFiManager.swift in Sources */,
 				7330BF912EF249E900692C30 /* AppDeviceManager.swift in Sources */,
 				73E6B1212EEFB6DE00CC32FA /* DashedLineView.swift in Sources */,
+				735C8D0A2EF4ECF900C7D507 /* LocationPermissionAlert.swift in Sources */,
 				7373C8F12EED06EC0085A724 /* BaseTabBarController.swift in Sources */,
 				73AD58CD2EEF093E0022899B /* ProductViewModel.swift in Sources */,
 				73E6B11B2EEFA9E700CC32FA /* WalletViewController.swift in Sources */,
