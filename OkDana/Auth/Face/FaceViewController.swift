@@ -131,10 +131,7 @@ class FaceViewController: BaseViewController {
             if trail.isEmpty {
                 showAlert()
             }else {
-                let compVc = ComleteViewController()
-                compVc.productID = productID
-                compVc.modelArray = modelArray
-                self.navigationController?.pushViewController(compVc, animated: true)
+                self.goCompVc()
             }
         }
         
@@ -144,10 +141,7 @@ class FaceViewController: BaseViewController {
             if trail.isEmpty {
                 showAlert()
             }else {
-                let compVc = ComleteViewController()
-                compVc.productID = productID
-                compVc.modelArray = modelArray
-                self.navigationController?.pushViewController(compVc, animated: true)
+                self.goCompVc()
             }
         }).disposed(by: disposeBag)
         
@@ -246,11 +240,8 @@ extension FaceViewController {
             let json = ["complications": "10", "preference": "1"]
             let model = try await viewModel.uploadPersonalCardInfo(json: json, imageData: imageData)
             if model.somewhat == 0 {
-                let compVc = ComleteViewController()
-                compVc.productID = productID
-                compVc.modelArray = modelArray
-                self.navigationController?.pushViewController(compVc, animated: true)
-//                await self.getCardInfo()
+                self.goCompVc()
+                await self.getCardInfo()
                 await self.pointMessage()
             }else {
                 ToastManager.showMessage(message: model.conversion ?? "")
@@ -276,6 +267,13 @@ extension FaceViewController {
         } catch  {
             
         }
+    }
+    
+    private func goCompVc() {
+        let compVc = ComleteViewController()
+        compVc.productID = productID
+        compVc.modelArray = modelArray
+        self.navigationController?.pushViewController(compVc, animated: true)
     }
 
 }
