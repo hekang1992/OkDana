@@ -109,7 +109,9 @@ class HomeViewController: BaseViewController {
             if LoginConfig.isLoggedIn == true {
                 let code = LanguageManager.currentLanguage
                 if code == .id {
-                    LocationPermissionAlert.show(on: self)
+                    if json == nil {
+                        LocationPermissionAlert.show(on: self)
+                    }
                 }
             }
         }

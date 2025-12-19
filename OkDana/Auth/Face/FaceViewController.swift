@@ -246,7 +246,11 @@ extension FaceViewController {
             let json = ["complications": "10", "preference": "1"]
             let model = try await viewModel.uploadPersonalCardInfo(json: json, imageData: imageData)
             if model.somewhat == 0 {
-                await self.getCardInfo()
+                let compVc = ComleteViewController()
+                compVc.productID = productID
+                compVc.modelArray = modelArray
+                self.navigationController?.pushViewController(compVc, animated: true)
+//                await self.getCardInfo()
                 await self.pointMessage()
             }else {
                 ToastManager.showMessage(message: model.conversion ?? "")
