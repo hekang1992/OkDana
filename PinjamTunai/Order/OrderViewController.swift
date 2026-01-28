@@ -134,6 +134,27 @@ class OrderViewController: BaseViewController {
     }
     
     private func setupButtons() {
+        buttons.forEach { $0.removeFromSuperview() }
+        buttons.removeAll()
+        
+        let buttonSpacing: CGFloat = 0
+        let buttonPadding: CGFloat = 10
+        
+        var totalButtonsWidth: CGFloat = 0
+        var buttonWidths: [CGFloat] = []
+        
+        for title in buttonTitles {
+            let localizedTitle = LanguageManager.localizedString(for: title)
+            let titleWidth = (localizedTitle as NSString).size(withAttributes: [
+                .font: UIFont.systemFont(ofSize: 12, weight: .medium)
+            ]).width
+            let buttonWidth = titleWidth + buttonPadding * 2
+            buttonWidths.append(buttonWidth)
+            totalButtonsWidth += buttonWidth
+        }
+        
+        totalButtonsWidth += CGFloat(buttonTitles.count - 1) * buttonSpacing
+        
         var previousButton: UIButton?
         
         for (index, title) in buttonTitles.enumerated() {
@@ -142,23 +163,29 @@ class OrderViewController: BaseViewController {
             whiteView.addSubview(button)
             
             button.snp.makeConstraints { make in
-                make.top.equalToSuperview().offset(10)
-                make.bottom.equalToSuperview().offset(-10)
+                make.centerY.equalToSuperview()
+                make.height.equalTo(42)
+                make.width.equalTo(buttonWidths[index])
                 
                 if let previous = previousButton {
-                    make.left.equalTo(previous.snp.right).offset(2)
-                    make.width.equalTo(previous)
-                } else {
-                    make.left.equalToSuperview().offset(5)
+                    make.left.equalTo(previous.snp.right).offset(buttonSpacing)
                 }
             }
             
             previousButton = button
         }
         
-        if let lastButton = buttons.last {
+        if let firstButton = buttons.first, let lastButton = buttons.last {
+            let totalWidth = totalButtonsWidth
+            let availableWidth = UIScreen.main.bounds.width - 40
+            let leftRightMargin = (availableWidth - totalWidth) / 2
+            
+            firstButton.snp.makeConstraints { make in
+                make.left.equalToSuperview().offset(leftRightMargin)
+            }
+            
             lastButton.snp.makeConstraints { make in
-                make.right.equalToSuperview().offset(-5)
+                make.right.equalToSuperview().offset(-leftRightMargin)
             }
         }
     }
@@ -167,7 +194,7 @@ class OrderViewController: BaseViewController {
         let button = UIButton(type: .custom)
         button.tag = tag
         button.setTitle(title, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 13, weight: .medium)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 12, weight: .medium)
         button.layer.cornerRadius = 8
         button.layer.masksToBounds = true
         

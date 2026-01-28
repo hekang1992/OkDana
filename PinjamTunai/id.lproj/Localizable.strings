@@ -36,11 +36,11 @@
 "ID" = "KTP Nomor:";
 "Birthday" = "Tanggal Lahir:";
 "Please select one option" = "Tolong pilih satu opsi";
-"Apply" = "Ajukan";
+"Apply" = "Dalam Proses";
 "My Order" = "Pesanan Saya";
 "All" = "Semua";
-"Repayment" = "Pembayaran";
-"Finish" = "Selesai";
+"Repayment" = "Belum Lunas";
+"Finish" = "Lunas";
 "There are no orders at this time." = "Saat ini tidak ada pesanan.";
 "Welcome to Pinjam Tunai!" = "Selamat Datang di Pinjam Tunai!";
 "Set Up" = "Pengaturan";
