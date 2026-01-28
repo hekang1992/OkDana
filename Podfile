@@ -1,11 +1,11 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '14.0'
 
-target 'OkDana' do
+target 'PinjamTunai' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for OkDana
+  # Pods for PinjamTunai
   
   pod 'SnapKit'
   pod 'RxSwift'
